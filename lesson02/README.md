@@ -1,4 +1,4 @@
-﻿##Реализовать методы Person по java докам, запушить в github
+﻿# Реализовать методы Person по java докам, запушить в github
 
 Try Vasya marry Masha ..
 Vasya.marry(Masha)true
