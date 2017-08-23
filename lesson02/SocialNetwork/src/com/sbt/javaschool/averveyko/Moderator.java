@@ -1,8 +1,5 @@
 package com.sbt.javaschool.averveyko;
 
-/**
- * Created by admin on 22.08.2017.
- */
 public class Moderator extends BaseUser implements Monetizable {
 
     public Moderator(String nickname, int age) {

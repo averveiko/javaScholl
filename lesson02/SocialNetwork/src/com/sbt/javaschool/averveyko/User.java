@@ -20,6 +20,7 @@ public class User extends BaseUser implements Monetizable{
                 "}";
     }
 
+    @Override
     public String monetize() {
         //Проанализировать лайки и показать юзеру рекламу
         return "show advertising " + this.toString();
@@ -32,8 +33,8 @@ public class User extends BaseUser implements Monetizable{
                 '}';
     }
 
-    protected void doBan(BaseUser baseuser) {
-        if (baseuser instanceof Moderator) {
+    protected void ban(BaseUser baseuser) {
+        if (baseuser instanceof Moderator) {    //Проверяем есть ли права на бан
             this.isBanned = true;
             System.out.println(this + " banned " + baseuser);
         } else {
