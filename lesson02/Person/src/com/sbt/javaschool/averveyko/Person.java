@@ -1,9 +1,9 @@
 package com.sbt.javaschool.averveyko;
 
 public class Person {
-    private final boolean man;
-    private final String name;
-    private Person spouse;
+    protected final boolean man;
+    protected final String name;
+    protected Person spouse;
 
     public Person(boolean man, String name) {
         this.man = man;
