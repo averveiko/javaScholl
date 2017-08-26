@@ -2,11 +2,11 @@ package com.sbt.javaschool.averveyko;
 
 import java.util.*;
 
-public class ProcessText {
+public class ProcessText  implements Iterable<String> {
 
     private String text;            //Весь текст файла
     private String[] wordArray;     //Массив всех слов в нижнем регистре
-    
+
     public ProcessText(String text) {
 
         this.text = text;
@@ -77,7 +77,35 @@ public class ProcessText {
     }
 
     //5) Реализуйте свой iterator для обхода списка в обратном порядке
-    public void printReversedWordList () {
+    @Override
+    public Iterator<String> iterator() {
+        //Итератор перебирает слова в обратном порядке
+        return new Iterator<String>() {
+
+            int current = wordArray.length;
+
+            @Override
+            public boolean hasNext() {
+                if (current > 0)
+                    return true;
+                else
+                    return false;
+            }
+
+            @Override
+            public String next() {
+                current--;
+                return wordArray[current];
+            }
+        };
+    }
+
+    public void printReversedListOfWords() {
+        //"Из коробки" есть ListIterator который позволяет это делать, но мы используем свой
+        Iterator<String> wordsIterator = this.iterator();
+        for (String s : this) {
+            System.out.print(s + ' ');
+        }
     }
 
     //6) Выведите на экран строки, номера которых задаются пользователем в произвольном порядке
