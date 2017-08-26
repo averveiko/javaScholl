@@ -20,11 +20,25 @@ public class Main {
         //Читаем файл в строку
         String content = new String(Files.readAllBytes(filePath));
 
-        //System.out.println(content);
         ProcessText pt = new ProcessText(content);
 
-        System.out.println("Количество слов в файле: " + pt.allWordsCount());
-        System.out.println("Количество различных слов в файле: " + pt.uniqueWordsCount());
+//        System.out.println("Количество слов в файле: " + pt.allWordsCount());
+//        System.out.println("Количество различных слов в файле: " + pt.uniqueWordsCount());
+//        System.out.println();
+//        System.out.println("Cписок различных слов файла, отсортированный по возрастанию их длины:");
+//        pt.printSortedUniqueWords();
+//        System.out.println();
+//        System.out.println("Cколько раз каждое слово встречается в файле:");
+//        pt.printFrequencyUniqueWords();
+//        System.out.println();
+//        System.out.println("Все строки файла в обратном порядке:");
+//        pt.printReversedLines();
 
+        pt.printReversedWordList();
+
+        System.out.println();
+        System.out.println("строки, номера которых задаются пользователем в произвольном порядке:");
+        int[] numbers = {50, 33, 21, 34};
+        pt.printLine(numbers);
     }
 }
