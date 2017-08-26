@@ -13,11 +13,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+            <state relative-caret-position="229">
+              <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProcessText.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProcessText.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/ProcessText.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="94" column="46" lean-forward="false" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+            <state relative-caret-position="289">
+              <caret line="58" column="74" lean-forward="false" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
               <folding>
                 <element signature="e#639#640#0" expanded="true" />
                 <element signature="e#678#679#0" expanded="true" />
@@ -74,8 +74,8 @@
         <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Word.java" />
         <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Text.java" />
         <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/WordIterator.java" />
-        <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Main.java" />
         <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/ProcessText.java" />
+        <option value="$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Main.java" />
       </list>
     </option>
   </component>
@@ -440,23 +440,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/ProcessText.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="38" column="29" lean-forward="true" selection-start-line="38" selection-start-column="29" selection-end-line="38" selection-end-column="29" />
+        <state relative-caret-position="289">
+          <caret line="58" column="74" lean-forward="false" selection-start-line="58" selection-start-column="74" selection-end-line="58" selection-end-column="74" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#639#640#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/ProcessText.java">
+    <entry file="file://$PROJECT_DIR$/src/com/sbt/javaschool/averveyko/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="94" column="46" lean-forward="false" selection-start-line="94" selection-start-column="46" selection-end-line="94" selection-end-column="46" />
+        <state relative-caret-position="229">
+          <caret line="34" column="32" lean-forward="true" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
           <folding>
-            <element signature="e#639#640#0" expanded="true" />
-            <element signature="e#678#679#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

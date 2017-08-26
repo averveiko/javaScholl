@@ -56,8 +56,9 @@ public class ProcessText {
     public void printFrequencyUniqueWords () {
         Set<String> uniqWords = new HashSet<>(Arrays.asList(wordArray));
 
+        List<String> wordList = new ArrayList<>(Arrays.asList(wordArray));
         for (String uniqWord : uniqWords) {
-            System.out.println(uniqWord + ": " + Collections.frequency(Arrays.asList(wordArray), uniqWord));
+            System.out.println(uniqWord + ": " + Collections.frequency(wordList, uniqWord));
         }
     }
 

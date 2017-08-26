@@ -22,17 +22,17 @@ public class Main {
 
         ProcessText pt = new ProcessText(content);
 
-//        System.out.println("Количество слов в файле: " + pt.allWordsCount());
-//        System.out.println("Количество различных слов в файле: " + pt.uniqueWordsCount());
-//        System.out.println();
-//        System.out.println("Cписок различных слов файла, отсортированный по возрастанию их длины:");
-//        pt.printSortedUniqueWords();
-//        System.out.println();
-//        System.out.println("Cколько раз каждое слово встречается в файле:");
-//        pt.printFrequencyUniqueWords();
-//        System.out.println();
-//        System.out.println("Все строки файла в обратном порядке:");
-//        pt.printReversedLines();
+        System.out.println("Количество слов в файле: " + pt.allWordsCount());
+        System.out.println("Количество различных слов в файле: " + pt.uniqueWordsCount());
+        System.out.println();
+        System.out.println("Cписок различных слов файла, отсортированный по возрастанию их длины:");
+        pt.printSortedUniqueWords();
+        System.out.println();
+        System.out.println("Cколько раз каждое слово встречается в файле:");
+        pt.printFrequencyUniqueWords();
+        System.out.println();
+        System.out.println("Все строки файла в обратном порядке:");
+        pt.printReversedLines();
 
         pt.printReversedWordList();
 
