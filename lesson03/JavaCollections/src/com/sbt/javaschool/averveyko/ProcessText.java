@@ -8,16 +8,8 @@ public class ProcessText  implements Iterable<String> {
     private String[] wordArray;     //Массив всех слов в нижнем регистре
 
     public ProcessText(String text) {
-
-        this.text = text;
-
-        String[] words = text.split("\\s+"); //Сплит по всем пробельным символам
-
-        this.wordArray = new String[words.length];
-
-        for (int i = 0; i < words.length; i++) {
-            this.wordArray[i] = words[i].toLowerCase(); //Переводим все слова в нижний регистр
-        }
+        this.text = text.toLowerCase();
+        this.wordArray = this.text.split("\\s+"); //Сплит по всем пробельным символам
     }
 
     //Всего слов в файле
