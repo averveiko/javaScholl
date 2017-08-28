@@ -94,7 +94,7 @@ public class ProcessText  implements Iterable<String> {
 
     public void printReversedListOfWords() {
         //"Из коробки" есть ListIterator который позволяет это делать, но мы используем свой
-        Iterator<String> wordsIterator = this.iterator();
+        //Iterator<String> wordsIterator = this.iterator();
         for (String s : this) {
             System.out.print(s + ' ');
         }
