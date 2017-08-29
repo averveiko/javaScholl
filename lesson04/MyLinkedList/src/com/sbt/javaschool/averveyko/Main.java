@@ -1,5 +1,7 @@
 package com.sbt.javaschool.averveyko;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,25 +10,50 @@ public class Main {
     int size = 0;
 
     public static void main(String[] args) {
-	    // write your code here
-        MyLinkedList<String> myList = new MyLinkedList();
-        myList.add("One");
-        myList.add("Two");
-        myList.add("Three");
-        myList.add("Four");
-        myList.add("Five");
-        myList.add("Remove me!");
-        myList.add("Six");
 
-        //myList.add(2, "Three");
+        MyLinkedList<Number> myList = new MyLinkedList<>();
 
-        Object var0 = myList.node(0);
-        Object var1 = myList.node(1);
-        Object var2 = myList.node(2);
-        Object var3 = myList.node(3);
-        Object var4 = myList.node(4);
+        myList.add(1);
+        myList.add(2L);
+        myList.add(3.0);
+        myList.add(new BigInteger("4"));
 
-        System.out.println(myList.remove(5));
+        System.out.println("\nСодержание нашей коллекции:");
+        for (Number number : myList) {
+            System.out.print("[" + number + "] ");
+        }
 
+        System.out.println("\nВставляем элементы в середину и конец:");
+        myList.add(2, 3.0);
+        myList.add(4, new BigInteger("4"));
+        for (Number number : myList) {
+            System.out.print("[" + number + "] ");
+        }
+
+        System.out.println("\nУдаляем элементы с индексом 2 и 5:");
+        myList.remove(2);
+        myList.remove(4);
+        for (Number number : myList) {
+            System.out.print("[" + number + "] ");
+        }
+
+        System.out.println("\nДобавляем элементы из другой коллекции");
+        List<Number> src = new  ArrayList<>();
+        src.add(5.0);
+        src.add(6L);
+        src.add(7);
+        myList.addAll(src);
+        for (Number number : myList) {
+            System.out.print("[" + number + "] ");
+        }
+
+        System.out.println("\nКопируем элементы в другую коллекцию (содержимое другой коллекции):");
+        List<Number> dst = new LinkedList<>();
+        myList.copy(dst);
+        for (Number number : dst) {
+            System.out.print("[" + number + "] ");
+        }
+
+        System.out.println();
     }
 }
