@@ -39,9 +39,9 @@ public class Main {
         }
 
         System.out.println("\nДобавляем элементы из другой коллекции");
-        List<Number> src = new  ArrayList<>();
-        src.add(5.0);
-        src.add(6L);
+        List<Integer> src = new  ArrayList<>();
+        src.add(5);
+        src.add(6);
         src.add(7);
         myList.addAll(src);
         for (Number number : myList) {
