@@ -11,16 +11,23 @@ public class MyLinkedList<E> implements Iterable<E> {
 
     private int size = 0;
 
-    private Node<E> header;
+    /*
+    * Псевдоэлемент списка, Его значение всегда равно null, a свойства next и prev всегда
+    * указывают на первый и последний элемент списка. Так как на данный момент
+    * список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
+    */
+    private Node<E> header = new Node<>(null, null, null);;
 
     MyLinkedList() {
-        /*
-         * Псевдоэлемент списка, Его значение всегда равно null, a свойства next и prev всегда
-         * указывают на первый и последний элемент списка. Так как на данный момент
-         * список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
-         */
-        header = new Node<>(null, null, null);
         header.next = header.prev = header;
+    }
+
+    /**
+     * Возвращает кол-во элементов в коллекции
+     * @return кол-во элементов
+     */
+    public int size() {
+        return size;
     }
 
     /**

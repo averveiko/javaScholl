@@ -15,6 +15,7 @@ public class Main {
 
         myList.add(1);
         myList.add(2L);
+        //myList.add(null); тоже работает
         myList.add(3.0);
         myList.add(new BigInteger("4"));
 
