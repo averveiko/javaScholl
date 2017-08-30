@@ -28,7 +28,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param element добавляемый элемент
      */
     public void add(E element) {
-        Node<E> newNode = new Node<>(header.prev, element, header);
+        Node<E> newNode = new Node<>(header.prev, element, null);
 
         //Переопределяем указатели
         newNode.prev.next = newNode;
@@ -42,6 +42,12 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param element добавляемый элемент
      */
     public void add(int index, E element) {
+
+        if (index == size) {    //Если добавляем в конец
+            add(element);
+            return;
+        }
+
         Node<E> prevNode = node(index);
         Node<E> newNode = new Node<>(prevNode.prev, element, prevNode);
 
@@ -77,7 +83,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     }
 
     /**
-     * Возвращает элемент коллекции за O(n)
+     * Возвращает элемент коллекции за O(n/2)
      * @param index индекс
      * @return элемент
      */
@@ -92,8 +98,14 @@ public class MyLinkedList<E> implements Iterable<E> {
      */
     E remove(int index) {
         Node<E> removeNode = node(index);
-        removeNode.prev.next = removeNode.next;
-        removeNode.next.prev = removeNode.prev;
+
+        if (removeNode.next != null) {                  //Это не последний элемент
+            removeNode.prev.next = removeNode.next;
+            removeNode.next.prev = removeNode.prev;
+        } else {                                        //Это последний элемент
+            removeNode.prev.next = null;
+            header.prev = removeNode.prev;
+        }
 
         //Обрываем все связи
         removeNode.next = null;
@@ -105,16 +117,17 @@ public class MyLinkedList<E> implements Iterable<E> {
 
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            int i = 0;
+            Node<E> e = header;
 
             @Override
             public boolean hasNext() {
-                return i < size;
+                return e.next != null;
             }
 
             @Override
             public E next() {
-                return node(i++).item;
+                e = e.next;
+                return e.item;
             }
         };
     }
