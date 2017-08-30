@@ -69,7 +69,7 @@ public class MyLinkedList<E> implements Iterable<E> {
         Node<E> n = header;
 
         //В целях экономии проходим только половину списка
-        if (index < (size / 2))     //(index < (size >> 1))
+        if (index < (size >> 1))     //Cдвиг вправо - выполняется деление на два с отбрасыванием остатка
         {
             for (int i = 0; i <= index; i++)
                 n = n.next;
