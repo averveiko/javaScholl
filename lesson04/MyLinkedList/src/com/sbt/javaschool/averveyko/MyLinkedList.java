@@ -16,7 +16,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     * указывают на первый и последний элемент списка. Так как на данный момент
     * список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
     */
-    private Node<E> header = new Node<>(null, null, null);;
+    private Node<E> header = new Node<>(null, null, null);
 
     MyLinkedList() {
         header.next = header.prev = header;
