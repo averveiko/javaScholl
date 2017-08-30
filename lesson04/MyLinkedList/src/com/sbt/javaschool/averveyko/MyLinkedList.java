@@ -12,13 +12,13 @@ public class MyLinkedList<E> implements Iterable<E> {
     private int size = 0;
 
     /*
-    * Псевдоэлемент списка, Его значение всегда равно null, a свойства next и prev всегда
-    * указывают на первый и последний элемент списка. Так как на данный момент
-    * список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
+    * Псевдоэлемент списка, его значение всегда равно null, a свойства next и prev всегда
+    * указывают на первый и последний элемент списка.
     */
     private Node<E> header = new Node<>(null, null, null);
 
     MyLinkedList() {
+        //Так как на данный момент список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
         header.next = header.prev = header;
     }
 
