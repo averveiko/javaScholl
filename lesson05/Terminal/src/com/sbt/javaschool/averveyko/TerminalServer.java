@@ -22,18 +22,17 @@ public class TerminalServer implements Terminal {
     }
 
     @Override
-    public boolean getMoney(String cardNumber, long amount) {
+    public void getMoney(String cardNumber, long amount) {
         long balance = cardDB.get(cardNumber);
         long newBalance = balance - amount;
+        if (newBalance < 0) throw new InsufficientFundsExceptions("insufficient funds on the account");
         cardDB.put(cardNumber, newBalance);
-        return true;
     }
 
     @Override
-    public boolean putMoney(String cardNumber, long amount) {
+    public void putMoney(String cardNumber, long amount) {
         long balance = cardDB.get(cardNumber);
         long newBalance = balance + amount;
         cardDB.put(cardNumber, newBalance);
-        return true;
     }
 }

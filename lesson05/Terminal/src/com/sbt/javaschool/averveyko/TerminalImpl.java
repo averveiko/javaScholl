@@ -6,7 +6,7 @@ public class TerminalImpl implements Terminal {
 
     private LockHelper lockHelper = new LockHelper();
 
-    private int pinErrorCount = 2;
+    private int pinErrorCount = 0;
 
     public TerminalImpl(TerminalServer server, PinValidator pinValidator) {
         this.server = server;
@@ -24,7 +24,6 @@ public class TerminalImpl implements Terminal {
         }
 
         pinErrorCount += 1;
-        System.out.println(pinErrorCount);
         if (pinErrorCount == 3) {
             lockHelper.lock();
             pinErrorCount = 0;
@@ -34,23 +33,30 @@ public class TerminalImpl implements Terminal {
     }
 
     @Override
-    public boolean getMoney(String cardNumber, long amount) {
+    public void getMoney(String cardNumber, long amount) {
         if (lockHelper.isLocked())
             throw new AccountIsLockedException((int)(Math.ceil(lockHelper.getCoutdown() / 1000.0)));
-        return server.getMoney(cardNumber, amount);
+        if (amount % 100 != 0)
+            throw new IllegalArgumentException("amount % 100 != 0");
+
+        server.getMoney(cardNumber, amount);
     }
 
     @Override
-    public boolean putMoney(String cardNumber, long amount) {
+    public void putMoney(String cardNumber, long amount) {
         if (lockHelper.isLocked())
             throw new AccountIsLockedException((int)(Math.ceil(lockHelper.getCoutdown() / 1000.0)));
-        return server.putMoney(cardNumber, amount);
+        if (amount % 100 != 0)
+            throw new IllegalArgumentException("amount % 100 != 0");
+
+        server.putMoney(cardNumber, amount);
     }
 
     @Override
     public long checkBalance(String cardNumber) {
         if (lockHelper.isLocked())
             throw new AccountIsLockedException((int)(Math.ceil(lockHelper.getCoutdown() / 1000.0)));
+
         return server.checkBalance(cardNumber);
     }
 
@@ -58,7 +64,7 @@ public class TerminalImpl implements Terminal {
      * Вспомогательный класс, отслеживающий время блокировки аккаунта
      */
     private static class LockHelper {
-        private static final long lockInterval = 10000; //Интервал блокировки - 5 сек
+        private static final long lockInterval = 5000; //Интервал блокировки - 5 сек
         long lockTime = -1;
 
         boolean isLocked () {

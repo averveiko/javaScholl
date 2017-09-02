@@ -10,9 +10,9 @@ public class PinValidator {
     public PinValidator() {
         pinDB.put("1111111111111111", "1111");
         pinDB.put("2222222222222222", "2222");
-        pinDB.put("2222222222222222", "2222");
-        pinDB.put("2222222222222222", "2222");
-        pinDB.put("2222222222222222", "2222");
+        pinDB.put("3333333333333333", "3333");
+        pinDB.put("4444444444444444", "4444");
+        pinDB.put("5555555555555555", "5555");
     }
 
     boolean validate (String cardNumber, String pin) {
