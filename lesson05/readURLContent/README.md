@@ -12,7 +12,7 @@ Trying read https://mail.google.com
   <meta charset="utf-8">
   <meta content="width=300, initial-scale=1" name="viewport">
   <meta name="description" content="Gmail is email that&#39;s intuitive, efficient, and useful. 15 GB of storage, less spam, and mobile access.">
-  <meta name="google-site-verification" content="LrdTUW9psUAMbh4Ia074-BPEVmcpBxF6Gwf0MSgQXZs">
+  <meta name="google-site-verification" content="xxxxxxx">
   <title>Gmail</title>
   <style>
  ...
