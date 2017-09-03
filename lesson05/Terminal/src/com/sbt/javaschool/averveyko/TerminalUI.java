@@ -1,5 +1,6 @@
 package com.sbt.javaschool.averveyko;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class TerminalUI {
@@ -9,6 +10,7 @@ public class TerminalUI {
     private Scanner in = new Scanner(System.in);
 
     public void start() {
+
         while (true){
             String cardNumber = cardMenu();
             if (! cardNumber.isEmpty())
@@ -36,7 +38,7 @@ public class TerminalUI {
                     continue;
                 }
             } catch (AccountIsLockedException e) {
-                System.out.println("Аккаунт заблокирован. " + e.getMessage());
+                System.out.println("Аккаунт заблокирован. До разблокировки осталось секунд: " + e.getMessage());
                 continue;
             }
             return cardNumber;
@@ -60,21 +62,25 @@ public class TerminalUI {
                 if (operation == 3) putMoney(cardNumber);
                 if (operation == 4) return;
 
+            } catch (SecurityException e) {
+                System.out.println("Для начала работы необходимо ввести ПИН-код.");
             } catch (AccountIsLockedException e) {
-                System.out.println("Аккаунт заблокирован. До разблокировки осталось: " + e.getMessage() + "секунд.");
+                System.out.println("Аккаунт заблокирован. До разблокировки осталось секунд: " + e.getMessage());
             } catch (InsufficientFundsExceptions e) {
                 System.out.println("Недостаточно средств на счете. Операция не выполнена.");
             } catch (IllegalArgumentException e) {
                 System.out.println("Сумма должна быть кратна 100. Операция не выполнена.");
+            } catch (IOException e) {
+                System.out.println("Возникли проблемы со связью, попробуйте повторить операцию.");
             }
         }
     }
 
-    private void getBalance(String cardNumber) {
+    private void getBalance(String cardNumber) throws IOException  {
         System.out.println("\nБаланс карты: " + terminal.checkBalance(cardNumber));
     }
 
-    private void getMoney(String cardNumber) {
+    private void getMoney(String cardNumber) throws IOException {
         System.out.println("\nСнятие наличных");
         System.out.println("Введите сумму кратную 100: ");
         int amount = in.nextInt();
@@ -82,7 +88,7 @@ public class TerminalUI {
         System.out.println("Операция выполнена успешно, заберите деньги.");
     }
 
-    private void putMoney(String cardNumber) {
+    private void putMoney(String cardNumber) throws IOException {
         System.out.println("\nВнесение наличных");
         System.out.println("Введите сумму кратную 100: ");
         int amount = in.nextInt();

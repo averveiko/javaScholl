@@ -7,6 +7,9 @@ public class PinValidator {
     //Хранилище значений № карты - пин
     Map<String, String> pinDB = new HashMap<>();
 
+    //Ввел ли пользователь корректный ПИН-код
+    boolean isAuthorized = false;
+
     public PinValidator() {
         pinDB.put("1111111111111111", "1111");
         pinDB.put("2222222222222222", "2222");
@@ -17,6 +20,7 @@ public class PinValidator {
 
     boolean validate (String cardNumber, String pin) {
         if (pin.length() != 4) return false;
-        return pinDB.containsKey(cardNumber) && pinDB.get(cardNumber).equals(pin);
+        isAuthorized = pinDB.containsKey(cardNumber) && pinDB.get(cardNumber).equals(pin);
+        return isAuthorized;
     }
 }
