@@ -1,2 +1,2 @@
 # Java Schooll
-Home works by Alexander Verveyko
+HW by Alexander Verveyko
