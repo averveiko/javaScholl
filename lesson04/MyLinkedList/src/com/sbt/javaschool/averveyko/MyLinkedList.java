@@ -55,10 +55,10 @@ public class MyLinkedList<E> implements Iterable<E> {
             return;
         }
 
-        Node<E> prevNode = node(index);
-        Node<E> newNode = new Node<>(prevNode.prev, element, prevNode);
+        Node<E> nextNode = node(index);
+        Node<E> newNode = new Node<>(nextNode.prev, element, nextNode);
 
-        prevNode.prev = newNode;
+        nextNode.prev = newNode;
         newNode.prev.next = newNode;
         size++;
     }
