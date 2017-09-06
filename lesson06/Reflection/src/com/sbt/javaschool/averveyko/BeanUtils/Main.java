@@ -3,7 +3,7 @@ package com.sbt.javaschool.averveyko.BeanUtils;
 public class Main {
 
     public static void main(String[] args) {
-        Employee from = new Employee("Alex", 32, "Programmer");
+        Employee from = new Employee("Alex", 32, "Programer");
         Person to = new Person("Noname", 0);
 
         System.out.println("\nСвойства класса получателя до assign: ");
@@ -47,6 +47,7 @@ class Person {
     private String privateMethod() {
         return "This is private method!";
     }
+
 }
 
 class Employee extends Person {
@@ -64,5 +65,6 @@ class Employee extends Person {
     public void setProfession(String profession) {
         this.profession = profession;
     }
+
 }
 
