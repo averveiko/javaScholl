@@ -64,7 +64,6 @@ public class CacheFileStorage {
             return map;
         }
 
-
         //Парсим считанный кэш в мапу
         for (String line : mapCache.split("\n")) {
             String[] keyValue = line.split(";");
