@@ -18,21 +18,25 @@ public class ProxyHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //Проверяем, если в кэше уже вычисленное значение
-        if (cache.containsKey((String)args[0])) {
-            System.out.println("Результат выражения " + (String) args[0] + " получен из кэша");
-            return cache.get((String) args[0]);
+        if (method.getName().equals("eval")) { //Кешируем только метод eval
+            //Проверяем, если в кэше уже вычисленное значение
+            if (cache.containsKey((String) args[0])) {
+                System.out.println("Результат выражения " + (String) args[0] + " получен из кэша");
+                return cache.get((String) args[0]);
+            }
+
+            //Иначе вычисляем его
+            Object result = method.invoke(delegate, args);
+            //И заносим в кэш
+            cache.put((String) args[0], (Double) result);
+            System.out.println("Результат выражения " + (String) args[0] + " сохранен в кэше");
+
+            //Сохраняем кэш на диск
+            fs.save(cache);
+
+            return result;
+        } else {    //Если метод другой - просто выполняем его и возвращаем результат
+            return method.invoke(delegate, args);
         }
-
-        //Иначе вычисляем его
-        Object result = method.invoke(delegate, args);
-        //И заносим в кэш
-        cache.put((String)args[0], (Double)result);
-        System.out.println("Результат выражения " + (String)args[0] + " сохранен в кэше");
-
-        //Сохраняем кэш на диск
-        fs.save(cache);
-
-        return result;
     }
 }
