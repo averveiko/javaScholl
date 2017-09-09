@@ -22,6 +22,6 @@ Plugin class ru.sbt.averveyko.PrinterPlugin успешно запущен ...
 Plugin class ru.sbt.ivanov.PrinterPlugin успешно запущен ...
 </pre>
 
-Структура каталогов плагинов:
+Структура каталога плагинов:
 
 ![plugin tree](img/fs_tree.png)
