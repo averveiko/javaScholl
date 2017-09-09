@@ -1,4 +1,4 @@
-### Реаолизовать следующий класс по документации
+### Реализовать следующий класс по документации
 
 ```Java
 public class BeanUtils {
@@ -30,16 +30,15 @@ name: Noname
 age: 0
 </b>
 Найден getter public java.lang.String com.sbt.javaschool.averveyko.BeanUtils.Employee.getProfession()
-Сеттер-получатель: setProfession
-В получателе нет метода setProfession с параметром class java.lang.String
+Поиск сеттера: setProfession
 
 Найден getter public java.lang.String com.sbt.javaschool.averveyko.BeanUtils.Person.getName()
-Сеттер-получатель: setName
+Поиск сеттера: setName
 Найден сеттер: public void com.sbt.javaschool.averveyko.BeanUtils.Person.setName(java.lang.String)
 Значение установлено.
 
 Найден getter public int com.sbt.javaschool.averveyko.BeanUtils.Person.getAge()
-Сеттер-получатель: setAge
+Поиск сеттера: setAge
 Найден сеттер: public void com.sbt.javaschool.averveyko.BeanUtils.Person.setAge(int)
 Значение установлено.
 <b>
@@ -48,3 +47,10 @@ name: Alex
 age: 32
 </b>
 </pre>
+
+Совместимость типа возвращаемого значения джеттера и параметра сеттера определяется следующим образом:
+```Java
+if (getMethod.getReturnType().isAssignableFrom(setMethod.getParameterTypes()[0])){
+    //...
+}
+```

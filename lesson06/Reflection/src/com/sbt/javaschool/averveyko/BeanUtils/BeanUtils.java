@@ -2,7 +2,6 @@ package com.sbt.javaschool.averveyko.BeanUtils;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 
 public class BeanUtils {
     /**
@@ -27,35 +26,36 @@ public class BeanUtils {
         Class clazzFrom = from.getClass();
         Class clazzTo = to.getClass();
 
-        Method[] methods = clazzFrom.getMethods(); //получаем все public методы
-        for (Method method : methods) {
+        //получаем все public методы
+        for (Method getMethod : clazzFrom.getMethods()) {
 
-            if (method.getDeclaringClass() == Object.class) //Методы класса Object пропускаем
+            if (getMethod.getDeclaringClass() == Object.class) //Методы класса Object пропускаем
                 continue;
 
-            if (method.getName().startsWith("get")) { //Это getter
-                System.out.println("\nНайден getter " + method);
+            if (getMethod.getName().startsWith("get")) { //Это getter
+                System.out.println("\nНайден getter " + getMethod);
 
                 //Генерируем имя сеттера-получателя
-                String setterName = "set" + method.getName().substring(3);
-                System.out.println("Сеттер-получатель: " + setterName);
-                //Тип принимаемого параметра
-                Type parameterType = method.getAnnotatedReturnType().getType();
+                String setterName = getMethod.getName().replace("get", "set");
+                System.out.println("Поиск сеттера: " + setterName);
 
-                try {
-                    Method setter = clazzTo.getMethod(setterName, (Class) parameterType);
-                    System.out.println("Найден сеттер: " + setter);
+                //Ищем сеттер
+                for (Method setMethod : clazzTo.getMethods()) {
+                    if (setMethod.getName().equals(setterName)) { //Нашли нужное имя
+                        //Проверяем, совместим ли возвращаемый класс джеттера параметру сеттера
+                        if (getMethod.getReturnType().isAssignableFrom(setMethod.getParameterTypes()[0])){
+                            System.out.println("Найден сеттер: " + setMethod);
 
-                    try {
-                        setter.invoke(to, method.invoke(from));
-                        System.out.println("Значение установлено.");
-                    } catch (IllegalAccessException e) {
-                        System.out.println("Нет доступа к методу " + method);
-                    } catch (InvocationTargetException e) {
-                        System.out.println("Возникли пробелемы с вызовом метода " + method);
+                            try {
+                                setMethod.invoke(to, getMethod.invoke(from));
+                                System.out.println("Значение установлено.");
+                            } catch (IllegalAccessException e) {
+                                System.out.println("Нет доступа к методу " + getMethod);
+                            } catch (InvocationTargetException e) {
+                                System.out.println("Возникли пробелемы с вызовом метода " + getMethod);
+                            }
+                        }
                     }
-                } catch (NoSuchMethodException e) {
-                    System.out.println("В получателе нет метода " + setterName + " с параметром " + parameterType);
                 }
             }
         }
