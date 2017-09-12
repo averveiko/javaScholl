@@ -12,13 +12,13 @@ public class ArrayWithIterator<T> implements Iterable<T> {
     }
 
     public void put (int index, T element) {
-        if (index < 0 && index >= this.size)
+        if (index < 0 || index >= this.size)
             throw new IllegalArgumentException("i must be >= 0 and < " + this.size);
         this.array[index] = element;
     }
 
     public T get (int index) {
-        if (index < 0 && index >= this.size)
+        if (index < 0 || index >= this.size)
             throw new IllegalArgumentException("i must be >= 0 and < " + this.size);
         return this.array[index];
     }
@@ -38,7 +38,7 @@ public class ArrayWithIterator<T> implements Iterable<T> {
             }
 
             public void remove() {
-                throw new UnsupportedOperationException();
+                throw new UnsupportedOperationException("remove not supported");
             }
         };
     }
