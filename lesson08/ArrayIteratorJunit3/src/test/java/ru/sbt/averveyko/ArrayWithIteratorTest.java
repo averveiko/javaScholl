@@ -23,6 +23,7 @@ public class ArrayWithIteratorTest extends TestCase {
     public void testPut() throws Exception {
         myArray.put(1,"testPut");
         assertEquals(myArray.get(1), "testPut");
+        myArray.put(1,"String 1");
     }
 
     public void testGet() throws Exception {
@@ -36,7 +37,4 @@ public class ArrayWithIteratorTest extends TestCase {
             assertEquals(s, "String " + (i++));
         }
     }
-
-    //TODO проверки на выбрасывание ошибок
-
 }

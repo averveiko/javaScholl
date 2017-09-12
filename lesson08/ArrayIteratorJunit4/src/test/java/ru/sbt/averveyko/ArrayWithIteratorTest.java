@@ -36,8 +36,14 @@ public class ArrayWithIteratorTest {
     }
 
     @Test
+    public void iteratorHasNext() throws Exception {
+        assertTrue(array.iterator().hasNext());
+    }
+
+    @Test
     public void iterator() throws Exception {
         int i = 0;
+
         for (String s : array) {
             assertEquals(s, "String " + (i++));
         }
