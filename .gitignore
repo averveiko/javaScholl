@@ -1,2 +1,8 @@
+target/
 out/
 .DS_Store/
+
+.idea
+*.iws
+*.iml
+*.ipr
