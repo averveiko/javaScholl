@@ -1,8 +1,8 @@
 package ru.sbt;
 
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLClassLoader;
 
 public class PluginManager {
     private final String pluginRootDirectory;
@@ -11,16 +11,13 @@ public class PluginManager {
         this.pluginRootDirectory = pluginRootDirectory;
     }
 
-    public Plugin load(String pluginName, String pluginClassName) throws MalformedURLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
+    public Plugin load(String pluginName, String pluginClassName) throws MalformedURLException,
+            ClassNotFoundException, IllegalAccessException, InstantiationException {
 
-        String fullPath = pluginRootDirectory + "/" + pluginName + "/";
+        URL url[] = {new File(pluginRootDirectory + "\\" + pluginName + "\\").toURI().normalize().toURL()};
+        System.out.println(url[0].toString());
 
-        System.out.println("Загружаем плагин " + pluginClassName + " из " + fullPath);
-
-        URL[] classLoaderUrls = new URL[]{new URL(fullPath)};
-        URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
-        Class<?> pluginClazz = urlClassLoader.loadClass(pluginClassName);
-
-        return (Plugin) pluginClazz.newInstance();
+        PluginLoader pluginLoader = new PluginLoader(url);
+        return (Plugin) pluginLoader.loadClass(pluginClassName).newInstance();
     }
 }

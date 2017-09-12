@@ -5,21 +5,22 @@
 **Результат работы программы:**
 
 <pre>
-<b>Загружаем плагин PrinterPlugin безымянного разработчика</b>
-Загружаем плагин PrinterPlugin из file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Printer/
-Plugin class PrinterPlugin успешно запущен ...
-<br />
+
 <b>Загружаем плагин AnotherPlugin безымянного разработчика</b>
-Загружаем плагин AnotherPlugin из file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Another/
-Plugin class AnotherPlugin успешно запущен ...
+file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Another/
+Plugin class ru.plugin.AnotherPlugin успешно запущен ...
 <br />
+<b>Загружаем плагин PluginManager с конфликтующим именем</b>
+file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/PluginManager/
+Plugin class ru.plugin.PluginManager успешно запущен ...
+</br>
 <b>Загружаем плагин PrinterPlugin разработчика averveyko</b>
-Загружаем плагин ru.sbt.averveyko.PrinterPlugin из file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Printer/
-Plugin class ru.sbt.averveyko.PrinterPlugin успешно запущен ...
+file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Printer/
+Plugin class ru.plugin.averveyko.PrinterPlugin успешно запущен ...
 <br />
 <b>Загружаем плагин PrinterPlugin разработчика ivanov</b>
-Загружаем плагин ru.sbt.ivanov.PrinterPlugin из file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Printer/
-Plugin class ru.sbt.ivanov.PrinterPlugin успешно запущен ...
+file:/C:/Users/admin/IdeaProjects/JavaSchool/lesson07/URLPluginManager/plugins/Printer/
+Plugin class ru.plugin.ivanov.PrinterPlugin успешно запущен ...
 </pre>
 
 Структура каталога плагинов:

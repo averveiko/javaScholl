@@ -1,31 +1,29 @@
 package ru.sbt;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
-            String current = new File( "." ).toURI().normalize().toURL().toString();
+            Path currentPath = Paths.get(".");
+            String current = currentPath.toAbsolutePath().toString();
 
-            PluginManager pluginManager = new PluginManager(current + "plugins");
+            PluginManager pluginManager = new PluginManager(current + "\\plugins");
 
-            Plugin printer = pluginManager.load("Printer","PrinterPlugin");
+            Plugin printer = pluginManager.load("Another","ru.plugin.AnotherPlugin");
             printer.doUsefull();
 
-            Plugin anotherPlugin = pluginManager.load("Another","AnotherPlugin");
+            Plugin anotherPlugin = pluginManager.load("PluginManager","ru.plugin.PluginManager");
             anotherPlugin.doUsefull();
 
-            Plugin printerAverveyko = pluginManager.load("Printer","ru.sbt.averveyko.PrinterPlugin");
+            Plugin printerAverveyko = pluginManager.load("Printer","ru.plugin.averveyko.PrinterPlugin");
             printerAverveyko.doUsefull();
 
-            Plugin printerIvanov = pluginManager.load("Printer","ru.sbt.ivanov.PrinterPlugin");
+            Plugin printerIvanov = pluginManager.load("Printer","ru.plugin.ivanov.PrinterPlugin");
             printerIvanov.doUsefull();
-
-            Plugin pluginManagerPlugin = pluginManager.load("PluginManager","ru.sbt.PluginManager");
-            pluginManagerPlugin.doUsefull();
-
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

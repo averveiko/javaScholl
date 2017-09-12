@@ -1,4 +1,4 @@
-package ru.sbt.averveyko;
+package ru.plugin.ivanov;
 
 import ru.sbt.Plugin;
 

@@ -1,4 +1,4 @@
-package ru.sbt;
+package ru.plugin;
 
 import ru.sbt.Plugin;
 
