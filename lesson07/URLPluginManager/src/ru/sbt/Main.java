@@ -23,6 +23,9 @@ public class Main {
             Plugin printerIvanov = pluginManager.load("Printer","ru.sbt.ivanov.PrinterPlugin");
             printerIvanov.doUsefull();
 
+            Plugin pluginManagerPlugin = pluginManager.load("PluginManager","ru.sbt.PluginManager");
+            pluginManagerPlugin.doUsefull();
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
