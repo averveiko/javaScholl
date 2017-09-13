@@ -1,4 +1,6 @@
-### Реализуйте свой итератор массива обьектов
+### [Основное задание](https://github.com/averveiko/javaSchool/tree/master/lesson08/SocialNetwork#Спроектировать-дизайн-соц-сети)
+
+### Дополнительно: реализуйте свой итератор массива обьектов
 * Напишите тесты для проверки его работоспособности
     * ArrayIteratorJunit3 - тесты на JUnit 3
     * ArrayIteratorJunit4 - тесты на JUnit 4
