@@ -1,4 +1,4 @@
-### [Основное задание](https://github.com/averveiko/javaSchool/tree/master/lesson08/SocialNetwork#Спроектировать-дизайн-соц-сети)
+### [Основное задание - SocialNetwork](https://github.com/averveiko/javaSchool/tree/master/lesson08/SocialNetwork#Спроектировать-дизайн-соц-сети)
 
 ### Дополнительно: реализуйте свой итератор массива обьектов
 * Напишите тесты для проверки его работоспособности
