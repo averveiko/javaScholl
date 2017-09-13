@@ -1,5 +1,7 @@
 package ru.sbt.averveyko.socialnetwork.users;
 
+import java.util.Objects;
+
 public class User {
     private static long idCounter;
 
@@ -55,6 +57,23 @@ public class User {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                age == user.age &&
+                Objects.equals(name, user.name) &&
+                gender == user.gender &&
+                Objects.equals(info, user.info);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, age, gender, info);
     }
 
     @Override
