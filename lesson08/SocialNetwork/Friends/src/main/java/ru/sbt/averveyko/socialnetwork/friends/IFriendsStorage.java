@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface IFriendsStorage {
     List<User> getFriends(long userid);
-    void setFriends(long id, List<User> userList);
 }
