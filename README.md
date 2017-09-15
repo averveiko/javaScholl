@@ -11,6 +11,6 @@ Lesson | Theme
 [lesson06](https://github.com/averveiko/javaSchool/tree/master/lesson06) | Reflection, Proxy, Annotations
 [lesson07](https://github.com/averveiko/javaSchool/tree/master/lesson07) | ClassLoaders
 [lesson08](https://github.com/averveiko/javaSchool/tree/master/lesson08) | Module. Build tools. Testing
-lesson09 | Serialization
+[lesson09](https://github.com/averveiko/javaSchool/tree/master/lesson09) | Serialization
 lesson10 | Lambda. Stream API
 
