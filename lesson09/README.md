@@ -51,17 +51,17 @@ __Результат работы программы__
 <b>Помещено в кэш |run| [Test] : [6.0, 10.0]</b>
 Результат: [6.0, 10.0]
 
-<b>Вызов функции run, аргументы [Test]
+<b>Вызов функции run, аргументы [Test]</b>
 Аннотации метода: @Cache(cacheType=MEMORY, fileNamePrefix=, zip=false, identityBy=[]), listLength=2)
 <b>Для метода run ключ [Test] найден в кэше, достаем результат из кэша</b>
 Результат: [6.0, 10.0]
 
-<b>Вызов функции run, аргументы [Test Test]
+<b>Вызов функции run, аргументы [Test Test]</b>
 Аннотации метода: @Cache(cacheType=MEMORY, fileNamePrefix=, zip=false, identityBy=[]), listLength=2)
 <b>Помещено в кэш |run| [Test Test] : [13.5, 22.5]</b>
 Результат: [13.5, 22.5]
 
-<b>Вызов функции run, аргументы [Test Test]
+<b>Вызов функции run, аргументы [Test Test]</b>
 Аннотации метода: @Cache(cacheType=MEMORY, fileNamePrefix=, zip=false, identityBy=[]), listLength=2)
 <b>Для метода run ключ [Test Test] найден в кэше, достаем результат из кэша</b>
 Результат: [13.5, 22.5]
