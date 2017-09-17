@@ -24,13 +24,5 @@ public class SerializableUtils {
         }
         return null;
     }
-
-    private static byte[] convertToBytes(Object object) throws IOException {
-        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
-             ObjectOutput out = new ObjectOutputStream(bos)) {
-            out.writeObject(object);
-            return bos.toByteArray();
-        }
-    }
 }
 
