@@ -13,11 +13,4 @@
     <artifactId>CacheProxy</artifactId>
     <version>1.0</version>
 
-    <dependencies>
-        <dependency>
-            <groupId>ru.sbt.averveyko.CachingProxy</groupId>
-            <artifactId>Service</artifactId>
-            <version>1.0</version>
-        </dependency>
-    </dependencies>
 </project>
