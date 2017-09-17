@@ -9,7 +9,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Cache {
     CacheType cacheType() default CacheType.FILE;
-    String fileNamePrefix() default "cache";
+    String fileNamePrefix() default "";
     boolean zip() default false;
     Class[] identityBy() default {};
+    int listLength() default -1;
 }

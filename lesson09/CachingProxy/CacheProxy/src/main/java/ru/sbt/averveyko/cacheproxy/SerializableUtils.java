@@ -1,7 +1,6 @@
 package ru.sbt.averveyko.cacheproxy;
-
-
 import java.io.*;
+
 
 public class SerializableUtils {
     public static void serialize (Object obj, String fileName) {
@@ -24,6 +23,14 @@ public class SerializableUtils {
             System.out.println("Класс не найден");
         }
         return null;
+    }
+
+    private static byte[] convertToBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
+             ObjectOutput out = new ObjectOutputStream(bos)) {
+            out.writeObject(object);
+            return bos.toByteArray();
+        }
     }
 }
 

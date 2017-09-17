@@ -23,7 +23,9 @@ public class ProxyHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //Тут наша логика
+
+        Object returnValue;
+
         System.out.println("Вызов функции " + method.getName() + ", аргументы " + Arrays.toString(args));
 
         //Если требуется кеширование
@@ -32,7 +34,8 @@ public class ProxyHandler implements InvocationHandler {
             System.out.println("@Cache(cacheType=" + an.cacheType() +
                     ", fileNamePrefix=" + an.fileNamePrefix() +
                     ", zip=" + an.zip() +
-                    ", identityBy=" + Arrays.toString(an.identityBy()) + ")");
+                    ", identityBy=" + Arrays.toString(an.identityBy()) + ")" +
+                    ", listLength=" + an.listLength() + ")");
 
             List<Object> identityArr = Arrays.asList(an.identityBy());
 
@@ -50,7 +53,8 @@ public class ProxyHandler implements InvocationHandler {
             if (an.cacheType() == CacheType.FILE) {
                 //Если нет кеша для этого метода, пробуем смотреть на диске
                 if (!this.cache.containsKey(method.getName())) {
-                    String fileName = this.cachePath + method.getName() + ".cache";
+                    String prefix = (an.fileNamePrefix().length() > 0) ? an.fileNamePrefix() : method.getName();
+                    String fileName = this.cachePath + prefix + ".cache";
                     Object methodCache = SerializableUtils.deserialize(fileName);
                     if (methodCache != null) {
                         System.out.println("Кеш для метода " + method.getName() + " был загружен из кэша " + fileName);
@@ -71,35 +75,51 @@ public class ProxyHandler implements InvocationHandler {
                     return methodCache.get(key);
                 } else {
                     //Рассчитываем результат и помещаем в кеш
-                    Object value = method.invoke(delegate, args);
-                    System.out.println("Помещено в кэш |" + method.getName() + "| " + key + " : " + value);
-                    methodCache.put(key, value);
+                    returnValue = method.invoke(delegate, args);
+
+                    if (an.listLength() != -1 && List.class.isAssignableFrom(returnValue.getClass())) {
+                        //Обрезаем лист до нужной длины
+                        returnValue = ((List) returnValue).subList(0, an.listLength());
+                    }
+
+                    System.out.println("Помещено в кэш |" + method.getName() + "| " + key + " : " + returnValue);
+                    methodCache.put(key, returnValue);
+
 
                     if (an.cacheType() == CacheType.FILE) {
-                        String fileName = this.cachePath + method.getName() + ".cache";
+                        String prefix = (an.fileNamePrefix().length() > 0) ? an.fileNamePrefix() : method.getName();
+                        String fileName = this.cachePath + prefix + ".cache";
                         System.out.println("Кэш записан в файл " + fileName);
                         SerializableUtils.serialize(this.cache.get(method.getName()), fileName);
                     }
 
-                    return value;
+                    return returnValue;
                 }
             } else {
                 //Создаем кеш для этого метода
                 System.out.println("Создан новый кэш для метода " + method.getName());
                 Map<ArrayList, Object> methodCache = new HashMap<>();
-                Object value = method.invoke(delegate, args);
-                System.out.println("Помещено в кэш |" + method.getName() + "| " + key + " : " + value);
-                methodCache.put(key, value);
+
+                returnValue = method.invoke(delegate, args);
+
+                if (an.listLength() != -1 && List.class.isAssignableFrom(returnValue.getClass())) {
+                    //Обрезаем лист до нужной длины
+                    returnValue = ((List) returnValue).subList(0, an.listLength());
+                }
+                System.out.println("Помещено в кэш |" + method.getName() + "| " + key + " : " + returnValue);
+                methodCache.put(key, returnValue);
+
                 //Помещаем все в главный кеш
                 this.cache.put(method.getName(), methodCache);
 
                 if (an.cacheType() == CacheType.FILE) {
-                    String fileName = this.cachePath + method.getName() + ".cache";
+                    String prefix = (an.fileNamePrefix().length() > 0) ? an.fileNamePrefix() : method.getName();
+                    String fileName = this.cachePath + prefix + ".cache";
                     System.out.println("Кэш записан в файл " + fileName);
                     SerializableUtils.serialize(this.cache.get(method.getName()), fileName);
                 }
 
-                return value;
+                return returnValue;
             }
         }
         //Метод не кешируется, просто вычисляем и возвращаем результат
