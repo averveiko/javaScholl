@@ -11,4 +11,5 @@ public @interface Cache {
     CacheType cacheType() default CacheType.FILE;
     String fileNamePrefix() default "cache";
     boolean zip() default false;
+    Class[] identityBy() default {};
 }

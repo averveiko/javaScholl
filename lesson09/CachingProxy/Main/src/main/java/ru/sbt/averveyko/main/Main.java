@@ -16,24 +16,18 @@ public class Main {
         CacheProxy cacheProxy = new CacheProxy(CACHE_PATH, DEFAULT_CACHE_TYPE);
 
         IService service = cacheProxy.cache(new Service());
-        System.out.println(service.doHardWork("work1",4));
-        System.out.println(service.doHardWork("work1",6));
-        System.out.println(service.doHardWork("work1",4));
 
-//        ArrayList list1 = new ArrayList();
-//        list1.add("Test");
-//        list1.add(14);
-//
-//        ArrayList list2 = new ArrayList();
-//        list2.add("Test");
-//        list2.add(14);
-//
-//        System.out.println(list1.equals(list2));
+        System.out.println("\n>Метод doHardWork");
+        System.out.println("Результат: " + service.doHardWork("work2",422));
+        System.out.println("Результат: " + service.doHardWork("work2",422));
+        System.out.println("Результат: " + service.doHardWork("work1",4));
+        System.out.println("Результат: " + service.doHardWork("work1",4));
 
-//        System.out.println(list1.get(0).getClass());
-//        System.out.println(list1.get(1).getClass());
-
+        System.out.println("\n>Метод run");
+        System.out.println("Результат: " + service.run("Test"));
+        System.out.println("Результат: " + service.run("Test"));
+        System.out.println("Результат: " + service.run("Test Test"));
+        System.out.println("Результат: " + service.run("Test Test"));
 
     }
-
 }

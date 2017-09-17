@@ -20,10 +20,8 @@ public class SerializableUtils {
             return objectInputStream.readObject();
         } catch (IOException e) {
             System.out.println("Неудалось прочитать файл " + fileName);
-            e.printStackTrace();
         } catch (ClassNotFoundException e) {
             System.out.println("Класс не найден");
-            e.printStackTrace();
         }
         return null;
     }
