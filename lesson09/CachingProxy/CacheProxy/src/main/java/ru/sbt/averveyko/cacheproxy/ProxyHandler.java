@@ -28,11 +28,11 @@ public class ProxyHandler implements InvocationHandler {
         //Если требуется кэширование
         if (method.isAnnotationPresent(Cache.class)) {
             Cache an = method.getAnnotation(Cache.class);
-            System.out.println("Аннотации метода: @Cache(cacheType=" + an.cacheType() +
-                    ", fileNamePrefix=" + an.fileNamePrefix() +
-                    ", zip=" + an.zip() +
-                    ", identityBy=" + Arrays.toString(an.identityBy()) + ")" +
-                    ", listLength=" + an.listLength() + ")");
+//            System.out.println("Аннотации метода: @Cache(cacheType=" + an.cacheType() +
+//                    ", fileNamePrefix=" + an.fileNamePrefix() +
+//                    ", zip=" + an.zip() +
+//                    ", identityBy=" + Arrays.toString(an.identityBy()) + ")" +
+//                    ", listLength=" + an.listLength() + ")");
 
             //Формируем имя файла кэша для записи\чтения
             String prefix = (an.fileNamePrefix().length() > 0) ? an.fileNamePrefix() : method.getName();
@@ -43,7 +43,9 @@ public class ProxyHandler implements InvocationHandler {
             if (an.cacheType() == CacheType.FILE) {
                 //Если нет кэша для этого метода, попробуем загрузить с диска
                 if (!this.cache.containsKey(method.getName())) {
-                    Object loadedCache = SerializableUtils.deserialize(fileName);
+
+                    Object loadedCache = SerializableUtils.deserialize(fileName, an.zip());
+
                     if (loadedCache != null) {
                         methodCache = (Map<ArrayList, Object>) loadedCache;
                         System.out.println("кэш для метода " + method.getName() + " был загружен из файла " + fileName);
@@ -83,7 +85,9 @@ public class ProxyHandler implements InvocationHandler {
 
             if (an.listLength() != -1 && List.class.isAssignableFrom(returnValue.getClass())) {
                 //Обрезаем лист до нужной длины, при необходимости
-                returnValue = ((List) returnValue).subList(0, an.listLength());
+                //sublist не serializable, поэтому создаем новый
+                List newList = new ArrayList(((List) returnValue).subList(0, an.listLength()));
+                returnValue = newList;
             }
 
             System.out.println("Помещено в кэш |" + method.getName() + "| " + keys + " : " + returnValue);
@@ -92,7 +96,7 @@ public class ProxyHandler implements InvocationHandler {
 
             if (an.cacheType() == CacheType.FILE) {
                 System.out.println("Кэш записан в файл " + fileName);
-                SerializableUtils.serialize(this.cache.get(method.getName()), fileName);
+                SerializableUtils.serialize(this.cache.get(method.getName()), fileName, an.zip());
             }
 
             return returnValue;

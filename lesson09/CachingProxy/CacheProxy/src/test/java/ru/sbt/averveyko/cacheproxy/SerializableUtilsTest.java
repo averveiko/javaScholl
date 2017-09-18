@@ -20,9 +20,9 @@ public class SerializableUtilsTest {
 
         String testObj = "test object";
         File createdFile = folder.newFile(fileName);
-        SerializableUtils.serialize(testObj,createdFile.getAbsolutePath());
+        SerializableUtils.serialize(testObj,createdFile.getAbsolutePath(), true);
 
-        String result = (String)SerializableUtils.deserialize(createdFile.getAbsolutePath());
+        String result = (String)SerializableUtils.deserialize(createdFile.getAbsolutePath(), true);
         assertEquals(testObj, result);
     }
 }

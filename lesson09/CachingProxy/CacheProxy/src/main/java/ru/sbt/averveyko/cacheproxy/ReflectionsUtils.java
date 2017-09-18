@@ -6,7 +6,7 @@ package ru.sbt.averveyko.cacheproxy;
  * Если параметр не класс-обертка, возвращается параметр без изменений.
  */
 public class ReflectionsUtils {
-    public static Class GetPrimitiveClass(Class wrapperClass) {
+    public static Class GetPrimitiveClass(final Class wrapperClass) {
         if (wrapperClass == Byte.class) return byte.class;
         if (wrapperClass == Short.class) return short.class;
         if (wrapperClass == Integer.class) return int.class;
