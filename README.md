@@ -12,5 +12,5 @@ Lesson | Theme
 [lesson07](https://github.com/averveiko/javaSchool/tree/master/lesson07) | ClassLoaders
 [lesson08](https://github.com/averveiko/javaSchool/tree/master/lesson08) | Module. Build tools. Testing
 [lesson09](https://github.com/averveiko/javaSchool/tree/master/lesson09) | Serialization
-lesson10 | Lambda. Stream API
+[lesson10](https://github.com/averveiko/javaSchool/tree/master/lesson10) | Lambda. Stream API
 
