@@ -1,37 +1,41 @@
 package ru.sbt.averveyko.stream;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 public class Streams<T> {
     private List<T> collection;
 
     private Streams(List<T> collection) {
-        //Создаем внутреннюю копию коллекции
         this.collection = new ArrayList<T>(collection);
     }
 
-    public static Streams of(List list) {
-        return new Streams(list);
+    public static <C> Streams<C> of(List<C> list) {
+        return new Streams<>(list);
     }
 
-    public Streams filter(Predicate<? super T> predicate) {
+    public Streams<T> filter(Predicate<? super T> predicate) {
         for (int i = 0; i < this.collection.size(); i++)
             if (! predicate.test(this.collection.get(i)))
                 this.collection.remove(i);
         return this;
     }
 
-    //<R> Stream<R> map(Function<? super T, ? extends R> mapper)
-    public Streams transform(Function<? super T, ? extends R> mapper) {
-        //...
-        return this;
+    public <R> Streams<R> transform(Function<? super T, ? extends R> mapper) {
+        List<R> newList = new ArrayList<>();
+        for (T t : collection)
+            newList.add(mapper.apply(t));
+        return new Streams<R>(newList);
     }
-//
-//    public Map toMap(........) {
-//        //...
-//    }
+
+    public <K, V> Map<K, V> toMap(Function<? super T, ? extends K> mapperKey, Function<? super T, ? extends V> mapperValue) {
+        Map<K, V> map = new HashMap<>();
+        for (T t : collection)
+            map.put(mapperKey.apply(t), mapperValue.apply(t));
+        return map;
+    }
 }

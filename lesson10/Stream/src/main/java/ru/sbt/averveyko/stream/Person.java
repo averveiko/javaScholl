@@ -5,10 +5,6 @@ public class Person {
     private int age;
     private Gender gender;
 
-    public Person() {
-        this("Unknown", 0, Gender.MALE);
-    }
-
     public Person(String name, int age, Gender gender) {
         this.name = name;
         this.age = age;
@@ -37,5 +33,14 @@ public class Person {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                '}';
     }
 }
