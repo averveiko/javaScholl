@@ -10,6 +10,10 @@ import java.util.function.Predicate;
 public class Streams<T> {
     private List<T> collection;
 
+    public int size() {
+        return collection.size();
+    }
+
     private Streams(List<T> collection) {
         this.collection = new ArrayList<T>(collection);
     }

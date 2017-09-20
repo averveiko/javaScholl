@@ -23,7 +23,5 @@ public class Main {
             System.out.println("Key: " + s);
             System.out.println(map.get(s));
         }
-
-        System.out.println("debug");
     }
 }
