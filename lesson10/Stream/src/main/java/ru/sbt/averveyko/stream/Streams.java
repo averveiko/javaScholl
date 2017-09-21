@@ -33,7 +33,7 @@ public class Streams<T> {
         List<R> newList = new ArrayList<>();
         for (T t : collection)
             newList.add(mapper.apply(t));
-        return new Streams<R>(newList);
+        return new Streams<>(newList);
     }
 
     public <K, V> Map<K, V> toMap(Function<? super T, ? extends K> mapperKey, Function<? super T, ? extends V> mapperValue) {
