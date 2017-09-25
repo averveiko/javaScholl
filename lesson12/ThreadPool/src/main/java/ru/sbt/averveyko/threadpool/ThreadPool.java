@@ -12,5 +12,5 @@ public interface ThreadPool {
      * Каждое задание должны быть выполнено ровно 1 раз.
      * @param runnable Задание.
      */
-    void execute(Runnable runnable); //
+    void execute(Runnable runnable);
 }
