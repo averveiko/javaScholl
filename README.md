@@ -13,4 +13,7 @@ Lesson | Theme
 [lesson08](https://github.com/averveiko/javaSchool/tree/master/lesson08) | Module. Build tools. Testing
 [lesson09](https://github.com/averveiko/javaSchool/tree/master/lesson09) | Serialization
 [lesson10](https://github.com/averveiko/javaSchool/tree/master/lesson10) | Lambda. Stream API
+[lesson11](https://github.com/averveiko/javaSchool/tree/master/lesson12) | MultiThreading I
+[lesson12](https://github.com/averveiko/javaSchool/tree/master/lesson12) | MultiThreading II
+lesson13| Java memory model
 
