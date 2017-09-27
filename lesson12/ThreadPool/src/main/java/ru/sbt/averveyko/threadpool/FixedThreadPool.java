@@ -1,44 +1,53 @@
 package ru.sbt.averveyko.threadpool;
 
+import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class FixedThreadPool implements ThreadPool {
-    private final Queue<Runnable> workQueue = new ConcurrentLinkedQueue<>();
-    private volatile boolean isRunning = false;
+    private final int threadCount;
+    private final PoolWorker[] threads;
+    private final Queue<Runnable> queue;
 
-    private final int maxThreadCount;
-
-    public FixedThreadPool(int maxThreadCount) {
-        this.maxThreadCount = maxThreadCount;
+    public FixedThreadPool(int threadCount) {
+        this.threadCount = threadCount;
+        queue = new LinkedList<>();
+        threads = new PoolWorker[threadCount];
     }
 
     @Override
     public void start() {
-        isRunning = true;
-        for (int i = 0; i < maxThreadCount; i++) {
-            new Thread(new TaskWorker()).start();
+        for (int i = 0; i < threadCount; i++) {
+            threads[i] = new PoolWorker();
+            threads[i].start();
+            System.out.println(threads[i].getName() + " started..");
         }
     }
 
     @Override
     public void execute(Runnable runnable) {
-        workQueue.offer(runnable);
+        synchronized (queue) {
+            queue.add(runnable);
+            queue.notify();
+        }
     }
 
-    public void shutdown() {
-        isRunning = false;
-    }
-
-    private final class TaskWorker implements Runnable {
+    private class PoolWorker extends Thread {
         @Override
         public void run() {
-            while (isRunning) {
-                Runnable nextTask = workQueue.poll();
-                if (nextTask != null) {
-                    nextTask.run();
+            Runnable r;
+
+            while(true) {
+                synchronized (queue) {
+                    while (queue.isEmpty()) {
+                        try {
+                            System.out.println(this.getName() + " is waiting...");
+                            queue.wait();
+                        } catch (InterruptedException e) {
+                        }
+                    }
+                    r = queue.remove();
                 }
-                Thread.yield();
+                r.run();
             }
         }
     }

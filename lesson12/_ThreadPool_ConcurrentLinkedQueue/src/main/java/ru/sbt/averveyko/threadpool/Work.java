@@ -16,7 +16,7 @@ public class Work implements Runnable {
 
         double a = 0;
         for (int i = 0; i < 1000000; i++) {
-            a = a + Math.tan(a) + Math.sin(a) + Math.cos(a);
+            a = a + Math.tan(a);
         }
         System.out.println("[FINISH] Work id " + id + " in thread " + Thread.currentThread().getName());
     }
