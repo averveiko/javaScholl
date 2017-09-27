@@ -1,7 +1,7 @@
 package ru.sbt.averveyko.threadpool;
 
 
-public class Main {
+public class MainFixed {
     public static void main(String[] args) {
         FixedThreadPool  fixedThreadPool = new FixedThreadPool(4);
         for (int i = 0; i < 8; i++ )

@@ -12,12 +12,12 @@ public class Work implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("[START] Work id " + id + " in thread " + Thread.currentThread().getName());
+        System.err.println("[START] Work id " + id + " in thread " + Thread.currentThread().getName());
 
         double a = 0;
-        for (int i = 0; i < 1000000; i++) {
+        for (int i = 0; i < 2000000; i++) {
             a = a + Math.tan(a) + Math.sin(a) + Math.cos(a);
         }
-        System.out.println("[FINISH] Work id " + id + " in thread " + Thread.currentThread().getName());
+        System.err.println("[FINISH] Work id " + id + " in thread " + Thread.currentThread().getName());
     }
 }
