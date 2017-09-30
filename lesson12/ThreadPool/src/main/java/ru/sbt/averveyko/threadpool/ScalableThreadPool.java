@@ -9,7 +9,6 @@ public class ScalableThreadPool implements ThreadPool {
     private final int maxThreadCount;
     private final ArrayList<PoolWorker> threads;
     private final Queue<Runnable> queue;
-    private ScalableUtil scalableUtil;
 
     private boolean isRunning = false;
 
@@ -24,16 +23,12 @@ public class ScalableThreadPool implements ThreadPool {
             threads.add(new PoolWorker());
             System.err.println("add new thread " + threads.get(threads.size() - 1).getName());
         }
-
-        scalableUtil = new ScalableUtil();
-
     }
 
     @Override
     public void start() {
         for (PoolWorker thread : threads)
             thread.start();
-
         isRunning = true;
     }
 
@@ -42,8 +37,24 @@ public class ScalableThreadPool implements ThreadPool {
         synchronized (queue) {
             queue.add(runnable);
             queue.notify();
+            checkThreadCount();
         }
-        scalableUtil.checkThreadCount();
+    }
+
+    private void checkThreadCount() {
+            if (queue.size() > threads.size() && threads.size() < maxThreadCount) {
+                threads.add(new PoolWorker());
+                System.err.println("add extend thread " + threads.get(threads.size() - 1).getName());
+
+                if (isRunning)
+                    threads.get(threads.size() - 1).start();
+            }
+            if (queue.size() < threads.size() && threads.size() > minThreadCount) {
+                System.err.println("remove extend thread " + threads.get(threads.size() - 1).getName());
+                threads.get(threads.size() - 1).interrupt();
+                threads.remove(threads.size() - 1);
+            }
+            //System.err.println("[Current threads count: " + threads.size() + "]");
     }
 
     private class PoolWorker extends Thread {
@@ -55,9 +66,8 @@ public class ScalableThreadPool implements ThreadPool {
                 synchronized (queue) {
                     while (queue.isEmpty()) {
                         try {
-                            scalableUtil.checkThreadCount();
+                            checkThreadCount();
                             queue.wait();
-
                         } catch (InterruptedException e) {
                             return;
                         }
@@ -65,26 +75,6 @@ public class ScalableThreadPool implements ThreadPool {
                     r = queue.remove();
                 }
                 r.run();
-            }
-        }
-    }
-
-    private class ScalableUtil  {
-        private void checkThreadCount() {
-            synchronized (queue) {
-                if (queue.size() > threads.size() && threads.size() < maxThreadCount) {
-                    threads.add(new PoolWorker());
-                    System.err.println("add extend thread " + threads.get(threads.size() - 1).getName());
-
-                    if (isRunning)
-                        threads.get(threads.size() - 1).start();
-                }
-                if (queue.size() < threads.size() && threads.size() > minThreadCount) {
-                    System.err.println("remove extend thread " + threads.get(threads.size() - 1).getName());
-                    threads.get(threads.size() - 1).interrupt();
-                    threads.remove(threads.size() - 1);
-                }
-                //System.err.println("[Current threads count: " + threads.size() + "]");
             }
         }
     }
