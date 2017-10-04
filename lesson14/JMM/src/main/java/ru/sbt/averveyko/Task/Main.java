@@ -1,4 +1,4 @@
-package ru.sbt.averveyko;
+package ru.sbt.averveyko.Task;
 
 import java.util.ArrayList;
 
@@ -6,12 +6,12 @@ public class Main {
     public static void main(String[] args) {
 
         Task<String> task = new Task<>(
-                () -> "My callable task run in thread " + Thread.currentThread().getName()
+                () -> "My callable test " + "task"
         );
 
         Runnable runnable = () -> {
             try {
-                System.out.println(task.get());
+                task.get();
             } catch (ComputeException e) {
                 System.out.println("ComputeException: " + e.getMessage());
             }
@@ -21,8 +21,6 @@ public class Main {
         for (int i = 0; i < 10; i++) {
             threads.add(new Thread(runnable));
         }
-
-        System.out.println(threads.size());
 
         for (Thread thread : threads) {
             thread.start();

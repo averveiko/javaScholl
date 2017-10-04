@@ -1,4 +1,4 @@
-package ru.sbt.averveyko;
+package ru.sbt.averveyko.ExecutionManager;
 
 /**
  * Метод execute принимает массив тасков,

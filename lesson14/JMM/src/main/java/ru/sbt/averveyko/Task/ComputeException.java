@@ -1,4 +1,4 @@
-package ru.sbt.averveyko;
+package ru.sbt.averveyko.Task;
 
 public class ComputeException extends RuntimeException {
     public ComputeException(String message) {
