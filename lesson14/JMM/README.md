@@ -1,4 +1,4 @@
-* Задание 1.
+* [Задание 1.](https://github.com/averveiko/javaSchool/tree/master/lesson14/JMM/src/main/java/ru/sbt/averveyko/Task)
 Ваша задача реализовать класс Task имеющий один метод get():
 ```Java
 public class Task<T> {
@@ -44,7 +44,7 @@ ComputeException: java.lang.ArithmeticException: / by zero
 ComputeException: java.lang.ArithmeticException: / by zero
 </pre>
 
-* Задание 2.
+* [Задание 2.](https://github.com/averveiko/javaSchool/tree/master/lesson14/JMM/src/main/java/ru/sbt/averveyko/ExecutionManager)
 Ваша задача реализовать интерфейс ExecutionManager
 ```Java
 public interface ExecutionManager {
