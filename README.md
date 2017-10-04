@@ -13,7 +13,6 @@ Lesson | Theme
 [lesson08](https://github.com/averveiko/javaSchool/tree/master/lesson08) | Module. Build tools. Testing
 [lesson09](https://github.com/averveiko/javaSchool/tree/master/lesson09) | Serialization
 [lesson10](https://github.com/averveiko/javaSchool/tree/master/lesson10) | Lambda. Stream API
-[lesson11](https://github.com/averveiko/javaSchool/tree/master/lesson12/ThreadPool) | MultiThreading I
-[lesson12](https://github.com/averveiko/javaSchool/tree/master/lesson12/ThreadPool) | MultiThreading II
-lesson13| Java memory model
-
+[lesson11-12](https://github.com/averveiko/javaSchool/tree/master/lesson12/ThreadPool) | MultiThreading I
+[lesson13-14]|(https://github.com/averveiko/javaSchool/tree/master/lesson14/) Java memory model
+lesson15 | Sockets
