@@ -22,7 +22,6 @@ public class FixedThreadPool implements ThreadCompleteListener, Context {
         threads = new NotifyingPoolWorker[threadCount];
     }
 
-    //@Override
     public void start(Runnable callback) {
         this.callback = callback;
         for (int i = 0; i < threadCount; i++) {
@@ -33,7 +32,6 @@ public class FixedThreadPool implements ThreadCompleteListener, Context {
         }
     }
 
-   // @Override
     public void execute(Runnable runnable) {
         synchronized (queue) {
             queue.add(runnable);
@@ -55,7 +53,7 @@ public class FixedThreadPool implements ThreadCompleteListener, Context {
 
     private class NotifyingPoolWorker extends Thread {
 
-        private final Set<ThreadCompleteListener> listeners = new CopyOnWriteArraySet<ThreadCompleteListener>();
+        private final Set<ThreadCompleteListener> listeners = new CopyOnWriteArraySet<>();
 
         public final void addListener(final ThreadCompleteListener listener) {
             listeners.add(listener);
@@ -135,7 +133,7 @@ public class FixedThreadPool implements ThreadCompleteListener, Context {
         }
         return true;
     }
-
+//    //if DEBUG:
 //    private void printThreadState() {
 //        System.err.println("\nThread states: ");
 //            for (NotifyingPoolWorker thread : threads) {
