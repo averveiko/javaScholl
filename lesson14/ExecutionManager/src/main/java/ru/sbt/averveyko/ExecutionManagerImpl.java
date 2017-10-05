@@ -1,14 +1,13 @@
-package ru.sbt.averveyko.ExecutionManager;
+package ru.sbt.averveyko;
 
 public class ExecutionManagerImpl implements ExecutionManager {
-    private final ThreadPool threadPool;
+    private static int THREAD_COUNT = 5;
+    private final FixedThreadPool threadPool = new FixedThreadPool(THREAD_COUNT);
     private final Context context;
 
-    public ExecutionManagerImpl(ThreadPool threadPool) {
-        this.threadPool = threadPool;
+    public ExecutionManagerImpl()  {
         this.context = new ContextImpl(threadPool);
     }
-
     @Override
     public Context execute(Runnable callback, Runnable... tasks) {
 
@@ -16,9 +15,7 @@ public class ExecutionManagerImpl implements ExecutionManager {
             threadPool.execute(task);
         }
 
-        threadPool.start();
-
-        callback.run();
+        threadPool.start(callback);
 
         return context;
     }

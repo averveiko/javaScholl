@@ -1,5 +1,4 @@
-package ru.sbt.averveyko.ExecutionManager;
-
+package ru.sbt.averveyko;
 /**
  * Метод execute принимает массив тасков,
  * это задания которые ExecutionManager должен выполнять параллельно

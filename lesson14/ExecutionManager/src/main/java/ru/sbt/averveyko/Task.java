@@ -1,4 +1,4 @@
-package ru.sbt.averveyko.ExecutionManager;
+package ru.sbt.averveyko;
 
 public class Task implements Runnable {
     private final int id;

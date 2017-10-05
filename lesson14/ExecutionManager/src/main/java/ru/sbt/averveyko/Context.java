@@ -1,14 +1,16 @@
-package ru.sbt.averveyko.ExecutionManager;
+package ru.sbt.averveyko;
 
 public interface Context {
     /**
      * возвращает количество тасков, которые на текущий момент успешно выполнились
+     *
      * @return
      */
     int getCompletedTaskCount();
 
     /**
      * возвращает количество тасков, при выполнении которых произошел Exception
+     *
      * @return
      */
     int getFailedTaskCount();
@@ -20,14 +22,15 @@ public interface Context {
 
     /**
      * возвращает количество тасков, которые не были выполены из-за отмены (вызовом предыдущего метода)
+     *
      * @return
      */
     int getInterruptedTaskCount();
 
     /**
      * вернет true, если все таски были выполнены или отменены, false в противном случае
-      * @return
+     *
+     * @return
      */
     boolean isFinished();
-
 }

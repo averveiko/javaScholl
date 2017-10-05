@@ -1,8 +1,6 @@
-package ru.sbt.averveyko.ExecutionManager;
+package ru.sbt.averveyko;
 
 public class Main {
-    private static final int THREAD_COUNT = 5;
-
     public static void main(String[] args) {
         Runnable[] tasks = new Runnable[] {
                 new Task(0),
@@ -17,20 +15,21 @@ public class Main {
                 new Task(9)
         };
 
-        Runnable callback = () -> System.err.println("Callback run!");
+        Runnable callback = () -> System.err.println("\nCallback run now!\n");
 
-        ThreadPool threadPool = new FixedThreadPool(THREAD_COUNT);
-
-        ExecutionManagerImpl executionManager = new ExecutionManagerImpl(threadPool);
+        ExecutionManagerImpl executionManager = new ExecutionManagerImpl();
         Context context = executionManager.execute(callback, tasks);
+
+        System.err.println("context.isFinished(): " + context.isFinished());
+        System.err.println("context.getCompletedTaskCount(): " + context.getCompletedTaskCount());
 
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.err.println(context.isFinished());
-        System.err.println(context.getCompletedTaskCount());
 
+        System.err.println("context.isFinished(): " + context.isFinished());
+        System.err.println("context.getCompletedTaskCount(): " + context.getCompletedTaskCount());
     }
 }

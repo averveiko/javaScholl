@@ -44,13 +44,4 @@ ComputeException: java.lang.ArithmeticException: / by zero
 ComputeException: java.lang.ArithmeticException: / by zero
 </pre>
 
-* [Задание 2.](https://github.com/averveiko/javaSchool/tree/master/lesson14/JMM/src/main/java/ru/sbt/averveyko/ExecutionManager)
-Ваша задача реализовать интерфейс ExecutionManager
-```Java
-public interface ExecutionManager {
-    Context execute(Runnable callback, Runnable... tasks);
-}
-```
-Метод execute принимает массив тасков, это задания которые ExecutionManager должен выполнять параллельно (в вашей реализации пусть будет в своем пуле потоков). После завершения всех тасков должен выполниться callback (ровно 1 раз). 
-
-Метод execute – это неблокирующий метод, который сразу возвращает объект Context. 
+* [Задание 2 см. тут](https://github.com/averveiko/javaSchool/tree/master/lesson14/ExecutionManager)

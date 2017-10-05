@@ -1,9 +1,9 @@
-package ru.sbt.averveyko.ExecutionManager;
+package ru.sbt.averveyko;
 
 public class ContextImpl implements Context {
-    private final ThreadPool threadPool;
+    private final FixedThreadPool threadPool;
 
-    public ContextImpl(ThreadPool threadPool) {
+    public ContextImpl(FixedThreadPool threadPool) {
         this.threadPool = threadPool;
     }
 
