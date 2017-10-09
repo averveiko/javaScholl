@@ -292,11 +292,15 @@ public static void main(String[] args) {
 **GC**
 
 * Default Java 8 GC: Parallel GC
+
 ![Parallell GC](img/ParallellGC.png)
 * -XX:+UseSerialGC
+
 ![Serial GC](img/SerialGC.png)
 * -XX:+UseConcMarkSweepGC
+
 ![CMS GC](img/CMSGC.png)
 * -XX:+UseG1GC
+
 ![G1 GC](img/G1GC.png)
 
