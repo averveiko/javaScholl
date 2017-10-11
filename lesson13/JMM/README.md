@@ -1,4 +1,4 @@
-* [Задание 1.](https://github.com/averveiko/javaSchool/tree/master/lesson14/JMM/src/main/java/ru/sbt/averveyko/Task)
+* [Задание 1.](https://github.com/averveiko/javaSchool/tree/master/lesson13/JMM/src/main/java/ru/sbt/averveyko/Task)
 Ваша задача реализовать класс Task имеющий один метод get():
 ```Java
 public class Task<T> {

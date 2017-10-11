@@ -1,4 +1,4 @@
-* [Задание 1 см. тут](https://github.com/averveiko/javaSchool/tree/master/lesson14/JMM)
+* [Задание 1 см. тут](https://github.com/averveiko/javaSchool/tree/master/lesson13/JMM)
 * Задание 2.
 Ваша задача реализовать интерфейс ExecutionManager
 ```Java
