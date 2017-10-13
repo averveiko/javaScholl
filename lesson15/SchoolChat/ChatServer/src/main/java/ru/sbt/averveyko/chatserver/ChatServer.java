@@ -1,15 +1,21 @@
 package ru.sbt.averveyko.chatserver;
 
+
 import ru.sbt.averveyko.api.Connection;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ChatServer {
+    public static MessageList messageList = new MessageList();
+
     public static void main(String[] args) {
+
+
         System.out.println("Starting chat server at port " + Connection.PORT);
 
         ServerSocket serverSocket = null;
@@ -26,7 +32,6 @@ public class ChatServer {
         while (true) {
             try {
                 clientSocket = serverSocket.accept();
-                System.out.println("Client connected");
             } catch (IOException e) {
                 e.printStackTrace();
             }

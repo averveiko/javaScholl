@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class ChatPacket implements Serializable{
     ChatCommand cmd;    // Команда
     String receiver;    // Получатель сообщения
+    String sender;      // Отправитель сообщения
     String msg;         // Текст сообщения
 
     public ChatPacket(ChatCommand cmd, String receiver, String msg) {
@@ -27,6 +28,14 @@ public class ChatPacket implements Serializable{
 
     public void setReceiver(String receiver) {
         this.receiver = receiver;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     public String getMsg() {
