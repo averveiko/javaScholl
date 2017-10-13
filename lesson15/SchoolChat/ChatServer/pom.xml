@@ -12,5 +12,13 @@
     <groupId>ru.sbt.averveyko</groupId>
     <artifactId>ChatServer</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>ru.sbt.averveyko</groupId>
+            <artifactId>API</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
