@@ -16,5 +16,5 @@ Lesson | Theme
 [lesson11-12](https://github.com/averveiko/javaSchool/tree/master/lesson12/ThreadPool) | MultiThreading I, II
 [lesson13](https://github.com/averveiko/javaSchool/tree/master/lesson13) | Java memory model I
 [lesson14](https://github.com/averveiko/javaSchool/tree/master/lesson14) | Java memory model II
-lesson15 | Sockets
+[lesson15](https://github.com/averveiko/javaSchool/tree/master/lesson15) | Sockets
 [lesson16](https://github.com/averveiko/javaSchool/tree/master/lesson16/JIT_GC) | JVM, GIT, GC
