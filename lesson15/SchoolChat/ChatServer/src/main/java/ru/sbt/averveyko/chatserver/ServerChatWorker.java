@@ -7,10 +7,10 @@ import java.io.*;
 import java.net.Socket;
 
 public class ServerChatWorker implements Runnable {
-    private Socket socket;
+    private final Socket socket;
     private String login;
 
-    public ServerChatWorker(Socket socket) {
+    public ServerChatWorker(final Socket socket) {
         this.socket = socket;
     }
 

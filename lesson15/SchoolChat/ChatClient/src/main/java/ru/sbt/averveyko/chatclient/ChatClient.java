@@ -21,7 +21,7 @@ public class ChatClient {
         System.out.print("Trying connection to " + Connection.HOST + ":" + Connection.PORT);
 
         try (Socket server = new Socket(Connection.HOST, Connection.PORT)) {
-            System.out.println(" Connected");
+            System.out.println(" connected");
 
             try (ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
                  ObjectInputStream ois = new ObjectInputStream(server.getInputStream())) {
@@ -32,7 +32,6 @@ public class ChatClient {
                 // Логинимся
                 System.out.print("Login: ");
                 String login = userInput.nextLine();
-                System.out.println(login);
                 ChatPacket loginPacket = new ChatPacket(ChatCommand.LOGIN, login, "Server", login);
                 oos.writeObject(loginPacket);
 
@@ -53,7 +52,6 @@ public class ChatClient {
                                 System.out.println(USAGE);
                                 continue;
                             }
-                            System.out.println("sending " + msg + " to " + receiver);
 
                             ChatPacket chatPacket = new ChatPacket(ChatCommand.MSG, login, receiver, msg);
                             oos.writeObject(chatPacket);

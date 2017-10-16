@@ -16,7 +16,6 @@ public class ChatServer {
     public static MessageList messageList = new MessageList();
 
     public static void main(String[] args) {
-
         System.out.println("Starting chat server at port " + Connection.PORT);
 
         ServerSocket serverSocket = null;
@@ -36,7 +35,6 @@ public class ChatServer {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            // Создаем для каждого клиента обработчик в отдельном потоке
             executorService.submit(new ServerChatWorker(clientSocket));
         }
 

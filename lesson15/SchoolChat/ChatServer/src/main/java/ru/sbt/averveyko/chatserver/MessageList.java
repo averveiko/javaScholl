@@ -12,28 +12,26 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class MessageList {
     private Map<String, List<ChatPacket>> messages = new ConcurrentHashMap<>();
 
-    public void addMessage(ChatPacket chatPacket) {
-
+    public void addMessage(final ChatPacket chatPacket) {
         if (messages.containsKey(chatPacket.getReceiver())) {
             messages.get(chatPacket.getReceiver()).add(chatPacket);
             return;
         }
-
         List<ChatPacket> msgList = new CopyOnWriteArrayList<>();
         msgList.add(chatPacket);
         messages.put(chatPacket.getReceiver(), msgList);
     }
 
-    public List<ChatPacket> getMessages(String login) {
+    public List<ChatPacket> getMessages(final String login) {
         List<ChatPacket> msgList = new ArrayList<>();
-        if (messages.containsKey(login) &&  messages.get(login).size() > 0) {
+        if (messages.containsKey(login) && messages.get(login).size() > 0) {
             msgList.addAll(messages.get(login));
             messages.get(login).clear();
             return msgList;
         }
         ChatPacket noMessages = new ChatPacket(
                 ChatCommand.MSG,
-                "server",
+                "Server",
                 login,
                 "No message for you");
         msgList.add(noMessages);
