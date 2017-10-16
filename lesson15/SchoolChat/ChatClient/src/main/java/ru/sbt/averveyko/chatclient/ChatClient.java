@@ -18,65 +18,72 @@ public class ChatClient {
             "'receive' to receive messages";
 
     public static void main(String[] args) {
-        ObjectOutputStream oos = null;
-        ObjectInputStream ois = null;
-
-        System.out.println("Client started");
-        System.out.println("Trying connection to " + Connection.HOST + ":" + Connection.PORT);
+        System.out.print("Trying connection to " + Connection.HOST + ":" + Connection.PORT);
 
         try (Socket server = new Socket(Connection.HOST, Connection.PORT)) {
-            System.out.println("Connected");
+            System.out.println(" Connected");
 
-            //TODO try with resurses
-            oos = new ObjectOutputStream(server.getOutputStream());
-            ois = new ObjectInputStream(server.getInputStream());
+            try (ObjectOutputStream oos = new ObjectOutputStream(server.getOutputStream());
+                 ObjectInputStream ois = new ObjectInputStream(server.getInputStream())) {
 
-            Scanner userInput = new Scanner(System.in);
-            String userCmd = "";
+                Scanner userInput = new Scanner(System.in);
+                String userCmd = "";
 
-            // Логинимся
-            System.out.println("Login: ");
-            String login = userInput.nextLine();
-            ChatPacket loginPacket = new ChatPacket(ChatCommand.LOGIN, null, login);
-            oos.writeObject(loginPacket);
+                // Логинимся
+                System.out.print("Login: ");
+                String login = userInput.nextLine();
+                System.out.println(login);
+                ChatPacket loginPacket = new ChatPacket(ChatCommand.LOGIN, login, "Server", login);
+                oos.writeObject(loginPacket);
 
-            System.out.println(USAGE);
-            while (true) {
-                if (userInput.hasNextLine()) {
-                    userCmd = userInput.nextLine();
-                    if (userCmd.startsWith("send")) {
-                        String[] sendArr = userCmd.split(" ");
-                        String receiver = sendArr[1];
-                        String msg = userCmd.substring(receiver.length() + 6);
+                System.out.println(USAGE);
+                while (true) {
+                    if (userInput.hasNextLine()) {
+                        userCmd = userInput.nextLine();
 
-                        System.out.println("sending " + msg + " to " + receiver);
+                        if (userCmd.startsWith("send")) {
 
-                        ChatPacket chatPacket = new ChatPacket(ChatCommand.MSG, receiver, msg);
-                        oos.writeObject(chatPacket);
-                        oos.flush();
+                            String receiver = null;
+                            String msg = null;
+                            try {
+                                String[] sendArr = userCmd.split(" ");
+                                receiver = sendArr[1];
+                                msg = userCmd.substring(receiver.length() + 6);
+                            } catch (Exception e) {
+                                System.out.println(USAGE);
+                                continue;
+                            }
+                            System.out.println("sending " + msg + " to " + receiver);
 
-                    } else if (userCmd.startsWith("q")) {
+                            ChatPacket chatPacket = new ChatPacket(ChatCommand.MSG, login, receiver, msg);
+                            oos.writeObject(chatPacket);
+                            oos.flush();
 
-                        ChatPacket chatPacket = new ChatPacket(ChatCommand.EXIT, null,  null);
-                        oos.writeObject(chatPacket);
-                        oos.flush();
+                        } else if (userCmd.startsWith("q")) {
 
-                        break;
-                    } else if (userCmd.startsWith("receive")) {
+                            ChatPacket chatPacket = new ChatPacket(ChatCommand.EXIT, login, "Server", null);
+                            oos.writeObject(chatPacket);
+                            oos.flush();
+                            break;
 
-                        ChatPacket chatPacket = new ChatPacket(ChatCommand.RECEIVE_MSG, null,  null);
-                        oos.writeObject(chatPacket);
-                        oos.flush();
+                        } else if (userCmd.startsWith("receive")) {
 
-                        // Ожидаем сразу ответа
-                        List<ChatPacket> packets = (List<ChatPacket>) ois.readObject();
-                        System.out.println("Messages for you: ");
-                        for (ChatPacket packet : packets) {
-                            System.out.println(packet.getMsg());
+                            ChatPacket chatPacket = new ChatPacket(ChatCommand.RECEIVE_MSG, login, "Server", null);
+                            oos.writeObject(chatPacket);
+                            oos.flush();
+
+                            // Ожидаем сразу ответа
+                            List<ChatPacket> packets = (List<ChatPacket>) ois.readObject();
+                            System.out.println("Messages for you: ");
+                            for (ChatPacket packet : packets) {
+                                System.out.println(packet.getSender() + ": " + packet.getMsg());
+                            }
+
+                        } else {
+
+                            System.out.println("Unknown command");
+                            System.out.println(USAGE);
                         }
-                    } else {
-                        System.out.println("Unknown command");
-                        System.out.println(USAGE);
                     }
                 }
             }

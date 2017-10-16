@@ -2,14 +2,15 @@ package ru.sbt.averveyko.api;
 
 import java.io.Serializable;
 
-public class ChatPacket implements Serializable{
+public class ChatPacket implements Serializable {
     ChatCommand cmd;    // Команда
-    String receiver;    // Получатель сообщения
     String sender;      // Отправитель сообщения
+    String receiver;    // Получатель сообщения
     String msg;         // Текст сообщения
 
-    public ChatPacket(ChatCommand cmd, String receiver, String msg) {
+    public ChatPacket(ChatCommand cmd, String sender, String receiver, String msg) {
         this.cmd = cmd;
+        this.sender = sender;
         this.receiver = receiver;
         this.msg = msg;
     }
@@ -44,5 +45,15 @@ public class ChatPacket implements Serializable{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    @Override
+    public String toString() {
+        return "ChatPacket{" +
+                "cmd=" + cmd +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
     }
 }

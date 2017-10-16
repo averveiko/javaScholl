@@ -5,7 +5,6 @@ import ru.sbt.averveyko.api.ChatPacket;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.List;
 
 public class ServerChatWorker implements Runnable {
     private Socket socket;
@@ -26,16 +25,26 @@ public class ServerChatWorker implements Runnable {
                     System.out.println("Login packet must be first");
                     return;
                 }
-                login = chatPacket.getMsg();
+                login = chatPacket.getSender();
                 System.out.println("User " + login + " connected");
 
+                //Уведомляем о новом участнике чата всех пользователей
+                for (String user : ChatServer.users) {
+                    ChatPacket notifyPacket = new ChatPacket(
+                            ChatCommand.MSG,
+                            "Server",
+                            user,
+                            "User " + login + " connected to chat");
+                    ChatServer.messageList.addMessage(notifyPacket);
+                }
+                ChatServer.users.add(login);
             } catch (ClassNotFoundException e) {
                 System.out.println("Login packet must be first");
                 return;
             }
 
             //Цикл обработки пакетов
-            while (true){
+            while (true) {
                 try {
                     ChatPacket chatPacket = (ChatPacket) ois.readObject();
                     switch (chatPacket.getCmd()) {
@@ -44,13 +53,7 @@ public class ServerChatWorker implements Runnable {
                             ChatServer.messageList.addMessage(chatPacket);
                             break;
                         case RECEIVE_MSG:
-                            List<ChatPacket> packets = ChatServer.messageList.getMessages(login);
-                            if (packets.isEmpty()) {
-                                System.out.println("No message for " + login);
-                                ChatPacket packet = new ChatPacket(ChatCommand.MSG,"server","No message for you");
-                                packets.add(packet);
-                            }
-                            oos.writeObject(packets);
+                            oos.writeObject(ChatServer.messageList.getMessages(login));
                             break;
                         case EXIT:
                             System.out.println("user " + login + " disconnected");
@@ -65,8 +68,8 @@ public class ServerChatWorker implements Runnable {
                 }
             }
         } catch (IOException e) {
-            //return
             e.printStackTrace();
+            return;
         }
     }
 }
