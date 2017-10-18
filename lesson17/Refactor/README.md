@@ -79,9 +79,11 @@ public class SalaryHtmlReportNotifier {
   * SalaryHtmlReport - генерирует html отчет, код разбит на методы:
     * getSalaryFromDB - получение данных из базы;
     * generateHTML - генерация HTML кода;
-  * ReportNotifier - отправляет отчет на email.
-* SQL запрос вынесен в виде константы для удобной правки;
-* HTML разметка вынесена в константы для удобной правки и наглядного представления (добавлены отступы).
+  * ReportNotifier - содержит статическую функцию отправки отчета на email.
+* SQL запрос вынесен в виде константы для удобной правки и отформатирован;
+* HTML разметка вынесена в константы для удобной правки и наглядного представления (добавлены отступы);
+* Расставлены модификаторы static.
+
 
 **Пример использования отчета:**
 ```Java
@@ -219,7 +221,7 @@ public class SalaryHtmlReport {
      * @param dateTo окончание периода
      * @return HTML отчет
      */
-    public String generate(String departmentId, LocalDate dateFrom, LocalDate dateTo) {
+    public String generate(final String departmentId, final LocalDate dateFrom, final LocalDate dateTo) {
         ResultSet salarySet = getSalaryFromDB(departmentId, dateFrom, dateTo);
         if (salarySet != null)
             return generateHTML(salarySet);
