@@ -18,3 +18,4 @@ Lesson | Theme
 [lesson14](https://github.com/averveiko/javaSchool/tree/master/lesson14) | Java memory model II
 [lesson15](https://github.com/averveiko/javaSchool/tree/master/lesson15) | Sockets
 [lesson16](https://github.com/averveiko/javaSchool/tree/master/lesson16/JIT_GC) | JVM, GIT, GC
+[lesson17](https://github.com/averveiko/javaSchool/tree/master/lesson17) | Good code
