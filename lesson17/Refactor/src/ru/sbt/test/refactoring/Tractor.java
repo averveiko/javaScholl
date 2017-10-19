@@ -1,12 +1,11 @@
 package ru.sbt.test.refactoring;
 
 public class Tractor {
-
-    int[] position = new int[] { 0, 0 };
-    int[] field = new int[] { 5, 5 };
+    Position position = new Position(0, 0);
+    Field field = new Field(5, 5);
     Orientation orientation = Orientation.NORTH;
 
-    public void move(String command) {
+    public void move(final String command) {
         if (command == "F") {
             moveForwards();
         } else if (command == "T") {
@@ -16,41 +15,58 @@ public class Tractor {
 
     public void moveForwards() {
         if (orientation == Orientation.NORTH) {
-            position = new int[] { position[0], position[1] + 1 };
+            position.y++;
         } else if (orientation == Orientation.EAST) {
-            position = new int[] { position[0] + 1, position[1] };
+            position.x++;
         } else if (orientation == Orientation.SOUTH) {
-            position = new int[] { position[0], position[1] - 1 };
+            position.y--;
         } else if (orientation == Orientation.WEST) {
-            position = new int[] { position[0] - 1, position[1] };
+            position.x--;
         }
-        if (position[0] > field[0] || position[1] > field[1]) {
+
+        if (position.x > field.width ||
+                position.y > field.height ||
+                position.x < 0 ||
+                position.y < 0) {
             throw new TractorInDitchException();
         }
     }
 
     public void turnClockwise() {
-        if (orientation == Orientation.NORTH) {
-            orientation = Orientation.EAST;
-        } else if (orientation == Orientation.EAST) {
-            orientation = Orientation.SOUTH;
-        } else if (orientation == Orientation.SOUTH) {
-            orientation = Orientation.WEST;
-        } else if (orientation == Orientation.WEST) {
-            orientation = Orientation.NORTH;
-        }
+        int nextOrientation = orientation.ordinal() + 1;
+        if (nextOrientation == Orientation.values().length) nextOrientation = 0;
+        orientation = Orientation.values()[nextOrientation];
     }
 
     public int getPositionX() {
-        return position[0];
+        return position.x;
     }
 
     public int getPositionY() {
-        return position[1];
+        return position.y;
     }
 
     public Orientation getOrientation() {
         return orientation;
     }
 
+    private class Position {
+        public int x;
+        public int y;
+
+        public Position(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    private class Field {
+        public final int width;
+        public final int height;
+
+        public Field(final int width, final int height) {
+            this.width = width;
+            this.height = height;
+        }
+    }
 }

@@ -12,7 +12,8 @@ import java.time.LocalDate;
 public class SalaryHtmlReport {
     private final Connection connection;
 
-    private final static String SQL_STATEMENT = "SELECT emp.id AS emp_id, emp.name AS amp_name, SUM(salary) AS salary" +
+    private final static String SQL_STATEMENT =
+            "SELECT emp.id AS emp_id, emp.name AS amp_name, SUM(salary) AS salary" +
             "FROM employee emp" +
             "LEFT JOIN salary_payments sp ON emp.id = sp.employee_id" +
             "WHERE emp.department_id = ? AND sp.date >= ? AND sp.date <= ?" +
