@@ -1,5 +1,7 @@
 ### Домашнее задание по уроку Java Collections API
 
+[Вариант решения](https://github.com/averveiko/javaSchool/tree/master/lesson10/CollectionHWStreams) с использованием Java stream API 
+
 Результат работы программы:
 
 <pre>
