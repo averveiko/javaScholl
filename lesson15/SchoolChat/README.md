@@ -37,7 +37,7 @@ Bob: test message two
 <b>receive</b>
 Messages for you: 
 Server: No message for you
-send Bob Hello Bob!
+<b>send Bob Hello Bob!</b>
 <b>q</b>
 Disconnected
 </pre>
