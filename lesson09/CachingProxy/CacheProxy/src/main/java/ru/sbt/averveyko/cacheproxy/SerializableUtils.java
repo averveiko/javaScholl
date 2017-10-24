@@ -5,68 +5,52 @@ import java.util.zip.DeflaterOutputStream;
 import java.util.zip.InflaterInputStream;
 
 public class SerializableUtils {
-    public static void serialize(final Object obj, final String fileName, final boolean compressed) {
+    private static final String SERIALIZE_EXCEPTION_MSG = "Неудалось записать кэш в файл ";
+    private static final String DESERIALIZE_EXCEPTION_MSG = "Неудалось загрузить кэш из файла ";
+    private static final String CLASSNOTFOUND_EXCEPTION_MSG = "Класс не найден ";
 
-        if (compressed)
-            serializeCompressed(obj,fileName + ".compressed");
-        else
-            serializeNotCompressed(obj, fileName);
+    public static void serialize(final Object obj, final String fileName, final boolean compressed) {
+        File file = new File(fileName);
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            if (compressed) outputStream = new DeflaterOutputStream(outputStream);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(obj);
+        } catch (IOException e) {
+            System.out.println(SERIALIZE_EXCEPTION_MSG + e.getMessage());
+        } finally {
+            if (objectOutputStream != null) {
+                try {
+                    objectOutputStream.close();
+                } catch (IOException ignore) {
+                }
+            }
+        }
     }
 
     public static Object deserialize(final String fileName, final boolean compressed) {
-        if (compressed)
-            return deserializeCompressed(fileName + ".compressed");
-        return deserializeNotCompressed(fileName);
-    }
-
-    private static void serializeCompressed(final Object object, final String fileName) {
+        Object obj = null;
         File file = new File(fileName);
-        try(ObjectOutputStream output = new ObjectOutputStream(new DeflaterOutputStream(new FileOutputStream(file)))) {
-            output.writeObject(object);
+        ObjectInputStream objectInputStream = null;
+        try {
+            InputStream inputStream = new FileInputStream(file);
+            if (compressed) inputStream = new InflaterInputStream(inputStream);
+            objectInputStream = new ObjectInputStream(inputStream);
+            obj = objectInputStream.readObject();
         } catch (IOException e) {
-            System.out.println("Неудалось загрузить кэш " + e.getMessage());
-        }
-    }
-
-    private static void serializeNotCompressed(final Object object, final String fileName) {
-        File file = new File(fileName);
-        try(ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file))) {
-            output.writeObject(object);
-        } catch (IOException e) {
-            System.out.println("Неудалось загрузить кэш " + e.getMessage());
-        }
-    }
-
-    private static Object deserializeCompressed(final String fileName) {
-        Object result = null;
-        File file = new File(fileName);
-
-        try(ObjectInputStream input = new ObjectInputStream(new InflaterInputStream(new FileInputStream(file)))) {
-
-            result = input.readObject();
-
-        } catch (IOException e) {
-            System.out.println("Неудалось загрузить кэш " + e.getMessage());
+            System.out.println(DESERIALIZE_EXCEPTION_MSG + e.getMessage());
         } catch (ClassNotFoundException e) {
-            System.out.println("Класс не найден " + e.getMessage());
+            System.out.println(CLASSNOTFOUND_EXCEPTION_MSG + e.getMessage());
+        } finally {
+            if (objectInputStream != null) {
+                try {
+                    objectInputStream.close();
+                } catch (IOException ignore) {
+                }
+            }
         }
-        return result;
-    }
-
-    private static Object deserializeNotCompressed(final String fileName) {
-        Object result = null;
-        File file = new File(fileName);
-
-        try(ObjectInputStream input = new ObjectInputStream(new FileInputStream(file))) {
-
-            result = input.readObject();
-
-        } catch (IOException e) {
-            System.out.println("Неудалось загрузить кэш " + e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println("Класс не найден " + e.getMessage());
-        }
-        return result;
+        return obj;
     }
 }
 

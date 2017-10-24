@@ -28,6 +28,7 @@ public class ProxyHandler implements InvocationHandler {
         //Если требуется кэширование
         if (method.isAnnotationPresent(Cache.class)) {
             Cache an = method.getAnnotation(Cache.class);
+//            //Для справки и отладки
 //            System.out.println("Аннотации метода: @Cache(cacheType=" + an.cacheType() +
 //                    ", fileNamePrefix=" + an.fileNamePrefix() +
 //                    ", zip=" + an.zip() +
