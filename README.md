@@ -20,3 +20,4 @@ Lesson | Theme
 [lesson16](https://github.com/averveiko/javaSchool/tree/master/lesson16/JIT_GC) | JVM, GIT, GC
 [lesson17](https://github.com/averveiko/javaSchool/tree/master/lesson17) | Good code
 lesson18 | GOF
+[lesson21](https://github.com/averveiko/javaSchool/tree/master/lesson21) | JDBC I
