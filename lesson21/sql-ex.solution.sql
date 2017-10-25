@@ -1,3 +1,5 @@
+/* Решение заданий с сайта http://www.sql-ex.ru/ */
+
 /*
 Краткая информация о базе данных "Компьютерная фирма":
 
@@ -56,9 +58,67 @@ from Printer pr join Product p
 on pr.model = p.model
 where p.maker = 'B'
 
-/* 8)  */
-/* 9)  */
-/* 10)  */
-/* 11)  */
-/* 12)  */
-/* 13)  */
+/* 8) Найдите производителя, выпускающего ПК, но не ПК-блокноты. */
+Select distinct p.maker
+from Product p
+Where type = 'PC'
+EXCEPT
+Select distinct p.maker
+from Product p
+Where type = 'Laptop'
+
+/* 9) Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker */
+Select distinct p.maker
+from Product p join PC
+on p.model = PC.model
+where PC.speed >= 450
+
+/* 10) Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price */
+Select model, price
+From Printer
+Where price = (
+    Select max(price)
+    from Printer
+)
+
+/* 11) Найдите среднюю скорость ПК. */
+Select AVG(speed)
+From PC
+
+/* 12) Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол. */
+Select AVG(speed)
+From Laptop
+Where price > 1000
+
+/* 13) Найдите среднюю скорость ПК, выпущенных производителем A. */
+Select AVG(speed)
+From PC
+Where model in (
+    Select model
+    From Product
+    Where maker = 'A'
+)
+
+/* 14) Найти производителей, которые выпускают более одной модели, при этом все выпускаемые производителем модели являются продуктами одного типа.
+Вывести: maker, type */
+select maker , type
+from Product 
+where maker in (
+  select maker 
+  from (
+    select maker,type 
+    from Product 
+    group by maker,type
+  ) x 
+  group by maker 
+  having count(*)=1
+) 
+group by maker,type 
+having count(*)>1
+
+/* 15) Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD */
+Select hd
+from PC
+group by hd
+having count(hd) > 1
+
