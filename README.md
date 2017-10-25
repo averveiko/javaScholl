@@ -23,3 +23,8 @@ lesson18 | GOF I
 lesson19 | GOF II
 lesson20 | CI, CD, Development process, methodology
 [lesson21](https://github.com/averveiko/javaSchool/tree/master/lesson21) | JDBC I
+lesson22 | JDBC II
+lesson23 | Spring
+lesson24 | SpringJDBC, Transactions
+lesson25 | ORM, Spring Hibernate
+[lesson26](https://github.com/averveiko/javaSchool/tree/master/lesson26) | Spring WEB MVC
