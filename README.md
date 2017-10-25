@@ -19,5 +19,7 @@ Lesson | Theme
 [lesson15](https://github.com/averveiko/javaSchool/tree/master/lesson15) | Sockets
 [lesson16](https://github.com/averveiko/javaSchool/tree/master/lesson16/JIT_GC) | JVM, GIT, GC
 [lesson17](https://github.com/averveiko/javaSchool/tree/master/lesson17) | Good code
-lesson18 | GOF
+lesson18 | GOF I
+lesson19 | GOF II
+lesson20 | CI, CD, Development process, methodology
 [lesson21](https://github.com/averveiko/javaSchool/tree/master/lesson21) | JDBC I
