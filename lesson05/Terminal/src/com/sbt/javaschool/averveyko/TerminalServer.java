@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class TerminalServer implements Terminal {
     //База данных карт: номер карты - баланс
-    Map<String, Long> cardDB = new HashMap<>();
+    private Map<String, Long> cardDB = new HashMap<>();
 
     public TerminalServer() {
         //Заполняем базу данных карт
@@ -45,7 +45,7 @@ public class TerminalServer implements Terminal {
      * Метод симулирует проблемы со связью
      * С вероятностью 30% бросает IOExeption
      */
-    public void ConnectionErrorSimulator() throws IOException {
+    private void ConnectionErrorSimulator() throws IOException {
         final Random rnd = new Random();
         if (rnd.nextInt(3) == 2) throw new IOException("Возникли проблемы с сетью.");
     }

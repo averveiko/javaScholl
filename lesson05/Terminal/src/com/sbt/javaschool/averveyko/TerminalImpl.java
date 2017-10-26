@@ -6,7 +6,7 @@ public class TerminalImpl implements Terminal {
     private final TerminalServer server;
     private final PinValidator pinValidator;
 
-    private LockHelper lockHelper = new LockHelper();
+    private final LockHelper lockHelper = new LockHelper();
 
     private int pinErrorCount = 0;
 
@@ -25,7 +25,7 @@ public class TerminalImpl implements Terminal {
             return true;
         }
 
-        pinErrorCount += 1;
+        pinErrorCount++;
         if (pinErrorCount == 3) {
             lockHelper.lock();
             pinErrorCount = 0;

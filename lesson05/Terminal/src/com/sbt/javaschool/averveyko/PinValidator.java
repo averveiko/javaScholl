@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class PinValidator {
     //Хранилище значений № карты - пин
-    Map<String, String> pinDB = new HashMap<>();
+    private Map<String, String> pinDB = new HashMap<>();
 
     //Ввел ли пользователь корректный ПИН-код
     boolean isAuthorized = false;
