@@ -17,7 +17,7 @@ public class MyLinkedList<E> implements Iterable<E> {
     */
     private Node<E> header = new Node<>(null, null, null);
 
-    MyLinkedList() {
+    public MyLinkedList() {
         //Так как на данный момент список еще пуст, свойства next и prev указывают сами на себя (т.е. на элемент header)
         header.next = header.prev = header;
     }
@@ -94,7 +94,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param index индекс
      * @return элемент
      */
-    E get(int index) {
+    public E get(int index) {
         return node(index).item;
     }
 
@@ -103,7 +103,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param index индекс
      * @return удаленный элемент
      */
-    E remove(int index) {
+    public E remove(int index) {
         Node<E> removeNode = node(index);
 
         if (removeNode.next != null) {                  //Это не последний элемент
@@ -145,7 +145,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param c источник
      * @return true если добавление прошло успешно
      */
-    boolean addAll(Collection<? extends E> c) {
+    public boolean addAll(Collection<? extends E> c) {
         if (c.size() == 0 ) return false;
         for (E e : c) {
             this.add(e);
@@ -158,7 +158,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param c получатель
      * @return true если копирование прошло успешно
      */
-    boolean copy(Collection<? super E> c){
+    public boolean copy(Collection<? super E> c){
         if (size == 0) return false;
         for (E e : this) {
             c.add(e);
