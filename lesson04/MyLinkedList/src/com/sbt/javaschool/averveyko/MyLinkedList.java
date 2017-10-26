@@ -68,7 +68,7 @@ public class MyLinkedList<E> implements Iterable<E> {
      * @param index индекс узла
      * @return узел
      */
-    public Node<E> node(int index)
+    private Node<E> node(int index)
     {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
