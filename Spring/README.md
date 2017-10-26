@@ -1,1 +1,1 @@
-### Самостоятельные учебные проекты по Spring framework
+### Учебные проекты по Spring framework
