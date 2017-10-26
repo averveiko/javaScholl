@@ -10,11 +10,25 @@
         <constructor-arg value="John Smith"/>
     </bean>
 
-    <bean id="eventLogger" class="ru.sbt.averveyko.beans.ConsoleEventLogger" />
+    <bean id="consoleEventLogger" class="ru.sbt.averveyko.beans.ConsoleEventLogger"/>
+
+    <bean id="fileEventLogger"
+          class="ru.sbt.averveyko.beans.FileEventLogger"
+          init-method="init">
+        <constructor-arg value="events.log"/>
+    </bean>
+
+    <bean id="cacheFileEventLogger"
+          class="ru.sbt.averveyko.beans.CacheFileEventLogger"
+          init-method="init"
+          destroy-method="destroy">
+        <constructor-arg value="events.log"/>
+        <constructor-arg value="4"/>
+    </bean>
 
     <bean id="app" class="ru.sbt.averveyko.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="fileEventLogger"/>
     </bean>
 
     <bean id="dateFormat" class="java.text.DateFormat"

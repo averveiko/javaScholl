@@ -1,6 +1,7 @@
 package ru.sbt.averveyko;
 
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.sbt.averveyko.beans.Client;
 import ru.sbt.averveyko.beans.Event;
@@ -21,13 +22,15 @@ public class App {
     }
 
     public static void main(String[] args) {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
 
         Event event = (Event) ctx.getBean("event");
-        event.setMsg("Some event for user 1");
 
-        app.logEvent(event);
+        for (int i=0; i<3; i++) {
+            event.setMsg("Some event " + i + " for user 1");
+            app.logEvent(event);
+        }
     }
 }
