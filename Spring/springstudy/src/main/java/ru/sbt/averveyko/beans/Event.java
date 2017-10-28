@@ -4,7 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class Event {
-    private static long id;
+    private static int id;
     private String msg;
     private Date date;
     private DateFormat df;
@@ -14,7 +14,7 @@ public class Event {
         this.df = df;
     }
 
-    public static long getId() {
+    public static int getId() {
         return id++;
     }
 

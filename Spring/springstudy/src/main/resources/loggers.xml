@@ -1,17 +1,18 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
- 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
     <bean id="consoleEventLogger"
-          class="ru.sbt.averveyko.beans.ConsoleEventLogger"
-          lazy-init="true"/>
+          class="ru.sbt.averveyko.beans.ConsoleEventLogger"/>
 
     <bean id="fileEventLogger"
           class="ru.sbt.averveyko.beans.FileEventLogger"
-          init-method="init"
-          lazy-init="true">
+          init-method="init">
         <constructor-arg value="events.log"/>
     </bean>
 
@@ -21,4 +22,15 @@
         <!--<constructor-arg value="events.log"/>-->
         <constructor-arg value="4"/>
     </bean>
+
+    <util:list id="loggerList">
+        <ref bean="consoleEventLogger"/>
+        <ref bean="fileEventLogger"/>
+    </util:list>
+
+    <bean id="combinedEventLogger"
+          class="ru.sbt.averveyko.beans.CombinedEventLogger">
+        <constructor-arg ref="loggerList"/>
+    </bean>
+
 </beans>
