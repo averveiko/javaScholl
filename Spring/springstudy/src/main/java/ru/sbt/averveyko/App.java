@@ -1,6 +1,5 @@
 package ru.sbt.averveyko;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.sbt.averveyko.beans.Client;

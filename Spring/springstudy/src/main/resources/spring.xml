@@ -5,25 +5,11 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
+    <import resource="loggers.xml" />
+
     <bean id="client" class="ru.sbt.averveyko.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="John Smith"/>
-    </bean>
-
-    <bean id="consoleEventLogger" class="ru.sbt.averveyko.beans.ConsoleEventLogger"/>
-
-    <bean id="fileEventLogger"
-          class="ru.sbt.averveyko.beans.FileEventLogger"
-          init-method="init">
-        <constructor-arg value="events.log"/>
-    </bean>
-
-    <bean id="cacheFileEventLogger"
-          class="ru.sbt.averveyko.beans.CacheFileEventLogger"
-          init-method="init"
-          destroy-method="destroy">
-        <constructor-arg value="events.log"/>
-        <constructor-arg value="4"/>
     </bean>
 
     <bean id="app" class="ru.sbt.averveyko.App">

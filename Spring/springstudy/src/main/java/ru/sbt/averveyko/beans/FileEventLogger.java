@@ -24,7 +24,7 @@ public class FileEventLogger implements EventLogger{
         try {
             FileUtils.writeStringToFile(file, event.toString(), StandardCharsets.UTF_8,true);
         } catch (IOException e) {
-            System.err.println("Error while write event log");
+            System.err.println("Error while write event log" + e.getMessage());
         }
     }
 }
