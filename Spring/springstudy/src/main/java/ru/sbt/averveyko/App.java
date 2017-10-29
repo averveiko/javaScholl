@@ -34,6 +34,7 @@ public class App {
         System.out.println("Client says: " + client.getGreeting());
 
         app.logEvents(ctx);
+
     }
 
     public void logEvent(EventType type, Event event, String msg) {
@@ -46,6 +47,7 @@ public class App {
         }
 
         logger.logEvent(event);
+
     }
 
     public void logEvents(ApplicationContext ctx) {

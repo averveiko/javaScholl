@@ -26,11 +26,17 @@
     <util:list id="loggerList">
         <ref bean="consoleEventLogger"/>
         <ref bean="fileEventLogger"/>
+        <ref bean="DBLogger"/>
     </util:list>
 
     <bean id="combinedEventLogger"
           class="ru.sbt.averveyko.beans.CombinedEventLogger">
         <constructor-arg ref="loggerList"/>
+    </bean>
+
+    <!--init-method="createDB"-->
+    <bean id="DBLogger" class="ru.sbt.averveyko.beans.DBLogger">
+        <constructor-arg ref="jdbcTemplate" />
     </bean>
 
 </beans>

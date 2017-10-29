@@ -1,7 +1,9 @@
 package ru.sbt.averveyko.beans;
 
 import java.text.DateFormat;
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Event {
     private static int id;
@@ -9,13 +11,21 @@ public class Event {
     private Date date;
     private DateFormat df;
 
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(100);
+
+    public static boolean isDay() {
+        LocalTime time = LocalTime.now();
+        return time.getHour() > 8 && time.getHour() < 17;
+    }
+
     public Event(Date date, DateFormat df) {
+        this.id = AUTO_ID.getAndIncrement();
         this.date = date;
         this.df = df;
     }
 
-    public static int getId() {
-        return id++;
+    public int getId() {
+        return id;
     }
 
     public String getMsg() {
