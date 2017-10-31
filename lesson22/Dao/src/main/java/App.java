@@ -37,10 +37,7 @@ public class App {
             System.out.println(studentsDao.getByPK(studentBill.getId()));
 
             System.out.println("\nGetting all students from DB");
-            List<Student> list = studentsDao.getAll();
-            for (Student student : list) {
-                System.out.println(student);
-            }
+            studentsDao.getAll().forEach(System.out::println);
 
             System.out.println("\nUpdate student Linus");
             studentLinus.setFirstName("LINUS");
@@ -48,6 +45,9 @@ public class App {
             studentsDao.update(studentLinus);
             System.out.println(studentsDao.getByPK(studentLinus.getId()));
 
+            System.out.println("\nDelete student Bill");
+            studentsDao.delete(studentBill);
+            studentsDao.getAll().forEach(System.out::println);
 
 
         } catch (ClassNotFoundException e) {

@@ -16,6 +16,10 @@ public class StudentsDao {
                     "SET first_name=?, last_name=?\n" +
                     "WHERE id=?;";
 
+    private static final String SQL_DELETE =
+            "DELETE FROM Students\n" +
+                    "WHERE id=?";
+
     private static final String SQL_GET_BY_PK =
             "SELECT id, first_name, last_name\n" +
                     "FROM Students\n" +
@@ -73,7 +77,19 @@ public class StudentsDao {
     }
 
     public void delete(Student student) {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_DELETE)) {
 
+            statement.setInt(1, student.getId());
+
+            int affectedRows = statement.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new RuntimeException("Deleting student failed, no rows affected.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Deleting student failed, sql exception: " + e.getMessage());
+        }
     }
 
     public Student getByPK(int primaryKey) {
