@@ -4,6 +4,10 @@
 * Lessons - расписания занятий (колонки: id, название лекции, дата)
 * Student_visits - посещаемость студентов (student_id, lesson_id)
 
+#### Диаграмма БД
+
+![ER Diagram](img/er.png)
+
 #### Проверка работы StudentDao
 <pre>
 Drop tables if exist
