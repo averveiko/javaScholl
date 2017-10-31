@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class StudentDataSource {
+public class DataSourceUtil {
+
     private static final String DB_DRIVER = "org.h2.Driver";
     private static final String DB_URL = "jdbc:h2:file:~/student_h2.db";
 

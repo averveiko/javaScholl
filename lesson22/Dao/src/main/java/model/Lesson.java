@@ -39,4 +39,13 @@ public class Lesson {
     public void setDate(Timestamp date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", date=" + date +
+                '}';
+    }
 }

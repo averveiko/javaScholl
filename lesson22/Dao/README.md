@@ -8,7 +8,7 @@
 
 ![ER Diagram](img/er.png)
 
-#### Проверка работы StudentDao
+#### Проверка работы
 <pre>
 Drop tables if exist
 
@@ -33,4 +33,21 @@ Student{id=3, firstName='LINUS', lastName='TORVALDS'}
 Delete student Bill
 Student{id=2, firstName='Steve', lastName='Jobs'}
 Student{id=3, firstName='LINUS', lastName='TORVALDS'}
+
+Adding lessons
+
+Getting lesson from DB by PK
+Lesson{id=1, title='mathematics', date=2017-12-01 09:00:00.0}
+
+Getting all lessons from DB
+Lesson{id=1, title='mathematics', date=2017-12-01 09:00:00.0}
+Lesson{id=2, title='physics', date=2017-12-01 11:00:00.0}
+Lesson{id=3, title='programming', date=2017-12-01 13:00:00.0}
+
+Update second lesson
+Lesson{id=2, title='PHYSICS', date=2017-12-01 11:30:00.0}
+
+Delete third lesson
+Lesson{id=1, title='mathematics', date=2017-12-01 09:00:00.0}
+Lesson{id=2, title='PHYSICS', date=2017-12-01 11:30:00.0}
 </pre>

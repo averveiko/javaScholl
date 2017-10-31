@@ -27,4 +27,12 @@ public class StudentVisit {
     public void setLessonId(int lessonId) {
         this.lessonId = lessonId;
     }
+
+    @Override
+    public String toString() {
+        return "StudentVisit{" +
+                "studentId=" + studentId +
+                ", lessonId=" + lessonId +
+                '}';
+    }
 }
