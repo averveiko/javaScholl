@@ -4,13 +4,18 @@ import model.Student;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Starting");
         try {
             StudentDataSource.init();
-            StudentDataSource.createSchemaIfNotExist();
+
+            System.out.println("\nDrop tables if exist");
+            StudentDataSource.dropTablesForTesting();
+
+            System.out.println("\nCreate tables");
+            StudentDataSource.createTablesIfNotExist();
 
             Student studentBill = new Student(0, "Bill", "Gates");
             Student studentSteve = new Student(0, "Steve", "Jobs");
@@ -19,6 +24,7 @@ public class App {
             Connection connection = StudentDataSource.getConnection();
             StudentsDao studentsDao = new StudentsDao(connection);
 
+            System.out.println("\nAdding students");
             studentsDao.insert(studentBill);
             studentsDao.insert(studentSteve);
             studentsDao.insert(studentLinus);
@@ -26,6 +32,23 @@ public class App {
             System.out.println(studentBill);
             System.out.println(studentSteve);
             System.out.println(studentLinus);
+
+            System.out.println("\nGetting student from DB by PK");
+            System.out.println(studentsDao.getByPK(studentBill.getId()));
+
+            System.out.println("\nGetting all students from DB");
+            List<Student> list = studentsDao.getAll();
+            for (Student student : list) {
+                System.out.println(student);
+            }
+
+            System.out.println("\nUpdate student Linus");
+            studentLinus.setFirstName("LINUS");
+            studentLinus.setLastName("TORVALDS");
+            studentsDao.update(studentLinus);
+            System.out.println(studentsDao.getByPK(studentLinus.getId()));
+
+
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
