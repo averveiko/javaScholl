@@ -1,10 +1,11 @@
-import Dao.StudentVisitsDao;
-import Dao.TableUtil;
-import Dao.LessonsDao;
-import Dao.StudentsDao;
+import dao.StudentVisitsDao;
+import dao.TableUtil;
+import dao.LessonsDao;
+import dao.StudentsDao;
 import model.Lesson;
 import model.Student;
 import model.StudentVisits;
+import view.StudentVisitsConsoleFormatter;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -97,11 +98,13 @@ public class App {
             System.out.println("\nAdding student visits");
             StudentVisits visit1 = new StudentVisits(0, 2,1);
             StudentVisits visit2 = new StudentVisits(0, 3,2);
-            StudentVisits visit3 = new StudentVisits(0, 2,2);
+            StudentVisits visit3 = new StudentVisits(0, 3,1);
+            StudentVisits visit4 = new StudentVisits(0, 2,2);
 
             studentVisitsDao.insert(visit1);
             studentVisitsDao.insert(visit2);
             studentVisitsDao.insert(visit3);
+            studentVisitsDao.insert(visit4);
 
             System.out.println("\nGetting student visits from DB by PK");
             System.out.println(studentVisitsDao.getByPK(visit1.getId()));
@@ -118,6 +121,9 @@ public class App {
             System.out.println("\nDelete student visits 3");
             studentVisitsDao.delete(visit3);
             studentVisitsDao.getAll().forEach(System.out::println);
+
+
+            StudentVisitsConsoleFormatter.printStudentVisitsEntryList(studentVisitsDao.getAllJoin());
 
         } catch (SQLException e) {
             e.printStackTrace();

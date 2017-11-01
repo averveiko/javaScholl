@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 import model.StudentVisits;
 
@@ -28,6 +28,11 @@ public class StudentVisitsDao {
     private static final String SQL_GET_ALL =
             "SELECT id, student_id, lesson_id\n" +
                     "FROM Student_visits;\n";
+
+    private static String SQL_GET_ALL_JOIN =
+            "SELECT l.\"DATE\", l.TITLE, CONCAT(s.FIRST_NAME, ' ', s.LAST_NAME) AS NAME FROM STUDENT_VISITS sv\n" +
+                    "JOIN STUDENTS s ON s.ID = sv.STUDENT_ID\n" +
+                    "JOIN LESSONS l ON l.ID = sv.LESSON_ID;";
 
     private Connection connection;
 
@@ -129,6 +134,75 @@ public class StudentVisitsDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Getting studentVisit failed, sql exception: " + e.getMessage());
+        }
+    }
+
+    public List<StudentVisitsEntry> getAllJoin() {
+        try (PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_JOIN)) {
+            try(ResultSet studentsVisitFromDB = statement.executeQuery()){
+
+                List<StudentVisitsEntry> studentVisitsList = new ArrayList<>();
+
+                while (studentsVisitFromDB.next()) {
+                    StudentVisitsEntry studentVisits = new StudentVisitsEntry();
+                    studentVisits.setDate(studentsVisitFromDB.getTimestamp("date"));
+                    studentVisits.setTitle(studentsVisitFromDB.getString("title"));
+                    studentVisits.setName(studentsVisitFromDB.getString("name"));
+                    studentVisitsList.add(studentVisits);
+                }
+
+                return studentVisitsList;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Getting studentVisit failed, sql exception: " + e.getMessage());
+        }
+    }
+
+    public static class StudentVisitsEntry {
+        private Timestamp date;
+        private String title;
+        private String name;
+
+        public StudentVisitsEntry() {
+        }
+
+        public StudentVisitsEntry(Timestamp date, String title, String name) {
+            this.date = date;
+            this.title = title;
+            this.name = name;
+        }
+
+        public Timestamp getDate() {
+            return date;
+        }
+
+        public void setDate(Timestamp date) {
+            this.date = date;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return "StudentVisitsEntry{" +
+                    ", date=" + date +
+                    ", title='" + title + '\'' +
+                    ", name='" + name + '\'' +
+                    '}';
         }
     }
 }

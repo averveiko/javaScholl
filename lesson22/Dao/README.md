@@ -1,4 +1,4 @@
-### Написать Dao классы по работе с расписанием (редактирование посещаемости, базовая статистика)
+### Написать dao классы по работе с расписанием (редактирование посещаемости, базовая статистика)
 
 * Students - информация о студентах (колонки: id, имя, фамилия)
 * Lessons - расписания занятий (колонки: id, название лекции, дата)
@@ -67,4 +67,12 @@ StudentVisits{id=3, studentId=3, lessonId=1}
 Delete student visits 3
 StudentVisits{id=1, studentId=2, lessonId=1}
 StudentVisits{id=2, studentId=3, lessonId=2}
+
+				Student attendance
+
+    N|      LESSON DATE|        LESSON TITLE|                  STUDENT NAME
+-----|-----------------|--------------------|------------------------------
+    1| 2017.12.01 09:00|         mathematics|                    Steve Jobs
+    2| 2017.12.01 11:30|             PHYSICS|                LINUS TORVALDS
+    3| 2017.12.01 11:30|             PHYSICS|                    Steve Jobs
 </pre>
