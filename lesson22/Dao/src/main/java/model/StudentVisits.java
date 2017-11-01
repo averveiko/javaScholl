@@ -1,15 +1,25 @@
 package model;
 
-public class StudentVisit {
+public class StudentVisits {
+    private int id;
     private int studentId;
     private int lessonId;
 
-    public StudentVisit() {
+    public StudentVisits() {
     }
 
-    public StudentVisit(int studentId, int lessonId) {
+    public StudentVisits(int id, int studentId, int lessonId) {
+        this.id = id;
         this.studentId = studentId;
         this.lessonId = lessonId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getStudentId() {
@@ -30,8 +40,9 @@ public class StudentVisit {
 
     @Override
     public String toString() {
-        return "StudentVisit{" +
-                "studentId=" + studentId +
+        return "StudentVisits{" +
+                "id=" + id +
+                ", studentId=" + studentId +
                 ", lessonId=" + lessonId +
                 '}';
     }

@@ -1,15 +1,10 @@
 package Dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DataSourceUtil {
-
-    private static final String DB_DRIVER = "org.h2.Driver";
-    private static final String DB_URL = "jdbc:h2:file:~/student_h2.db";
-
+public class TableUtil {
     private static final String SQL_DROP_TABLES =
             "DROP TABLE IF EXISTS Student_visits;\n" +
                     "DROP TABLE IF EXISTS Students;\n" +
@@ -36,26 +31,15 @@ public class DataSourceUtil {
                     "  CONSTRAINT FK_LessonsStudentsVisit FOREIGN KEY (lesson_id) REFERENCES Lessons(id)\n" +
                     ");";
 
-    public static void init() throws ClassNotFoundException {
-        Class.forName(DB_DRIVER);
-    }
-
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
-    }
-
-    public static void createTablesIfNotExist() throws SQLException {
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement()) {
+    public static void createTablesIfNotExist(Connection connection) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
             statement.execute(SQL_CREATE_TABLES);
         }
     }
 
-    public static void dropTablesForTesting() throws SQLException {
-        try (Connection connection = getConnection();
-             Statement statement = connection.createStatement()) {
+    public static void dropTablesForTesting(Connection connection) throws SQLException {
+        try (Statement statement = connection.createStatement()) {
             statement.execute(SQL_DROP_TABLES);
         }
     }
-
 }

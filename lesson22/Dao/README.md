@@ -50,4 +50,21 @@ Lesson{id=2, title='PHYSICS', date=2017-12-01 11:30:00.0}
 Delete third lesson
 Lesson{id=1, title='mathematics', date=2017-12-01 09:00:00.0}
 Lesson{id=2, title='PHYSICS', date=2017-12-01 11:30:00.0}
+
+Adding student visits
+
+Getting student visits from DB by PK
+StudentVisits{id=1, studentId=2, lessonId=1}
+
+Getting all student visits from DB
+StudentVisits{id=1, studentId=2, lessonId=1}
+StudentVisits{id=2, studentId=3, lessonId=2}
+StudentVisits{id=3, studentId=2, lessonId=2}
+
+Update student visits 3
+StudentVisits{id=3, studentId=3, lessonId=1}
+
+Delete student visits 3
+StudentVisits{id=1, studentId=2, lessonId=1}
+StudentVisits{id=2, studentId=3, lessonId=2}
 </pre>
