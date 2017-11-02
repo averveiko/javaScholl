@@ -1,6 +1,7 @@
 package dao;
 
 import model.StudentVisits;
+import model.StudentVisitsJoin;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -137,14 +138,14 @@ public class StudentVisitsDao {
         }
     }
 
-    public List<StudentVisitsEntry> getAllJoin() {
+    public List<StudentVisitsJoin> getAllJoin() {
         try (PreparedStatement statement = connection.prepareStatement(SQL_GET_ALL_JOIN)) {
             try(ResultSet studentsVisitFromDB = statement.executeQuery()){
 
-                List<StudentVisitsEntry> studentVisitsList = new ArrayList<>();
+                List<StudentVisitsJoin> studentVisitsList = new ArrayList<>();
 
                 while (studentsVisitFromDB.next()) {
-                    StudentVisitsEntry studentVisits = new StudentVisitsEntry();
+                    StudentVisitsJoin studentVisits = new StudentVisitsJoin();
                     studentVisits.setDate(studentsVisitFromDB.getTimestamp("date"));
                     studentVisits.setTitle(studentsVisitFromDB.getString("title"));
                     studentVisits.setName(studentsVisitFromDB.getString("name"));
@@ -155,54 +156,6 @@ public class StudentVisitsDao {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Getting studentVisit failed, sql exception: " + e.getMessage());
-        }
-    }
-
-    public static class StudentVisitsEntry {
-        private Timestamp date;
-        private String title;
-        private String name;
-
-        public StudentVisitsEntry() {
-        }
-
-        public StudentVisitsEntry(Timestamp date, String title, String name) {
-            this.date = date;
-            this.title = title;
-            this.name = name;
-        }
-
-        public Timestamp getDate() {
-            return date;
-        }
-
-        public void setDate(Timestamp date) {
-            this.date = date;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        @Override
-        public String toString() {
-            return "StudentVisitsEntry{" +
-                    ", date=" + date +
-                    ", title='" + title + '\'' +
-                    ", name='" + name + '\'' +
-                    '}';
         }
     }
 }

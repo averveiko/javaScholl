@@ -1,15 +1,14 @@
 package view;
 
-import dao.StudentVisitsDao;
+import model.StudentVisitsJoin;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Formatter;
 import java.util.List;
 import java.util.Locale;
 
 public class StudentVisitsConsoleFormatter {
-    public static void printStudentVisitsEntryList(List<StudentVisitsDao.StudentVisitsEntry> studentVisits) {
+    public static void printStudentVisitsEntryList(List<StudentVisitsJoin> studentVisits) {
         StringBuilder sb = new StringBuilder();
         Formatter formatter = new Formatter(sb, Locale.US);
 
@@ -18,7 +17,7 @@ public class StudentVisitsConsoleFormatter {
         sb.append("-----|-----------------|--------------------|------------------------------\n");
 
         int num = 0;
-        for (StudentVisitsDao.StudentVisitsEntry studentVisit : studentVisits) {
+        for (StudentVisitsJoin studentVisit : studentVisits) {
             formatter.format("%5d|%17s|%20s|%30s\n",
                     ++num,
                     new SimpleDateFormat("yyyy.MM.dd HH:mm").format(studentVisit.getDate()),
