@@ -6,9 +6,11 @@ import java.sql.SQLException;
 
 public class AbstractH2CacheDao {
     private static final String H2_DRIVER = "org.h2.Driver";
-    private static final String H2_URL = "jdbc:h2:file:~/cache.db";
+    public static final String H2_URL = "jdbc:h2:file:~/cache.db";
+    private static final String H2_Login = "sa";
+    private static final String H2_PASS = null;
 
-    protected Connection getConnection() {
+    protected Connection getConnection(String url) {
         try {
             Class.forName(H2_DRIVER);
         } catch (ClassNotFoundException e) {
@@ -16,7 +18,7 @@ public class AbstractH2CacheDao {
         }
 
         try {
-            return DriverManager.getConnection(H2_URL);
+            return DriverManager.getConnection(H2_URL, H2_Login, H2_PASS);
         } catch (SQLException e) {
             throw new RuntimeException("Can't get connection", e);
         }

@@ -10,7 +10,7 @@ import dao.ICacheDao;
 
 public class Cache implements ICache {
     private static final int MAX_N = 46;
-    private final int[] cache = new int[MAX_N + 1];
+    private int[] cache;
     private final ICacheDao cacheDao;
 
     public Cache(ICacheDao cacheDao) {
@@ -33,11 +33,11 @@ public class Cache implements ICache {
 
     @Override
     public void save() {
-
+        cacheDao.save(cache);
     }
 
     @Override
     public void load() {
-
+        cache = cacheDao.load();
     }
 }
