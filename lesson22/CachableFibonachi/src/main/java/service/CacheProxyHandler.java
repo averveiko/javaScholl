@@ -16,25 +16,25 @@ public class CacheProxyHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //System.out.println("start invoke");
 
         if (method.isAnnotationPresent(Cachable.class)) {
-            //System.out.println("Cachable present");
+
+            Cachable an = method.getAnnotation(Cachable.class);
+            boolean persistent = an.persistent();
 
             int cachedResult = cache.get((int)args[0]);
             if (cachedResult != 0) {
-                //System.out.println("return cached value");
+                System.out.print("get value from cache ");
                 return cachedResult;
             }
 
-            //System.out.println("calculate value and put to cache");
+            System.out.print("calculate value ");
             int result = (int)method.invoke(delegate, args);
 
-            cache.put((int)args[0], result);
+            cache.put((int)args[0], result, persistent);
             return result;
         }
 
-        //System.out.println("end invoke");
         return method.invoke(delegate, args);
     }
 }

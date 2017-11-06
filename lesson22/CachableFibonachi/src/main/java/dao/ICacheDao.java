@@ -1,6 +1,6 @@
 package dao;
 
 public interface ICacheDao {
-    void save(int[] cache);
+    void save(int n, int value);
     int[] load();
 }

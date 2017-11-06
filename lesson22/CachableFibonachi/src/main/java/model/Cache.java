@@ -9,8 +9,8 @@ import dao.ICacheDao;
  */
 
 public class Cache implements ICache {
-    private static final int MAX_N = 46;
-    private int[] cache;
+    public static final int MAX_N = 46;
+    private int[] cache = new int[MAX_N+1];
     private final ICacheDao cacheDao;
 
     public Cache(ICacheDao cacheDao) {
@@ -18,22 +18,20 @@ public class Cache implements ICache {
     }
 
     @Override
-    public void put(int n, int value) {
+    public void put(int n, int value, boolean persistent) {
         if (n < 1 || n > MAX_N)
             throw new IllegalArgumentException("n должен быть > 0 и <= " + MAX_N);
-        cache[n] = value;
+
+        cache[n] = value; // Сохраняем в память
+        if (persistent) cacheDao.save(n, value); // Сохраняем в базу, если требуется
     }
 
     @Override
     public int get(int n) {
         if (n < 1 || n > MAX_N)
             throw new IllegalArgumentException("n должен быть > 0 и <= " + MAX_N);
-        return cache[n];
-    }
 
-    @Override
-    public void save() {
-        cacheDao.save(cache);
+        return cache[n];
     }
 
     @Override
