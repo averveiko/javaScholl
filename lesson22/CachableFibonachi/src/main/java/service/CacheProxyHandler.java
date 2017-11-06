@@ -22,16 +22,18 @@ public class CacheProxyHandler implements InvocationHandler {
             Cachable an = method.getAnnotation(Cachable.class);
             boolean persistent = an.persistent();
 
-            int cachedResult = cache.get((int)args[0]);
-            if (cachedResult != 0) {
+            Integer key = (Integer) args[0];
+            Integer cachedResult = cache.get(key);
+
+            if (cachedResult != null) {
                 System.out.print("get value from cache ");
                 return cachedResult;
             }
 
             System.out.print("calculate value ");
-            int result = (int)method.invoke(delegate, args);
+            int result = (int) method.invoke(delegate, args);
 
-            cache.put((int)args[0], result, persistent);
+            cache.put(key, result, persistent);
             return result;
         }
 

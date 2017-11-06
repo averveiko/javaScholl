@@ -23,7 +23,7 @@ calculate value fib 40: 102334155
 calculate value fib 45: 1134903170
 calculate value fib 46: 1836311903
 
-Execution time (ns) 300937200
+Execution time (ns) 317140757
 </pre>
 
 #### Второй запуск программы (достаем значения из кэша)
@@ -38,8 +38,16 @@ get value from cache fib 40: 102334155
 get value from cache fib 45: 1134903170
 get value from cache fib 46: 1836311903
 
-Execution time (ns) 25693175
+Execution time (ns) 43965934
 </pre>
 
-<p>(Disclaimer: замер примерный, без прогрева и прочего)</p>
-<p>Вариант с кэшированием в базе быстрее для этого примера на 275 244 025 наносекунд (~ в 12 раз быстрее )</p>
+(Disclaimer: замер примерный, без прогрева и прочего)</p>
+**Время выполнения**
+<table>
+<tr>
+  <td>317140757</td><td>запуск с пустым кэшем (ns)</td>
+</tr>
+<tr>
+  <td>43965934</td><td>запуск с уже заполненным кешем (ns)</td>
+</tr>
+</table>

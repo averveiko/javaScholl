@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.Map;
+
 public interface ICacheDao {
-    void save(int n, int value);
-    int[] load();
+    void save(Integer key, Integer value);
+    Map<Integer, Integer> load();
 }

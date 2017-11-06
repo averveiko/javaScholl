@@ -18,7 +18,7 @@ public class AbstractH2CacheDao {
         }
 
         try {
-            return DriverManager.getConnection(H2_URL, H2_Login, H2_PASS);
+            return DriverManager.getConnection(url, H2_Login, H2_PASS);
         } catch (SQLException e) {
             throw new RuntimeException("Can't get connection", e);
         }

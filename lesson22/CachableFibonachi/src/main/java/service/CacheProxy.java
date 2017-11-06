@@ -1,6 +1,5 @@
 package service;
 
-import model.Cache;
 import model.ICache;
 
 import java.lang.reflect.Proxy;
