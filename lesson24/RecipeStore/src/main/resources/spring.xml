@@ -17,6 +17,8 @@
     </jdbc:initialize-database>
 
     <bean id="ingredientMapper" class="ru.sbt.averveyko.dao.utils.IngredientMapper"/>
+    <bean id="recipeMapper" class="ru.sbt.averveyko.dao.utils.RecipeMapper"/>
+    <bean id="unitMapper" class="ru.sbt.averveyko.dao.utils.UnitMapper"/>
 
     <bean id="ingredientDaoImpl"
           class="ru.sbt.averveyko.dao.IngredientDaoImpl">
@@ -24,9 +26,23 @@
         <constructor-arg ref="ingredientMapper"/>
     </bean>
 
+    <bean id="recipeDaoImpl"
+          class="ru.sbt.averveyko.dao.RecipeDaoImpl">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="recipeMapper"/>
+    </bean>
+
     <bean id="ingredient"
           class="ru.sbt.averveyko.model.Ingredient"
-          scope="prototype" />
+          scope="prototype"/>
+
+    <bean id="recipe"
+          class="ru.sbt.averveyko.model.Recipe"
+          scope="prototype"/>
+
+    <bean id="unit"
+          class="ru.sbt.averveyko.model.Unit"
+          scope="prototype"/>
 
 
 </beans>

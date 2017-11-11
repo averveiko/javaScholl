@@ -15,9 +15,10 @@ public class App {
 
 
 //        Ingredient ingredient = context.getBean("ingredient", Ingredient.class);
-//        ingredient.setName("Картофель");
+//        ingredient.setName("Соль");
 //
-//        ingredientDao.insert(ingredient);
+//        ingredientDaoImpl.insert(ingredient);
+//        System.out.println(ingredient);
 
 //        Ingredient ingredient = ingredientDaoImpl.getByPK(2);
 //        System.out.println(ingredient);
@@ -25,9 +26,9 @@ public class App {
 //        System.out.println("delete ingredient 2");
 //        ingredientDaoImpl.deleteByPK(2);
 
-        Ingredient ingredient = ingredientDaoImpl.getByPK(3);
-        ingredient.setName("Картошечка");
-        ingredientDaoImpl.update(ingredient);
+//        Ingredient ingredient = ingredientDaoImpl.getByPK(3);
+//        ingredient.setName("Картошечка");
+//        ingredientDaoImpl.update(ingredient);
 
         System.out.println("list all");
         List<Ingredient> ingredients = ingredientDaoImpl.getAll();

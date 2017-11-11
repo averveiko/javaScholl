@@ -1,83 +1,82 @@
 package ru.sbt.averveyko.dao;
 
-
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import ru.sbt.averveyko.dao.utils.IngredientMapper;
-import ru.sbt.averveyko.model.Ingredient;
+import ru.sbt.averveyko.dao.utils.RecipeMapper;
+import ru.sbt.averveyko.model.Recipe;
 
 import javax.sql.DataSource;
 import java.util.List;
 
+public class RecipeDaoImpl implements RecipeDao {
 
-public class IngredientDaoImpl implements IngredientDao {
     private static final String QUERY_INSERT =
-            "INSERT INTO Ingredient(name)\n" +
-                    "VALUES (:name);";
+            "INSERT INTO Recipe(name, description)\n" +
+                    "VALUES (:name, :description);";
 
     private static final String QUERY_GET_BY_PK =
-            "SELECT id, name\n" +
-                    "FROM Ingredient\n" +
+            "SELECT id, name, description\n" +
+                    "FROM Recipe\n" +
                     "WHERE id=:id;";
 
     private static final String QUERY_GET_ALL =
-            "SELECT id, name\n" +
-                    "FROM Ingredient;";
+            "SELECT id, name, description\n" +
+                    "FROM Recipe;";
 
     private static final String QUERY_DELETE_BY_PK =
-            "DELETE FROM Ingredient\n" +
+            "DELETE FROM Recipe\n" +
                     "WHERE id=:id;";
 
     private static final String QUERY_UPDATE =
-            "UPDATE Ingredient\n" +
-                    "SET name = :name\n" +
+            "UPDATE Recipe\n" +
+                    "SET name = :name, description = :description\n" +
                     "WHERE id = :id;";
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-    private final IngredientMapper ingredientMapper;
+    private final RecipeMapper recipeMapper;
 
-    public IngredientDaoImpl(DataSource dataSource, IngredientMapper ingredientMapper) {
+    public RecipeDaoImpl(DataSource dataSource, RecipeMapper recipeMapper) {
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
-        this.ingredientMapper = ingredientMapper;
+        this.recipeMapper = recipeMapper;
     }
 
     @Override
-    public void insert(Ingredient ingredient) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(ingredient);
+    public void insert(Recipe recipe) {
+        SqlParameterSource param = new BeanPropertySqlParameterSource(recipe);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int result = namedParameterJdbcTemplate.update(QUERY_INSERT, param, keyHolder);
-        ingredient.setId(keyHolder.getKey().intValue());
-        System.out.println("insert " + result + " ingredient: " + ingredient.getName());
+        recipe.setId(keyHolder.getKey().intValue());
+        System.out.println("insert " + result + " recipe: " + recipe.getName());
     }
 
     @Override
-    public Ingredient getByPK(Integer primaryKey) {
+    public Recipe getByPK(Integer primaryKey) {
         SqlParameterSource param = new MapSqlParameterSource("id", primaryKey);
-        Ingredient ingredient = namedParameterJdbcTemplate.queryForObject(QUERY_GET_BY_PK, param, ingredientMapper);
-        return ingredient;
+        Recipe recipe = namedParameterJdbcTemplate.queryForObject(QUERY_GET_BY_PK, param, recipeMapper);
+        return recipe;
     }
 
     @Override
-    public List<Ingredient> getAll() {
-        List<Ingredient> ingredients = namedParameterJdbcTemplate.query(QUERY_GET_ALL, ingredientMapper);
-        return ingredients;
+    public List<Recipe> getAll() {
+        List<Recipe> recipes = namedParameterJdbcTemplate.query(QUERY_GET_ALL, recipeMapper);
+        return recipes;
     }
 
     @Override
     public void deleteByPK(Integer primaryKey) {
         SqlParameterSource param = new MapSqlParameterSource("id", primaryKey);
         int result = namedParameterJdbcTemplate.update(QUERY_DELETE_BY_PK, param);
-        System.out.println("delete " + result + " ingredient ");
+        System.out.println("delete " + result + " recipe ");
     }
 
     @Override
-    public void update(Ingredient ingredient) {
-        SqlParameterSource param = new BeanPropertySqlParameterSource(ingredient);
+    public void update(Recipe recipe) {
+        SqlParameterSource param = new BeanPropertySqlParameterSource(recipe);
         int result = namedParameterJdbcTemplate.update(QUERY_UPDATE, param);
-        System.out.println("updated " + result + " ingredient " + ingredient.getName());
+        System.out.println("updated " + result + " recipe " + recipe.getName());
     }
 }
