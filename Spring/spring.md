@@ -4,8 +4,8 @@
 
 ### XML
 ```Java
-ClassPathXMLApplicationContext("context.xml");
-context.getBean();
+ApplicationContext context = ClassPathXMLApplicationContext("context.xml");
+MyBean myBean = context.getBean("myBean", myBean.class);
 
 ```
 ``` XML
@@ -28,6 +28,12 @@ context.getBean();
 ```
 
 ### Annotation
+```XML
+<context:annotation-config>
+```
+
+
+
 ```Java
 @Repository
 public class CoolDaoImpl implements CoolDao {
@@ -62,6 +68,9 @@ public class CoolServiceImpl implements CoolService {
 ```
 
 ### Java
+final ApplicationContext context = new AnnotationConfigApplicationContext(ConfigExample.class);
+final MyBean bean = context.getBean(MyBean.class);
+
 ```Java
 @Configuration
 public class JavaConfig {
@@ -92,24 +101,74 @@ beans {
     }
 }
 ```
-
+## Режимы создания бинов
+* singleton
+* prototype
+* request
+* session
+* globalSession
+* websocket
 
 ## Аннотации
 ```Java
-@Component
+@Required //Внедряет обязательные зависимости по типу
+@Autowired //Внедряет зависимости по типу
+@Qualifier //Идентифицирует бины одинакового типа
+@Resource //Внедряет зависимости по имени типа
+
+@Component //Идентифицирует бин
 @Service
 @Repository
-@Bean
+@Controller
 
-@Autowired
+@Scope //Определяет область действия бина
+@Value //Внедряет дефолтные значения
+
+@Configuration //Идентифицирует класс как фабрику бинов
+@Bean //Идентифицирует метод создающий бин
+@Scope //Определяет область действия бина
+@PropertySource //Импортирование XML c конфигурацией
+@ImportResource //Подключения файла ресурсов
+@Import //Импортирование других классов с конфигурацией
+@ComponentScan //Аналог <context:componetn-scan>
+@Profile //Подключает компонент только в заданном профиле
+
+
 
 @PostConstruct //init-method
+@PreDestroy //destroy-method
 
 ```
+
+## Spring AOP API
+```Java
+public static class DisplayTimeIntercepter implements MethodInterceptor {
+    @Override
+    public Object invoke(MethodInvocation invocation) throws Throwable {
+        try {
+            System.out.println("Before: " + invocation.getMethod().getName());
+            return invocation.proceed();
+        }finally {
+            System.out.println("After: " + invocation.getMethod().getName());
+        }
+    }
+}
+
+//Использование
+final MessageRenderer target = new MessageRendererImpl();
+final ProxyFactory pf = new ProxyFactory();
+pf.setTarget(target);
+pf.addAdvice(new DisplayTimeIntercepter());
+
+final MessageRenderer proxy = (MessageRenderer)pf.getProxy();
+proxy.execute();
+```
+
 ## Ссылки
 * [Евгений Борисов — Spring-потрошитель, часть 1](https://www.youtube.com/watch?v=BmBr5diz8WA)
 
 ## Разное
+Environment - описывает окружение в котором работает приложение. Содержит текущие активные профили, текущие св-ва полученные из разных источников (системные, св-ва из файлов, JNDI ...)
 ```Java
 //Use property file
 @Configuration
