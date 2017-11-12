@@ -70,4 +70,12 @@
     <bean id="compositionEntry"
           class="ru.sbt.averveyko.model.CompositionEntry"
           scope="prototype"/>
+
+    <bean id="consoleUI"
+          class="ru.sbt.averveyko.ui.console.ConsoleUI">
+        <constructor-arg ref="compositionDaoImpl"/>
+        <constructor-arg ref="ingredientDaoImpl"/>
+        <constructor-arg ref="recipeDaoImpl"/>
+        <constructor-arg ref="unitDaoImpl"/>
+    </bean>
 </beans>

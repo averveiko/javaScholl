@@ -7,6 +7,7 @@ import ru.sbt.averveyko.dao.IngredientDao;
 import ru.sbt.averveyko.dao.RecipeDao;
 import ru.sbt.averveyko.dao.UnitDao;
 import ru.sbt.averveyko.model.*;
+import ru.sbt.averveyko.ui.console.ConsoleUI;
 
 import java.util.List;
 
@@ -14,16 +15,19 @@ public class App {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 
-        IngredientDao ingredientDaoImpl = context.getBean("ingredientDaoImpl", IngredientDao.class);
-        RecipeDao recipeDao = context.getBean("recipeDaoImpl", RecipeDao.class);
-        UnitDao unitDao = context.getBean("unitDaoImpl", UnitDao.class);
+        ConsoleUI consoleUI = context.getBean("consoleUI", ConsoleUI.class);
+        consoleUI.start();
 
-
-        System.out.println("list all");
-        List<Ingredient> ingredients = ingredientDaoImpl.getAll();
-        for (Ingredient ingredient1 : ingredients) {
-            System.out.println(ingredient1);
-        }
+//        IngredientDao ingredientDaoImpl = context.getBean("ingredientDaoImpl", IngredientDao.class);
+//        RecipeDao recipeDao = context.getBean("recipeDaoImpl", RecipeDao.class);
+//        UnitDao unitDao = context.getBean("unitDaoImpl", UnitDao.class);
+//
+//
+//        System.out.println("list all");
+//        List<Ingredient> ingredients = ingredientDaoImpl.getAll();
+//        for (Ingredient ingredient1 : ingredients) {
+//            System.out.println(ingredient1);
+//        }
 
 //        //Test composition
 //        Recipe recipe = context.getBean("recipe", Recipe.class);
@@ -62,17 +66,17 @@ public class App {
 //        compositionDao.insert(composition);
 
 
-        CompositionDao compositionDao = context.getBean("compositionDaoImpl", CompositionDao.class);
-
-//        compositionDao.deleteByRecipeID(1);
-
-        List<Composition> compositionList = compositionDao.searchByName("Бутер");
-
-        System.out.println("Найдено " + compositionList.size() + " рецептов");
-
-        for (Composition composition : compositionList) {
-            System.out.println(composition);
-        }
+//        CompositionDao compositionDao = context.getBean("compositionDaoImpl", CompositionDao.class);
+//
+////        compositionDao.deleteByRecipeID(1);
+//
+//        List<Composition> compositionList = compositionDao.searchByName("Бутер");
+//
+//        System.out.println("Найдено " + compositionList.size() + " рецептов");
+//
+//        for (Composition composition : compositionList) {
+//            System.out.println(composition);
+//        }
 
     }
 }
