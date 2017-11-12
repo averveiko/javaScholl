@@ -4,25 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Composition {
-    private Integer id;
+    private List<Integer> idList;
     private Recipe recipeRef;
-    private List<CompositionEntry> entryList;
+    private List<CompositionEntry> entryList = new ArrayList<>();
 
     public Composition() {
     }
 
-    public Composition(Integer id, Recipe recipeRef, List<CompositionEntry> entryList) {
-        this.id = id;
-        this.recipeRef = recipeRef;
-        this.entryList = entryList;
+    public void addEntry(CompositionEntry entry) {
+        entryList.add(entry);
     }
 
-    public Integer getId() {
-        return id;
+    public List<Integer> getIdList() {
+        return idList;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdList(List<Integer> idList) {
+        this.idList = idList;
     }
 
     public Recipe getRecipeRef() {
@@ -44,7 +42,7 @@ public class Composition {
     @Override
     public String toString() {
         return "Composition{" +
-                "id=" + id +
+                "idList=" + idList +
                 ", recipeRef=" + recipeRef +
                 ", entryList=" + entryList +
                 '}';

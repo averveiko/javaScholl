@@ -19,6 +19,10 @@
     <bean id="ingredientMapper" class="ru.sbt.averveyko.dao.utils.IngredientMapper"/>
     <bean id="recipeMapper" class="ru.sbt.averveyko.dao.utils.RecipeMapper"/>
     <bean id="unitMapper" class="ru.sbt.averveyko.dao.utils.UnitMapper"/>
+    <bean id="compositionEntryMapper" class="ru.sbt.averveyko.dao.utils.CompositionEntryMapper">
+        <constructor-arg ref="ingredientDaoImpl"/>
+        <constructor-arg ref="unitDaoImpl"/>
+    </bean>
 
     <bean id="ingredientDaoImpl"
           class="ru.sbt.averveyko.dao.IngredientDaoImpl">
@@ -30,6 +34,21 @@
           class="ru.sbt.averveyko.dao.RecipeDaoImpl">
         <constructor-arg ref="dataSource"/>
         <constructor-arg ref="recipeMapper"/>
+    </bean>
+
+    <bean id="unitDaoImpl"
+          class="ru.sbt.averveyko.dao.UnitDaoImpl">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="unitMapper"/>
+    </bean>
+
+    <bean id="compositionDaoImpl"
+          class="ru.sbt.averveyko.dao.CompositionDaoImpl">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg ref="compositionEntryMapper"/>
+        <constructor-arg ref="ingredientDaoImpl"/>
+        <constructor-arg ref="recipeDaoImpl"/>
+        <constructor-arg ref="unitDaoImpl"/>
     </bean>
 
     <bean id="ingredient"
@@ -44,5 +63,11 @@
           class="ru.sbt.averveyko.model.Unit"
           scope="prototype"/>
 
+    <bean id="composition"
+          class="ru.sbt.averveyko.model.Composition"
+          scope="prototype"/>
 
+    <bean id="compositionEntry"
+          class="ru.sbt.averveyko.model.CompositionEntry"
+          scope="prototype"/>
 </beans>

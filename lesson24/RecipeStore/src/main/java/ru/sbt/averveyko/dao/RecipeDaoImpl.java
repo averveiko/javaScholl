@@ -46,11 +46,15 @@ public class RecipeDaoImpl implements RecipeDao {
 
     @Override
     public void insert(Recipe recipe) {
+        if (recipe.getId() != null) {
+            System.out.println("Рецепт id " + recipe.getId() + " уже сохранен в базе");
+            return;
+        }
         SqlParameterSource param = new BeanPropertySqlParameterSource(recipe);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int result = namedParameterJdbcTemplate.update(QUERY_INSERT, param, keyHolder);
         recipe.setId(keyHolder.getKey().intValue());
-        System.out.println("insert " + result + " recipe: " + recipe.getName());
+        System.out.println("Добавлен " + result + " рецепт: " + recipe.getName());
     }
 
     @Override
@@ -70,13 +74,14 @@ public class RecipeDaoImpl implements RecipeDao {
     public void deleteByPK(Integer primaryKey) {
         SqlParameterSource param = new MapSqlParameterSource("id", primaryKey);
         int result = namedParameterJdbcTemplate.update(QUERY_DELETE_BY_PK, param);
-        System.out.println("delete " + result + " recipe ");
+        System.out.println("Удален " + result + " рецепт ");
     }
 
     @Override
     public void update(Recipe recipe) {
+        if (recipe.getId() == null) return;
         SqlParameterSource param = new BeanPropertySqlParameterSource(recipe);
         int result = namedParameterJdbcTemplate.update(QUERY_UPDATE, param);
-        System.out.println("updated " + result + " recipe " + recipe.getName());
+        System.out.println("Обновлен " + result + " рецепт " + recipe.getName());
     }
 }

@@ -47,11 +47,15 @@ public class IngredientDaoImpl implements IngredientDao {
 
     @Override
     public void insert(Ingredient ingredient) {
+        if (ingredient.getId() != null) {
+            System.out.println("Ингредиент id " + ingredient.getId() + " уже сохранен в базе");
+            return;
+        }
         SqlParameterSource param = new BeanPropertySqlParameterSource(ingredient);
         KeyHolder keyHolder = new GeneratedKeyHolder();
         int result = namedParameterJdbcTemplate.update(QUERY_INSERT, param, keyHolder);
         ingredient.setId(keyHolder.getKey().intValue());
-        System.out.println("insert " + result + " ingredient: " + ingredient.getName());
+        System.out.println("Добавлен " + result + " ингредиент: " + ingredient.getName());
     }
 
     @Override
@@ -71,13 +75,14 @@ public class IngredientDaoImpl implements IngredientDao {
     public void deleteByPK(Integer primaryKey) {
         SqlParameterSource param = new MapSqlParameterSource("id", primaryKey);
         int result = namedParameterJdbcTemplate.update(QUERY_DELETE_BY_PK, param);
-        System.out.println("delete " + result + " ingredient ");
+        System.out.println("Удален " + result + " ингредиент ");
     }
 
     @Override
     public void update(Ingredient ingredient) {
+        if (ingredient.getId() == null) return;
         SqlParameterSource param = new BeanPropertySqlParameterSource(ingredient);
         int result = namedParameterJdbcTemplate.update(QUERY_UPDATE, param);
-        System.out.println("updated " + result + " ingredient " + ingredient.getName());
+        System.out.println("Обновлен " + result + " ингредиент " + ingredient.getName());
     }
 }
