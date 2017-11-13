@@ -1,11 +1,9 @@
 package ru.sbt.averveyko.ui.console;
 
-import ru.sbt.averveyko.dao.CompositionDao;
-import ru.sbt.averveyko.dao.IngredientDao;
-import ru.sbt.averveyko.dao.RecipeDao;
-import ru.sbt.averveyko.dao.UnitDao;
-import ru.sbt.averveyko.model.Composition;
+import ru.sbt.averveyko.dao.*;
+import ru.sbt.averveyko.model.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -62,7 +60,93 @@ public class ConsoleUI {
     }
 
     private void addRecipe() {
+        Recipe recipe = new Recipe();
 
+        System.out.print("Введите название рецепта: ");
+        String recipeName = scanner.nextLine();
+        recipe.setName(recipeName);
+
+        System.out.print("Введите описание рецепта: ");
+        String recipeDescription = scanner.nextLine();
+        recipe.setDescription(recipeDescription);
+
+        Composition composition = new Composition();
+        composition.setRecipeRef(recipe);
+
+        List<CompositionEntry> compositionEntryList = new ArrayList<>();
+        composition.setEntryList(compositionEntryList);
+
+        while (true) {
+
+            System.out.println("\nВвод состава рецепта");
+            showIngredients();
+            System.out.print("Введите id требуемого ингредиента, n для ввода нового, q для завершения редактирования: ");
+            String userInput = scanner.nextLine();
+
+            if (userInput.equalsIgnoreCase("q")) break;
+
+            Ingredient ingredient;
+            if (userInput.equalsIgnoreCase("n")){
+                ingredient = createNewIngredient();
+            } else {
+                int ingredientId = Integer.parseInt(userInput);
+                ingredient = ingredientDao.getByPK(ingredientId);
+            }
+
+            System.out.println("Введите еденицу измерения ингредиента " + ingredient.getName() + " :");
+            showUnits();
+            System.out.print("Введите id требуемой ед. изм., n для ввода новой, q для завершения редактирования: ");
+            userInput = scanner.nextLine();
+
+            Unit unit;
+            if (userInput.equalsIgnoreCase("q")) break;
+            if (userInput.equalsIgnoreCase("n")){
+                unit = createNewUnit();
+            } else {
+                int unitId = Integer.parseInt(userInput);
+                unit = unitDao.getByPK(unitId);
+            }
+
+            System.out.println("Введите требуемое количество ингредиента (в " + unit.getName() + "): " );
+            Double amount = Double.valueOf(scanner.nextLine());
+
+            compositionEntryList.add(new CompositionEntry(ingredient, amount, unit));
+
+            System.out.println("Ингредиент добавлен (" + ingredient.getName() + " " + amount + " " + unit.getName() + ")");
+        }
+
+        compositionDao.insert(composition);
+        System.out.println("Новый рецепт успешно сохранен.");
+    }
+
+    private Unit createNewUnit() {
+        Unit unit = new Unit();
+        System.out.print("\nВведите наименование новой ед. изм.: ");
+        String name = scanner.nextLine();
+        unit.setName(name);
+        return unit;
+    }
+
+    private Ingredient createNewIngredient() {
+        Ingredient ingredient = new Ingredient();
+        System.out.print("\nВведите наименование нового ингредиента: ");
+        String name = scanner.nextLine();
+        ingredient.setName(name);
+        return ingredient;
+    }
+
+    private void showUnits() {
+        List<Unit> unitList = unitDao.getAll();
+        for (Unit unit : unitList) {
+            System.out.println(unit.getId() + ". " + unit.getName());
+        }
+    }
+
+    private void showIngredients() {
+        List<Ingredient> ingredientList = ingredientDao.getAll();
+        for (Ingredient ingredient : ingredientList) {
+            System.out.println(ingredient.getId() + ". " + ingredient.getName());
+        }
     }
 
     private void searchRecipe() {
