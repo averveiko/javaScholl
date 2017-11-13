@@ -16,7 +16,7 @@ public class ConsoleUI {
     private Scanner scanner = new Scanner(System.in);
 
     private static final String MAIN_MENU =
-            "# База рецептов #\n" +
+            "\n# База рецептов #\n" +
                     "1. Поиск рецепта по имени (или части имени);\n" +
                     "2. Добавление рецепта;\n" +
                     "3. Удаление рецепта;\n" +
@@ -56,7 +56,20 @@ public class ConsoleUI {
     }
 
     private void deleteRecipe() {
+        System.out.println("\nУдаление рецепта");
+        showAllRecipes();
+        System.out.print("Введите id рецепта, который требуется удалить (0 - отмена): ");
+        Integer userInput = Integer.valueOf(scanner.nextLine());
+        if (userInput == 0) return;
+        compositionDao.deleteByRecipeID(userInput);
+        System.out.println("Рецепт удален");
+    }
 
+    private void showAllRecipes() {
+        List<Recipe> recipeList = recipeDao.getAll();
+        for (Recipe recipe : recipeList) {
+            System.out.println(recipe.getId() + ". " + recipe.getName());
+        }
     }
 
     private void addRecipe() {
@@ -161,9 +174,15 @@ public class ConsoleUI {
 
     private void printCompositionList(List<Composition> compositionList) {
         for (Composition composition : compositionList) {
-            System.out.println(composition);
-        }
+            System.out.println("\nРецепт: " + composition.getRecipeRef().getName());
+            System.out.println("Описание: " + composition.getRecipeRef().getDescription());
+            System.out.println("Состав рецепта:");
 
-        System.out.printf("\n");
+            int i=0;
+            for (CompositionEntry compositionEntry : composition.getEntryList()) {
+                System.out.println((++i) + ". " + compositionEntry.getIngredientRef().getName() +
+                " (" + compositionEntry.getAmount() + " " + compositionEntry.getUnitRef().getName() + ");");
+            }
+        }
     }
 }
