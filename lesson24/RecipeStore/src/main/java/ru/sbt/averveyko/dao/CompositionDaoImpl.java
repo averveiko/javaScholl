@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.transaction.annotation.Transactional;
 import ru.sbt.averveyko.dao.utils.CompositionEntryMapper;
 import ru.sbt.averveyko.model.Composition;
 import ru.sbt.averveyko.model.CompositionEntry;
@@ -66,6 +67,7 @@ public class CompositionDaoImpl implements CompositionDao {
         this.unitDao = unitDao;
     }
 
+    @Transactional
     @Override
     public void insert(Composition composition) {
         if (composition.getIdList() != null) {
@@ -134,6 +136,7 @@ public class CompositionDaoImpl implements CompositionDao {
         return compositionList;
     }
 
+    @Transactional
     @Override
     public void deleteByRecipeID(Integer recipeID) {
         // Удаляем рецепт из Recipe и его составляющие из Composition

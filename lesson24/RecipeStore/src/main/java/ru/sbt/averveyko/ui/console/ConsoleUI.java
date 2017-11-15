@@ -34,7 +34,14 @@ public class ConsoleUI {
 
         while (true) {
             System.out.print(MAIN_MENU);
-            int userInput = Integer.valueOf(scanner.nextLine());
+
+            int userInput = 0;
+            try {
+                userInput = Integer.valueOf(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Введите цифру 1-4");
+                continue;
+            }
 
             switch (userInput) {
                 case 1:
@@ -59,7 +66,13 @@ public class ConsoleUI {
         System.out.println("\nУдаление рецепта");
         showAllRecipes();
         System.out.print("Введите id рецепта, который требуется удалить (0 - отмена): ");
-        Integer userInput = Integer.valueOf(scanner.nextLine());
+        Integer userInput = null;
+        try {
+            userInput = Integer.valueOf(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
         if (userInput == 0) return;
         compositionDao.deleteByRecipeID(userInput);
         System.out.println("Рецепт удален");
@@ -102,7 +115,13 @@ public class ConsoleUI {
             if (userInput.equalsIgnoreCase("n")){
                 ingredient = createNewIngredient();
             } else {
-                int ingredientId = Integer.parseInt(userInput);
+                int ingredientId = 0;
+                try {
+                    ingredientId = Integer.parseInt(userInput);
+                } catch (NumberFormatException e) {
+                    System.out.println("Некорректный ввод");
+                    continue;
+                }
                 ingredient = ingredientDao.getByPK(ingredientId);
             }
 
@@ -116,12 +135,25 @@ public class ConsoleUI {
             if (userInput.equalsIgnoreCase("n")){
                 unit = createNewUnit();
             } else {
-                int unitId = Integer.parseInt(userInput);
+                int unitId = 0;
+                try {
+                    unitId = Integer.parseInt(userInput);
+                } catch (NumberFormatException e) {
+                    System.out.println("Некорректный ввод");
+                    continue;
+                }
                 unit = unitDao.getByPK(unitId);
             }
 
             System.out.println("Введите требуемое количество ингредиента (в " + unit.getName() + "): " );
-            Double amount = Double.valueOf(scanner.nextLine());
+
+            Double amount = null;
+            try {
+                amount = Double.valueOf(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Некорректный ввод");
+                continue;
+            }
 
             compositionEntryList.add(new CompositionEntry(ingredient, amount, unit));
 
