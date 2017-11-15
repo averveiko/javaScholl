@@ -125,7 +125,7 @@ public class ConsoleUI {
                 ingredient = ingredientDao.getByPK(ingredientId);
             }
 
-            System.out.println("Введите еденицу измерения ингредиента " + ingredient.getName() + " :");
+            System.out.println("Введите единицу измерения ингредиента " + ingredient.getName() + " :");
             showUnits();
             System.out.print("Введите id требуемой ед. изм., n для ввода новой, q для завершения редактирования: ");
             userInput = scanner.nextLine();
