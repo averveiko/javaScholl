@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Chat login</title>
+</head>
+<body>
+
+    <p th:text="${errorMessage}" />
+
+    <form action="/login" method="post">
+        User name: <input type="text" id="userName" name="userName" />
+        <input type="submit" value="Connect to chat" />
+    </form>
+</body>
+</html>
