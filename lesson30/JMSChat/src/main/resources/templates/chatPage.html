@@ -6,13 +6,29 @@
 </head>
 <body>
 
+    <h1>Chat</h1>
+
+    <div th:if="${messages != null}">
+        <ul th:each="msg : ${messages}">
+            <li th:text="${msg}" />
+        </ul>
+
+    </div>
+
+
+    <br/>
+
     <form action="/logout" method="post">
         <p th:text="'Hello, ' + ${userName}" />
         <input type="hidden" value="${userName}" name="userName" />
         <input type="submit" value="Logout" />
     </form>
 
+
+
     <form action="/send" method="post">
+        <input type="hidden" th:value="${userName}" name="userName" />
+
         <p>Message:</p>
         <p><textarea name="message" placeholder="Enter you message here" /></p>
         <p><input type="submit" value="Send" /></p>

@@ -9,9 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.EnableJms;
 import ru.sbt.averveyko.JMSChat.service.JMService;
+import ru.sbt.averveyko.JMSChat.service.MessageProducerService;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.Topic;
+import javax.jms.*;
 
 @SpringBootApplication
 @EnableJms
