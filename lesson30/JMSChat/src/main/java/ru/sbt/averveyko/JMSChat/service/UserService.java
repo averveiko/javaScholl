@@ -35,7 +35,8 @@ public class UserService {
     }
 
     public List<String> getMessages(String username) {
-        return users.get(username).getMessages();
+        if (users.containsKey(username)) return users.get(username).getMessages();
+        return null;
     }
 
     public void remove(String userName) {

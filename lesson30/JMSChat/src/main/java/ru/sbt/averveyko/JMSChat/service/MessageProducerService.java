@@ -44,7 +44,6 @@ public class MessageProducerService {
 
     @PreDestroy
     public void destroy() {
-        System.out.println("desroy producer");
         try {
             if (this.connection != null) this.connection.close();
         } catch (JMSException e) {

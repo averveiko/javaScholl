@@ -3,34 +3,44 @@
 <head>
     <meta charset="UTF-8" />
     <title>Chat page</title>
+
+    <!--TODO change to min version-->
+    <script src="js/jquery-3.2.1.js"></script>
+
+    <script src="js/msg.js"></script>
+
+    <script th:inline="javascript">
+        $( document ).ready(function() {
+            var timerId = setInterval(function() {
+                console.log("get data");
+                getMessages([[${userName}]]);
+            }, 2000);
+        });
+    </script>
+
 </head>
 <body>
 
-    <h1>Chat</h1>
+<h1>Chat</h1>
 
-    <div th:if="${messages != null}">
-        <ul th:each="msg : ${messages}">
-            <li th:text="${msg}" />
-        </ul>
+<div class="container"></div>
 
-    </div>
+<br/>
 
-    <br/>
-
-    <form action="/logout" method="post">
-        <p th:text="'Hello, ' + ${userName}" />
-        <input type="hidden" th:value="${userName}" name="userName" />
-        <input type="submit" value="Logout" />
-    </form>
+<form action="/logout" method="post">
+    <p th:text="'Hello, ' + ${userName}" />
+    <input type="hidden" th:value="${userName}" name="userName" />
+    <input type="submit" value="Logout" />
+</form>
 
 
-    <form action="/send" method="post">
-        <input type="hidden" th:value="${userName}" name="userName" />
+<form action="/send" method="post">
+    <input type="hidden" th:value="${userName}" name="userName" />
 
-        <p>Message:</p>
-        <p><textarea name="message" placeholder="Enter you message here" /></p>
-        <p><input type="submit" value="Send" /></p>
-    </form>
+    <p>Message:</p>
+    <p><textarea name="message" placeholder="Enter you message here" /></p>
+    <p><input type="submit" value="Send" /></p>
+</form>
 
 </body>
 </html>

@@ -24,10 +24,10 @@ public class ChatController {
 
         model.addAttribute("userName", userName);
 
-        List<String> messages = userService.getMessages(userName);
-        System.out.println("messages:");
-        messages.forEach(System.out::println);
-        model.addAttribute("messages", messages);
+//        List<String> messages = userService.getMessages(userName);
+//        System.out.println("messages:");
+//        messages.forEach(System.out::println);
+//        model.addAttribute("messages", messages);
         return "chatPage";
     }
 }
