@@ -21,7 +21,6 @@ public class ChatController {
 
     @RequestMapping(value = "/chat", method = RequestMethod.GET)
     public String chatPage(@RequestParam(value="userName") String userName, Model model) {
-        System.out.println("[chat] userName=" + userName);
 
         model.addAttribute("userName", userName);
 

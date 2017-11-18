@@ -14,11 +14,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class UserService {
     private final ApplicationContext context;
+    private final MessageProducerService messageProducerService;
+
     private final Map<String, MessageConsumerService> users = new ConcurrentHashMap<>();
 
     @Autowired
-    public UserService(ApplicationContext context) {
+    public UserService(ApplicationContext context, MessageProducerService messageProducerService) {
         this.context = context;
+        this.messageProducerService = messageProducerService;
     }
 
     public boolean contains(String userName) {
@@ -27,11 +30,17 @@ public class UserService {
 
     public void add(String userName) {
         MessageConsumerService consumerService = context.getBean(MessageConsumerService.class);
-
         users.put(userName, consumerService);
+        messageProducerService.send(userName + " connected to chat.");
     }
 
     public List<String> getMessages(String username) {
         return users.get(username).getMessages();
+    }
+
+    public void remove(String userName) {
+        users.get(userName).destroy();
+        users.remove(userName);
+        messageProducerService.send(userName + " left the chat.");
     }
 }

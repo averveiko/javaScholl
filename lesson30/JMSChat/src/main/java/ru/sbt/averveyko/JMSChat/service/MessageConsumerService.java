@@ -54,8 +54,6 @@ public class MessageConsumerService implements MessageListener {
         TextMessage textMessage = (TextMessage) message;
         try {
             messages.add(textMessage.getText());
-            // TODO Debug
-            System.out.println(textMessage.getText());
         } catch (JMSException e) {
             System.err.println("Error while reading message");
         }
