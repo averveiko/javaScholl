@@ -5,7 +5,7 @@
 * Сообщения хранятся в топике ActiveMQ.
 ![ActiveMQ](img/activemq.png)
 * Серверная часть построена при помощи Spring Boot, Spring MVC.
-* На клиенте используется css-framework Bootstrap 4.
+* На клиенте используется css-framework Bootstrap 4 + шаблонизатор Thymeleaf.
 * Сообщения подгружаются и отправляются без перезагрузки страницы 
 
 #### Интерфейс
