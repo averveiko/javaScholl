@@ -7,11 +7,15 @@ function getMessages(user) {
             'userName': user
         },
 
-        success: function ( result ) {
+        success: function (result) {
             console.log("receive!");
             if (result.length > 0) {
                 for (var i = 0; i < result.length; i++) {
-                    $( ".container" ).append("<p>" + result[i] + "</p>");
+                    if (result[i].startsWith(user)) {
+                        $("#messages").append("<blockquote class=\"blockquote text-right\">" + result[i] + "</blockquote>");
+                    } else {
+                        $("#messages").append("<blockquote class=\"blockquote\">" + result[i] + "</blockquote>");
+                    }
                 }
             }
         }
@@ -29,8 +33,9 @@ function sendMessage(user, msg) {
             'message': msg
         },
 
-        success: function ( result ) {
-            console.log("Message send " + result);
+        success: function (result) {
+            //clear message input
+            $("#message").val("");
         }
     });
 }

@@ -2,15 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Chat login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous"/>
+    <link href="css/signin.css" rel="stylesheet" />
 </head>
 <body>
 
-    <p th:text="${errorMessage}" />
+    <div class="container">
+        <form class="form-signin" action="/login" method="post">
+            <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger" role="alert">
+            </div>
 
-    <form action="/login" method="post">
-        User name: <input type="text" id="userName" name="userName" />
-        <input type="submit" value="Connect to chat" />
-    </form>
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="userName" class="sr-only">User name</label>
+            <input type="text" id="userName" name="userName" class="form-control" placeholder="John Connor" />
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Connect</button>
+        </form>
+    </div>
+
 </body>
 </html>
