@@ -1,15 +1,12 @@
 package ru.sbt.averveyko.JMSChat;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.command.ActiveMQTempTopic;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.EnableJms;
-import ru.sbt.averveyko.JMSChat.service.JMService;
-import ru.sbt.averveyko.JMSChat.service.MessageProducerService;
 
 import javax.jms.*;
 
@@ -19,10 +16,6 @@ public class JmsChatApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(JmsChatApplication.class, args);
-
-		//Test JMS
-//		JMService service = context.getBean(JMService.class);
-//        service.testJM();
 	}
 
 	@Bean
@@ -32,7 +25,6 @@ public class JmsChatApplication {
 
     @Bean
     public Topic destination() {
-	    return new ActiveMQTopic("TEST");
-        //return new ActiveMQTempTopic("TEST");
+	    return new ActiveMQTopic("JMSCHAT");
     }
 }

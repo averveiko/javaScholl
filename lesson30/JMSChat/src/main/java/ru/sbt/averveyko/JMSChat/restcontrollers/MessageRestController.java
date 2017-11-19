@@ -20,10 +20,13 @@ public class MessageRestController {
         this.userService = userService;
     }
 
-    // TODO post
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public List<String> getMessages(@RequestParam(value = "userName") String userName) {
-        System.out.println("Call rest");
         return userService.getMessages(userName);
+    }
+
+    @RequestMapping(value = "/send", method = RequestMethod.GET)
+    public void sendMessage(@RequestParam(value = "userName") String userName, @RequestParam(value = "message") String message) {
+        userService.sendMessage(userName + ": " + message);
     }
 }

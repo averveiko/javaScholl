@@ -15,7 +15,14 @@
                 console.log("get data");
                 getMessages([[${userName}]]);
             }, 2000);
+
+            $( "#send" ).click(function() {
+                console.log("click send " + [[${userName}]] + " " + $( "#message" ).val());
+                sendMessage([[${userName}]], $( "#message" ).val());
+            });
         });
+
+
     </script>
 
 </head>
@@ -33,14 +40,11 @@
     <input type="submit" value="Logout" />
 </form>
 
-
-<form action="/send" method="post">
-    <input type="hidden" th:value="${userName}" name="userName" />
+    <!--<input type="hidden" th:value="${userName}" name="userName" />-->
 
     <p>Message:</p>
-    <p><textarea name="message" placeholder="Enter you message here" /></p>
-    <p><input type="submit" value="Send" /></p>
-</form>
+    <p><textarea id="message" name="message" placeholder="Enter you message here" /></p>
+    <p><button id="send" >Send</button></p>
 
 </body>
 </html>

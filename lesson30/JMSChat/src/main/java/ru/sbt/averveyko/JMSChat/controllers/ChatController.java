@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.sbt.averveyko.JMSChat.service.UserService;
 
-import java.util.List;
-
 @Controller
 public class ChatController {
     private final UserService userService;
@@ -23,11 +21,6 @@ public class ChatController {
     public String chatPage(@RequestParam(value="userName") String userName, Model model) {
 
         model.addAttribute("userName", userName);
-
-//        List<String> messages = userService.getMessages(userName);
-//        System.out.println("messages:");
-//        messages.forEach(System.out::println);
-//        model.addAttribute("messages", messages);
         return "chatPage";
     }
 }

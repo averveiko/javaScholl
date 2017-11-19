@@ -39,6 +39,10 @@ public class UserService {
         return null;
     }
 
+    public void sendMessage(String message) {
+        messageProducerService.send(message);
+    }
+
     public void remove(String userName) {
         users.get(userName).destroy();
         users.remove(userName);
