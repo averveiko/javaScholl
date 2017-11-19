@@ -9,7 +9,7 @@ import ru.sbt.averveyko.JMSChat.service.UserService;
 
 import java.util.List;
 
-@RestController()
+@RestController
 @RequestMapping("/msg")
 public class MessageRestController {
 

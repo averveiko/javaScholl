@@ -14,17 +14,17 @@ import javax.jms.*;
 @EnableJms
 public class JmsChatApplication {
 
-	public static void main(String[] args) {
-		ApplicationContext context = SpringApplication.run(JmsChatApplication.class, args);
-	}
+    public static void main(String[] args) {
+        ApplicationContext context = SpringApplication.run(JmsChatApplication.class, args);
+    }
 
-	@Bean
+    @Bean
     public ConnectionFactory jmsFactory() {
         return new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
     }
 
     @Bean
     public Topic destination() {
-	    return new ActiveMQTopic("JMSCHAT");
+        return new ActiveMQTopic("JMSCHAT");
     }
 }
