@@ -8,7 +8,6 @@ function getMessages(user) {
         },
 
         success: function (result) {
-            console.log("receive!");
             if (result.length > 0) {
                 for (var i = 0; i < result.length; i++) {
                     if (result[i].startsWith(user)) {
@@ -23,7 +22,6 @@ function getMessages(user) {
 }
 
 function sendMessage(user, msg) {
-    console.log("sending " + user + " " + msg);
     $.ajax({
         method: "GET",
         url: "/msg/send",

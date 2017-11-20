@@ -6,22 +6,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.sbt.averveyko.JMSChat.service.UserService;
+import ru.sbt.averveyko.JMSChat.service.ChatService;
 
 @Controller
 public class LoginController {
-    private final UserService userService;
+    private final ChatService chatService;
 
     @Autowired
-    public LoginController(UserService userService) {
-        this.userService = userService;
+    public LoginController(ChatService chatService) {
+        this.chatService = chatService;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam(value = "userName") String userName, Model model) {
 
-        if (! userService.contains(userName)) {
-            userService.add(userName);
+        if (! chatService.contains(userName)) {
+            chatService.add(userName);
 
             return "redirect:/chat?userName=" + userName;
         }

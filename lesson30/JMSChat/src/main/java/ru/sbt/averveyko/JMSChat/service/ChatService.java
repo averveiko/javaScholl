@@ -9,17 +9,17 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Сервис, управляющий пользователями чата
+ * Сервис, управляющий чатом
  */
 @Service
-public class UserService {
+public class ChatService {
     private final ApplicationContext context;
     private final MessageProducerService messageProducerService;
 
     private final Map<String, MessageConsumerService> users = new ConcurrentHashMap<>();
 
     @Autowired
-    public UserService(ApplicationContext context, MessageProducerService messageProducerService) {
+    public ChatService(ApplicationContext context, MessageProducerService messageProducerService) {
         this.context = context;
         this.messageProducerService = messageProducerService;
     }

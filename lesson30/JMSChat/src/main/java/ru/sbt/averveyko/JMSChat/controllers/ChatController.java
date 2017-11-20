@@ -6,15 +6,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.sbt.averveyko.JMSChat.service.UserService;
+import ru.sbt.averveyko.JMSChat.service.ChatService;
 
 @Controller
 public class ChatController {
-    private final UserService userService;
+    private final ChatService chatService;
 
     @Autowired
-    public ChatController(UserService userService) {
-        this.userService = userService;
+    public ChatController(ChatService chatService) {
+        this.chatService = chatService;
     }
 
     @RequestMapping(value = "/chat", method = RequestMethod.GET)

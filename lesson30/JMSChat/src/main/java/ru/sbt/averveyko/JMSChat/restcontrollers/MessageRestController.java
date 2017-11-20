@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.sbt.averveyko.JMSChat.service.UserService;
+import ru.sbt.averveyko.JMSChat.service.ChatService;
 
 import java.util.List;
 
@@ -13,20 +13,20 @@ import java.util.List;
 @RequestMapping("/msg")
 public class MessageRestController {
 
-    private final UserService userService;
+    private final ChatService chatService;
 
     @Autowired
-    public MessageRestController(UserService userService) {
-        this.userService = userService;
+    public MessageRestController(ChatService chatService) {
+        this.chatService = chatService;
     }
 
     @RequestMapping(value = "/get", method = RequestMethod.GET)
     public List<String> getMessages(@RequestParam(value = "userName") String userName) {
-        return userService.getMessages(userName);
+        return chatService.getMessages(userName);
     }
 
     @RequestMapping(value = "/send", method = RequestMethod.GET)
     public void sendMessage(@RequestParam(value = "userName") String userName, @RequestParam(value = "message") String message) {
-        userService.sendMessage(userName + ": " + message);
+        chatService.sendMessage(userName + ": " + message);
     }
 }
