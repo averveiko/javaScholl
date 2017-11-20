@@ -35,7 +35,7 @@ public class LoginController {
         return "loginPage";
     }
 
-    @RequestMapping("/logout")
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logout(@RequestParam(value = "userName") String userName) {
         chatService.removeUser(userName);
         return "redirect:/login";
