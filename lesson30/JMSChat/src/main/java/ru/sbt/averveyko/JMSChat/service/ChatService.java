@@ -24,14 +24,20 @@ public class ChatService {
         this.messageProducerService = messageProducerService;
     }
 
-    public boolean contains(String userName) {
+    public boolean containsUser(String userName) {
         return users.keySet().contains(userName);
     }
 
-    public void add(String userName) {
+    public void addUser(String userName) {
         MessageConsumerService consumerService = context.getBean(MessageConsumerService.class);
         users.put(userName, consumerService);
         messageProducerService.send(userName + " connected to chat.");
+    }
+
+    public void removeUser(String userName) {
+        users.get(userName).destroy();
+        users.remove(userName);
+        messageProducerService.send(userName + " left the chat.");
     }
 
     public List<String> getMessages(String username) {
@@ -41,11 +47,5 @@ public class ChatService {
 
     public void sendMessage(String message) {
         messageProducerService.send(message);
-    }
-
-    public void remove(String userName) {
-        users.get(userName).destroy();
-        users.remove(userName);
-        messageProducerService.send(userName + " left the chat.");
     }
 }

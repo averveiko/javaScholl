@@ -30,7 +30,12 @@
             }, 2000);
 
             $("#send").click(function () {
-                sendMessage([[${userName}]], $("#message").val());
+                var msg = $("#message").val();
+                //Блокируем отправку пустого сообщения
+                if (msg.length == 0) {
+                    return;
+                }
+                sendMessage([[${userName}]], msg);
             });
         });
     </script>
@@ -66,7 +71,7 @@
         <p>
         <div id="messages" class="container-fluid"></div>
         </p>
-        
+
         <form onsubmit="return false;">
             <div class="form-group">
                 <label for="message">Message</label>

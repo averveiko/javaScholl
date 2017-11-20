@@ -20,8 +20,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam(value = "userName") String userName, Model model) {
 
-        if (! chatService.contains(userName)) {
-            chatService.add(userName);
+        if (! chatService.containsUser(userName)) {
+            chatService.addUser(userName);
 
             return "redirect:/chat?userName=" + userName;
         }
@@ -33,5 +33,11 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         return "loginPage";
+    }
+
+    @RequestMapping("/logout")
+    public String logout(@RequestParam(value = "userName") String userName) {
+        chatService.removeUser(userName);
+        return "redirect:/login";
     }
 }
