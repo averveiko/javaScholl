@@ -1,10 +1,17 @@
 @Entity - сущность
+
 @Table(name="table_name") - позволяет задать имя таблицы
+
 @ID
+
 @GeneratedValue - автоматическая генерация первичного ключа (стратегии: AUTO, IDENTITY, SEQUENCE, TABLE, UUID)
+
 @Basic - позволяет указать nullable и  fetch стратегию
+
 @Column(nullable = false, length = 2000) - позволяет задать имя колонки в БД, размер поля, nullable, updatable, insertable
+
 @Enumerated - позволяет указать как мапить enum значения: число или строка
+
 @Transient - предотвращяет маппинг поля
 
 @Embeddable, @EmbeddableID - позволяет задать составной первичный ключ
@@ -14,6 +21,7 @@
 @NamedQueries - позволяет задать именованные запросы
 
 @SecondaryTable - распределение данных в сущности по нескольким таблицам:
+
 ```Java
 @Entity(name="Address")
 @SecondaryTables({
