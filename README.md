@@ -26,6 +26,6 @@ lesson20 | CI, CD, Development process, methodology
 [lesson22](https://github.com/averveiko/javaSchool/tree/master/lesson22) | JDBC II
 lesson23 | Spring
 [lesson24](https://github.com/averveiko/javaSchool/tree/master/lesson24) | SpringJDBC, Transactions
-lesson25 | ORM, Spring Hibernate
+[lesson25](https://github.com/averveiko/javaSchool/tree/master/lesson25) | ORM, Spring Hibernate
 [lesson26](https://github.com/averveiko/javaSchool/tree/master/lesson26) | Spring WEB MVC
 [lesson30](https://github.com/averveiko/javaSchool/tree/master/lesson30) | JMS
