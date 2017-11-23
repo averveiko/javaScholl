@@ -4,7 +4,7 @@
 
 Hibernate позволяет делать запросы на JPQL/HQL абстрагируя от вендора БД, избавляет от работы со схемой бд, сложными JOIN запросами.
 
-Hibernate - это реализация JPA, а Spring Data JPA - это абстракция доступа к данным JPA. Позволяет быстро создать в проекте Repository слой базируемый на JPA, предназначенный для CRUD операций (CrudRepository, PagingAndSortingRepository, JpaRepository + запросы JPA c помощью условных обозначений имен).
+Hibernate - это одна из реализаций JPA (основная), а Spring Data JPA - это абстракция доступа к данным JPA. Позволяет быстро создать в проекте Repository слой базируемый на JPA, предназначенный для CRUD операций (CrudRepository, PagingAndSortingRepository, JpaRepository + запросы JPA c помощью условных обозначений имен).
 
 Spring Data требует поставщика JPA.
 
