@@ -1,4 +1,8 @@
-### Задание: кстановить SONAR, снять статистику со своего проекта.
+### Задание: установить SONAR, снять статистику со своего проекта.
+
+В качестве "подопытного" использован [проект чата на JMS и Spring MVC](https://github.com/averveiko/javaSchool/tree/master/lesson30)
+
+
 
 
 В IDEA добавил комманду
@@ -26,4 +30,8 @@ Vulnerabilities(Уязвимости)
 Code Smells ("Код с запашком")
 
 ![Code Smells](img/02.png)
+
+После устранения некоторых проблем:
+
+![Refactor1](img/03.png)
 
