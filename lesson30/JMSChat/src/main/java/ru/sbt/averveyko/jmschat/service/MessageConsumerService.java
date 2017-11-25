@@ -1,5 +1,7 @@
-package ru.sbt.averveyko.JMSChat.service;
+package ru.sbt.averveyko.jmschat.service;
 
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -15,9 +17,7 @@ import java.util.List;
 @Service
 @Scope("prototype")
 public class MessageConsumerService implements MessageListener {
-
-    private final ConnectionFactory connectionFactory;
-    private final Topic topic;
+    private static final Logger logger = LogManager.getLogger("MessageConsumerService");
 
     private Connection connection;
     private Session session;
@@ -27,9 +27,6 @@ public class MessageConsumerService implements MessageListener {
 
     @Autowired
     public MessageConsumerService(ConnectionFactory connectionFactory, Topic topic) {
-        this.connectionFactory = connectionFactory;
-        this.topic = topic;
-
         try {
             this.connection = connectionFactory.createConnection();
             this.session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
@@ -39,7 +36,7 @@ public class MessageConsumerService implements MessageListener {
 
             connection.start();
         } catch (JMSException e) {
-            e.printStackTrace();
+            logger.info("Can't create MessageConsumerService ", e);
         }
     }
 
@@ -55,7 +52,7 @@ public class MessageConsumerService implements MessageListener {
         try {
             messages.add(textMessage.getText());
         } catch (JMSException e) {
-            System.err.println("Error while reading message");
+            logger.info("Can't read message ", e);
         }
     }
 
@@ -64,7 +61,7 @@ public class MessageConsumerService implements MessageListener {
         try {
             if (this.connection != null) this.connection.close();
         } catch (JMSException e) {
-            e.printStackTrace();
+            logger.info("Can't destroy MessageConsumerService ", e);
         }
     }
 }

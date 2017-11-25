@@ -1,4 +1,4 @@
-package ru.sbt.averveyko.JMSChat;
+package ru.sbt.averveyko.jmschat;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,11 +1,11 @@
-package ru.sbt.averveyko.JMSChat.restcontrollers;
+package ru.sbt.averveyko.jmschat.restcontrollers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.sbt.averveyko.JMSChat.service.ChatService;
+import ru.sbt.averveyko.jmschat.service.ChatService;
 
 import java.util.List;
 

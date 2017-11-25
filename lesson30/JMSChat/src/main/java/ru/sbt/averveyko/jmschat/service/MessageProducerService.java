@@ -1,5 +1,7 @@
-package ru.sbt.averveyko.JMSChat.service;
+package ru.sbt.averveyko.jmschat.service;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +13,7 @@ import javax.jms.*;
  */
 @Service
 public class MessageProducerService {
-    private final ConnectionFactory connectionFactory;
-    private final Topic topic;
+    private static final Logger logger = LogManager.getLogger("MessageProducerService");
 
     private Connection connection;
     private Session session;
@@ -20,16 +21,13 @@ public class MessageProducerService {
 
     @Autowired
     public MessageProducerService(ConnectionFactory connectionFactory, Topic topic) {
-        this.connectionFactory = connectionFactory;
-        this.topic = topic;
-
         try {
             this.connection = connectionFactory.createConnection();
             this.session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             this.producer = session.createProducer(topic);
 
         } catch (JMSException e) {
-            e.printStackTrace();
+            logger.info("Can't create MessageProducerService ", e);
         }
     }
 
@@ -38,7 +36,7 @@ public class MessageProducerService {
             Message jmsMessage = session.createTextMessage(message);
             producer.send(jmsMessage);
         } catch (JMSException e) {
-            e.printStackTrace();
+            logger.info("Can't send message ", e);
         }
     }
 
@@ -47,7 +45,7 @@ public class MessageProducerService {
         try {
             if (this.connection != null) this.connection.close();
         } catch (JMSException e) {
-            e.printStackTrace();
+            logger.info("Can't destroy MessageProducerService ", e);
         }
     }
 }

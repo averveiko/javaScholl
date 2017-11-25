@@ -17,16 +17,16 @@ public class Recipe {
     @Column(name = "description")
     private String description;
 
-    @OneToMany
-    private List<Composition> compositions;
+    //@OneToMany
+    //private List<Composition> compositions;
 
     public Recipe() {
     }
 
-    public Recipe(String name, String description, List<Composition> compositions) {
+    public Recipe(String name, String description) {
         this.name = name;
         this.description = description;
-        this.compositions = compositions;
+        //this.compositions = compositions;
     }
 
     public Long getId() {
@@ -53,11 +53,11 @@ public class Recipe {
         this.description = description;
     }
 
-    public List<Composition> getCompositions() {
-        return compositions;
-    }
-
-    public void setCompositions(List<Composition> compositions) {
-        this.compositions = compositions;
-    }
+//    public List<Composition> getCompositions() {
+//        return compositions;
+//    }
+//
+//    public void setCompositions(List<Composition> compositions) {
+//        this.compositions = compositions;
+//    }
 }

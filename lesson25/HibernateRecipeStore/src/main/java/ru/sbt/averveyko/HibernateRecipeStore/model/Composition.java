@@ -10,6 +10,9 @@ public class Composition {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne
+    private Recipe recipe;
+
     @OneToOne
     private Ingredient ingredient;
 
@@ -22,10 +25,19 @@ public class Composition {
     public Composition() {
     }
 
-    public Composition(Ingredient ingredient, Double amount, Unit unit) {
+    public Composition(Recipe recipe, Ingredient ingredient, Double amount, Unit unit) {
+        this.recipe = recipe;
         this.ingredient = ingredient;
         this.amount = amount;
         this.unit = unit;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(Recipe recipe) {
+        this.recipe = recipe;
     }
 
     public Long getId() {

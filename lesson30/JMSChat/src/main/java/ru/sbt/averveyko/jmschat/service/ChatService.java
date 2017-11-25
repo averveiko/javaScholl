@@ -1,9 +1,10 @@
-package ru.sbt.averveyko.JMSChat.service;
+package ru.sbt.averveyko.jmschat.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -42,7 +43,7 @@ public class ChatService {
 
     public List<String> getMessages(String username) {
         if (users.containsKey(username)) return users.get(username).getMessages();
-        return null;
+        return new ArrayList<>();
     }
 
     public void sendMessage(String message) {

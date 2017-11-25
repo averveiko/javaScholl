@@ -1,10 +1,9 @@
-package ru.sbt.averveyko.JMSChat;
+package ru.sbt.averveyko.jmschat;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.command.ActiveMQTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.jms.annotation.EnableJms;
 
@@ -15,7 +14,7 @@ import javax.jms.*;
 public class JmsChatApplication {
 
     public static void main(String[] args) {
-        ApplicationContext context = SpringApplication.run(JmsChatApplication.class, args);
+        SpringApplication.run(JmsChatApplication.class, args);
     }
 
     @Bean

@@ -50,18 +50,22 @@ public class App {
         Ingredient ingredient4 = new Ingredient("Томатная паста");
         ingredientRepository.save(Arrays.asList(ingredient1, ingredient2, ingredient3, ingredient4));
 
-        Composition composition1 = new Composition(ingredient1, 500.0, unit1);
-        Composition composition2 = new Composition(ingredient2, 1500.0, unit1);
-        Composition composition3 = new Composition(ingredient3, 1.0, unit2);
-        Composition composition4 = new Composition(ingredient4, 100.0, unit1);
-        compositionRepository.save(Arrays.asList(composition1, composition2, composition3, composition4));
-
         Recipe recipe = new Recipe();
         recipe.setName("Макароны по-флотски");
         recipe.setDescription("Must have");
-        List<Composition> compositions = new ArrayList<>(Arrays.asList(composition1, composition2, composition3, composition4));
-        recipe.setCompositions(compositions);
         recipeRepository.save(recipe);
+
+        //Recipe recipe, Ingredient ingredient, Double amount, Unit unit
+        Composition composition1 = new Composition(recipe, ingredient1, 500.0, unit1);
+        Composition composition2 = new Composition(recipe, ingredient2, 1500.0, unit1);
+        Composition composition3 = new Composition(recipe, ingredient3, 1.0, unit2);
+        Composition composition4 = new Composition(recipe, ingredient4, 100.0, unit1);
+        compositionRepository.save(Arrays.asList(composition1, composition2, composition3, composition4));
+
+
+        //List<Composition> compositions = new ArrayList<>(Arrays.asList(composition1, composition2, composition3, composition4));
+        //recipe.setCompositions(compositions);
+
 
     }
 }
