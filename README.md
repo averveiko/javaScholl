@@ -21,7 +21,7 @@ Lesson | Theme
 [lesson17](https://github.com/averveiko/javaSchool/tree/master/lesson17) | Good code
 lesson18 | GOF I
 lesson19 | GOF II
-lesson20 | CI, CD, Development process, methodology
+[lesson20](https://github.com/averveiko/javaSchool/tree/master/lesson20) | CI, CD, Development process, methodology
 [lesson21](https://github.com/averveiko/javaSchool/tree/master/lesson21) | JDBC I
 [lesson22](https://github.com/averveiko/javaSchool/tree/master/lesson22) | JDBC II
 lesson23 | Spring
