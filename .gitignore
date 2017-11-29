@@ -1,6 +1,12 @@
 target/
 out/
-.DS_Store/
+.DS_Store
+node_modules
+*~
+build/
+.vscode
+*.swp
+*.swo
 
 .idea
 *.iws
