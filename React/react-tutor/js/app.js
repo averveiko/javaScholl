@@ -58,6 +58,10 @@ var Article = React.createClass({
         e.preventDefault();
         this.setState({visible: true});
     },
+    minimizeClick: function(e) {
+        e.preventDefault();
+        this.setState({visible: false});
+    },
     render: function() {
         var author = this.props.data.author,
             text = this.props.data.text,
@@ -77,6 +81,11 @@ var Article = React.createClass({
                 <p className={'news__big-text ' + (visible ? '' : 'none')}>
                     {bigText}
                 </p>
+                <a href="#"
+                    onClick={this.minimizeClick}
+                    className={'news__minimize ' + (visible ? '' : 'none')}>
+                    Меньше
+                </a>
             </div>
         );
     }
