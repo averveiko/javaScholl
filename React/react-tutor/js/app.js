@@ -18,7 +18,29 @@ var my_news = [
     }
 ];
 
-//var my_news;
+var TestInput = React.createClass({
+    onButtonClick: function() {
+        console.log(this.refs);
+        alert(ReactDOM.findDOMNode(this.refs.myTestInput).value);
+    },
+    render: function() {
+        return (
+            <div>
+                <input
+                    className='test-input'
+                    defaultValue=''
+                    placeholder='Введите значение'
+                    ref='myTestInput'
+                />
+                <button
+                    className='test-button'
+                    onClick={this.onButtonClick}
+                    ref='myButton'
+                >Click me</button>
+            </div>
+        );
+    }
+});
 
 var Article = React.createClass({
     propTypes: {
@@ -43,13 +65,18 @@ var Article = React.createClass({
 
         var visible = this.state.visible;
 
-        
         return (
             <div className='article'>
                 <p className='news__author'>{author}:</p>
                 <p className='news__text'>{text}</p>
-                <a href="#" onClick={this.readmoreClick} className={'news__readmore ' + (visible ? 'none' : '')}>Подробнее</a>
-                <p className={'news__big-text ' + (visible ? '' : 'none')}>{bigText}</p>
+                <a href="#"
+                    onClick={this.readmoreClick}
+                    className={'news__readmore ' + (visible ? 'none' : '')}>
+                    Подробнее
+                </a>
+                <p className={'news__big-text ' + (visible ? '' : 'none')}>
+                    {bigText}
+                </p>
             </div>
         );
     }
@@ -59,6 +86,11 @@ var News = React.createClass({
     propTypes: {
         data: React.PropTypes.array.isRequired
     },
+    getInitialState: function() {
+        return {
+          counter: 0
+        }
+      },
     render: function() {
         var data = this.props.data;
         var newsTemplate;
@@ -79,7 +111,8 @@ var News = React.createClass({
             <div className="news">
                 {newsTemplate}
                 <p className={data.length > 0 ? '':'none'}>
-                    <strong className='news__count'>
+                    <strong
+                        className='news__count'>
                         Всего новостей: {data.length}
                     </strong>
                 </p>
@@ -93,6 +126,7 @@ var App = React.createClass({
         return (
             <div className="app">
                 <h3>Новости</h3>
+                <TestInput />
                 <News data={my_news}/>
                 {/* <Comments /> */}
             </div>
