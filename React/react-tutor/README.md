@@ -10,58 +10,69 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-//Или
-var App = React.createClass({
-    render: function() {
-        return (
-            <div className="app">
-                Это компонент App!
-            </div>
-        );
-    }
+//о propTypes
+//
+React.createClass({
+  propTypes: {
+    // Вы можете указать, каким примитивом должно быть свойство
+    optionalArray: React.PropTypes.array,
+    optionalBool: React.PropTypes.bool,
+    optionalFunc: React.PropTypes.func,
+    optionalNumber: React.PropTypes.number,
+    optionalObject: React.PropTypes.object,
+    optionalString: React.PropTypes.string,
+
+    // Вы может указать, что свойство можеть быть одни из ...
+    optionalUnion: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number,
+      React.PropTypes.instanceOf(Message)
+    ]),
+
+    // Вы можете указать, конкретную структуру объекта свойства
+    optionalObjectWithShape: React.PropTypes.shape({
+      color: React.PropTypes.string,
+      fontSize: React.PropTypes.number
+    }),
+
+    // Вы можете указать, что свойство ОБЯЗАТЕЛЬНО
+    requiredFunc: React.PropTypes.func.isRequired,
+
+    // Если нужно указать, что свойство просто обязательно, и может быть любым примитивом
+    requiredAny: React.PropTypes.any.isRequired,
+
+  }
 });
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-);
+this.props //используем только для чтения
+this.state //состояние
+// Для изменения состояния, нужно обязательно использовать метод setState, а не просто перезаписывать значение переменной.
 
-//Компонент с данными
-var my_news = [
-    {
-        author: 'Иван Иванович',
-        text: 'Бесплатно, без смс! качайте на localhost:3000'
-    },
-    {
-        author: 'Илон Маск',
-        text: 'Вылет на марс 12.05.2018, спешите купить билеты'
-    },
-    {
-        author: 'Гость',
-        text: 'Курс биткоина пробил исторический максимум'
-    }
-];
-
-var News = React.createClass({
-    render: function() {
-        var data = this.props.data;
-        
-        var newsTemplate = data.map(function(item, index) {
-            return (
-                <div key={index}>
-                    <p className="news__author">{item.author}:</p>
-                    <p className="news__author">{item.text}</p>
-                </div>
-            );
-        });
-
-        return (
-            <div className="news">
-                {newsTemplate}
-            </div>
-        );
-    }
-});
-
-<News data={my_news}/>
+//Например, у нас есть состояние:
+//...
+getInitialState: function() {
+    return {
+      visible: false,
+      rating: 0,
+      eshe_odno_svoistvo: 'qweqwe'
+    };
+  }
+//...
+//Чтобы изменить рейтинг, нужно написать следующий setState:
+this.setState({rating: 100500})
+Чтобы изменить все три свойства:
+this.setState({
+    rating: 100500,
+    visible: true,
+    eshe_odno_svoistvo: 'привет'
+})
+//Так же у setState есть возможность указать callback функцию, которая будет вызвана после того, как новое состояние "установится".
+//...
+readmoreClick: function(e) {
+    e.preventDefault();
+    this.setState({visible: true}, function() {
+      alert('Состояние изменилось');
+    });
+  },
+//...
 ```
