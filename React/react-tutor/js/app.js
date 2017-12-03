@@ -1,4 +1,6 @@
 
+window.ee = new EventEmitter();
+
 var my_news = [
     {
         author: 'Иван Иванович',
@@ -35,9 +37,21 @@ var Add = React.createClass({
     },
     onBtnClickHandler: function(e) {
         e.preventDefault
+        var textEl = ReactDOM.findDOMNode(this.refs.text);
+        
         var author = this.refs.author.value;
         var text = this.refs.text.value;
-        alert(author + '\n' + text);
+        
+        var item = [{
+            author: author,
+            text: text,
+            bigText: '...'
+        }];
+
+        window.ee.emit('News.add', item);
+
+        textEl.value = '';
+        this.setState({textIsEmpty: true});
     },
     onAuthorChange: function(e) {
         if (e.target.value.trim().length > 0) {
@@ -89,7 +103,7 @@ var Add = React.createClass({
                     onClick={this.onBtnClickHandler}
                     ref='alert_button'
                     disabled={agreeNotChecked || authorIsEmpty || textIsEmpty}>
-                    Показать алерт
+                    Добавить новость
                     </button>
             </form>
         );
@@ -180,12 +194,28 @@ var News = React.createClass({
 });
 
 var App = React.createClass({
+    getInitialState: function() {
+        return {
+            news: my_news
+        }
+    },
+    componentDidMount: function() {
+        var self = this;
+
+        window.ee.addListener('News.add', function(item) {
+            var nextNews = item.concat(self.state.news);
+            self.setState({news: nextNews});
+        });
+    },
+    componentWillUnmount: function() {
+        window.ee.removeListener('News.add');
+    },
     render: function() {
         return (
             <div className="app">
                 <h3>Новости</h3>
                 <Add />
-                <News data={my_news}/>
+                <News data={this.state.news}/>
                 {/* <Comments /> */}
             </div>
         );
