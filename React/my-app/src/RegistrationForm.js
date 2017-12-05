@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './RegistrationForm.css'
+
 class RegistrationForm extends Component {
 
     constructor(props) {
@@ -30,7 +32,9 @@ class RegistrationForm extends Component {
                     placeholder="E-mail"
                     value={this.state.email}
                     onChange={this.handleEmailChange}
+                    className="emailField"
                 />
+                <button className="submitBtn">Save</button>
             </form>
 
         );
