@@ -3,3 +3,5 @@
 * Добавить в header картинку
 
 [Результат](https://jsfiddle.net/averveyko/kbrys3c6/)
+
+[Хорошая справка](http://html5.by/blog/flexbox/)
