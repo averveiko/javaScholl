@@ -82,8 +82,22 @@ class GameGrid extends Component {
             });
         }
 
+        //Проверяем на ничью
+        if(this.checkStandoff(newCellsState)) {
+            this.setState({ message: 'Standoff. Pls refresh app :)' });
+            return;
+        }
+
         //Смена игрока после хода
         this.changePlayerState();
+    }
+
+    checkStandoff(newCellsState) {
+        if (newCellsState.every((item) => item != null)) {
+            return true;
+        }
+
+        return false;
     }
 
     checkPlayerWin(player, newCellsState) {
