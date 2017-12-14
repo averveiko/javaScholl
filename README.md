@@ -29,4 +29,5 @@ lesson23 | Spring
 [lesson25](https://github.com/averveiko/javaSchool/tree/master/lesson25) | ORM, Spring Hibernate
 [lesson26](https://github.com/averveiko/javaSchool/tree/master/lesson26) | Spring WEB MVC
 [lesson27](https://github.com/averveiko/javaSchool/tree/master/lesson27) | HTML CSS JS
+[lesson28](https://github.com/averveiko/javaSchool/tree/master/lesson28) | ES6 + ReactJS
 [lesson30](https://github.com/averveiko/javaSchool/tree/master/lesson30) | JMS
