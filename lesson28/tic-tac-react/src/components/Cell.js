@@ -19,8 +19,8 @@ const style = {
 class Cell extends Component {
   render() {
     return (
-      <div style={style.cell}>
-        {this.props.state}
+      <div style={style.cell} onClick={this.props.onClick}>
+        {this.props.value}
       </div>
     );
   }
