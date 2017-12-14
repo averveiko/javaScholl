@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 //import logo from './logo.svg';
 import GameGrid from './components/GameGrid'
 
+const style = {
+  game: {
+    display: 'flex',
+    justifyContent: 'center',
+  }
+}
+
+
 class App extends Component {
   render() {
     return (
-      <GameGrid />
+      <div style={style.game}>
+        <GameGrid />
+      </div>
     );
   }
 }

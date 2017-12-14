@@ -11,7 +11,23 @@ const style = {
   gameRow: {
     display: 'flex',
     flexDirection: 'row'
-  }
+  },
+
+  h1: {
+    display: 'flex',
+    justifyContent: 'center',
+  },
+
+  message: {
+      display: 'flex',
+      justifyContent: 'center'
+  },
+
+  currentPlayer: {
+    display: 'flex',
+    justifyContent: 'center',
+    
+}
 }
 
 class GameGrid extends Component {
@@ -24,7 +40,9 @@ class GameGrid extends Component {
         null, null, null
       ],
       
-      currentPlayer: 'X'
+      currentPlayer: 'X',
+
+      message: null
     };
   }
 
@@ -39,6 +57,14 @@ class GameGrid extends Component {
   changeCellState(index) {
       //console.log('change', index);
       //console.log(this.state.currentPlayer);
+
+      //Проверяем пустая ли ячейка
+      if(this.state.cellsState[index] != null) {
+          this.setState({message: 'Select empty cell'});
+          return;
+      }
+      this.setState({message: null});
+
 
       const newCellsState = this.state.cellsState.slice();
       newCellsState[index] = this.state.currentPlayer;
@@ -61,7 +87,8 @@ class GameGrid extends Component {
   render() {
     return (
       <div>
-        <h1>Tic-tac-react</h1>
+        <h1 style={style.h1}>Tic-tac-react</h1>
+        <p style={style.currentPlayer}>Current player is: {this.state.currentPlayer}</p>
         <div style={style.gameGrid}>
           {/* {cellsState.map((item, index) =>
             <Cell state={item} key={index} />)} */}
@@ -81,6 +108,7 @@ class GameGrid extends Component {
                 {this.renderCell(8)}
             </div>
         </div>
+            <p style={style.message}>{this.state.message}</p>
       </div>
     );
   }

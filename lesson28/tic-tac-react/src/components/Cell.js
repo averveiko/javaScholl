@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const style = {
     cell: {
@@ -9,21 +9,28 @@ const style = {
         border: 1,
         backgroundColor: 'lightgrey',
         borderRadius: '10%',
-        fontSize:58,
+        fontSize: 60,
         alignItems: 'center',
         justifyContent: 'center',
     }
 }
 
-
-class Cell extends Component {
-  render() {
+const Cell = (props) => {
     return (
-      <div style={style.cell} onClick={this.props.onClick}>
-        {this.props.value}
-      </div>
+        <div style={style.cell} onClick={props.onClick}>
+            {props.value}
+        </div>
     );
-  }
 }
+
+// class Cell extends Component {
+//   render() {
+//     return (
+//       <div style={style.cell} onClick={this.props.onClick}>
+//         {this.props.value}
+//       </div>
+//     );
+//   }
+// }
 
 export default Cell;
