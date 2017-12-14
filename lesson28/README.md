@@ -4,12 +4,12 @@
 
 Главный экран
 
-(main screen)[img/main.png]
+!(main screen)[img/main.png]
 
 Поздравления
 
-(win screen)[img/win.png]
+!(win screen)[img/win.png]
 
 С мобильного браузера
 
-(mobile screen)[img/mobile.png]
+!(mobile screen)[img/mobile.png]
