@@ -10,6 +10,7 @@ const style = {
         backgroundColor: 'lightgrey',
         borderRadius: '10%',
         fontSize: 60,
+        fontWeight: 'bold',
         alignItems: 'center',
         justifyContent: 'center',
     }

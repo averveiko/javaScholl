@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+
 import GameGrid from './components/GameGrid'
 
 const style = {
@@ -8,7 +8,6 @@ const style = {
     justifyContent: 'center',
   }
 }
-
 
 class App extends Component {
   render() {
