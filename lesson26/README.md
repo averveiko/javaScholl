@@ -1,3 +1,7 @@
+### Сервлет
+
+[Смотреть тут](https://github.com/averveiko/javaSchool/tree/master/lesson26/servlets/urlhw)
+
 ### Запустить приложение javaschool_mvc на WildFly
 
 * Собираем root package
