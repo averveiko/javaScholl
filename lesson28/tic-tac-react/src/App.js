@@ -7,7 +7,7 @@ const style = {
     display: 'flex',
     justifyContent: 'center',
   }
-}
+};
 
 class App extends Component {
   render() {

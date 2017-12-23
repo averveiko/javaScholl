@@ -14,7 +14,7 @@ const style = {
         alignItems: 'center',
         justifyContent: 'center',
     }
-}
+};
 
 const Cell = (props) => {
     return (
@@ -22,16 +22,6 @@ const Cell = (props) => {
             {props.value}
         </div>
     );
-}
-
-// class Cell extends Component {
-//   render() {
-//     return (
-//       <div style={style.cell} onClick={this.props.onClick}>
-//         {this.props.value}
-//       </div>
-//     );
-//   }
-// }
+};
 
 export default Cell;

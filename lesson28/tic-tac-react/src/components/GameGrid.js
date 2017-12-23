@@ -29,27 +29,36 @@ const style = {
         justifyContent: 'center',
 
     }
-}
+};
+
+const initState = {
+
+    gameState: 'play',
+
+    gameWinner: null,
+
+    cellsState: [
+        null, null, null,
+        null, null, null,
+        null, null, null
+    ],
+
+    currentPlayer: 'X',
+
+    message: null
+};
 
 class GameGrid extends Component {
     constructor(props) {
         super(props);
-        this.state = {
 
-            gameState: 'play',
+        this.state = {...initState, cellsState: [...initState.cellsState]};
 
-            gameWinner: null,
+        this.changeGameState = this.changeGameState.bind(this);
+    }
 
-            cellsState: [
-                null, null, null,
-                null, null, null,
-                null, null, null
-            ],
-
-            currentPlayer: 'X',
-
-            message: null
-        };
+    changeGameState() {
+        this.setState({...initState, cellsState: [...initState.cellsState]});
     }
 
     changePlayerState() {
@@ -168,6 +177,7 @@ class GameGrid extends Component {
         } else if (this.state.gameState === 'winner') {
             return <Winner
                 gameWinner={this.state.gameWinner}
+                changeGameState={this.changeGameState}
             />;
         } else {
             return <p>Loading...</p>;
