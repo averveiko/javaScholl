@@ -1,4 +1,5 @@
-### Логгирование (стандартная библиотека)
+### Логирование (стандартная библиотека)
+`Java Logging API`
 
 ```Java
 import java.util.logging.*;
@@ -69,3 +70,31 @@ private static void configureLogging() {
 }
 ```
 
+### SLF4J (Simple Logging Facade for Java)
+>библиотека для протоколирования, ставящая своей целью предоставить максимально простой, но при этом мощный фасад для различных систем протоколирования на Java.
+
+```Java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class Wombat {
+
+        final Logger logger = LoggerFactory.getLogger(Wombat.class);
+        Integer t;
+        Integer oldT;
+
+        public void setTemperature(Integer temperature) {
+
+                oldT = t;        
+                t = temperature;
+
+                logger.debug("Temperature set to {}. Old temperature was {}.", t, oldT);
+
+                if(temperature.intValue() > 50) {
+                        logger.info("Temperature has risen above 50 degrees.");
+                }
+        }
+}
+```
+
+[Статья на хабре про разные логгеры](https://habrahabr.ru/post/247647/)
