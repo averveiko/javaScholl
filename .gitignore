@@ -1,6 +1,21 @@
 target/
 out/
-.DS_Store/
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+/node_modules
+/coverage
+/build
+
+*~
+build/
+.vscode
+*.swp
+*.swo
 
 .idea
 *.iws

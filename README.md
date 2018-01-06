@@ -21,10 +21,13 @@ Lesson | Theme
 [lesson17](https://github.com/averveiko/javaSchool/tree/master/lesson17) | Good code
 lesson18 | GOF I
 lesson19 | GOF II
-lesson20 | CI, CD, Development process, methodology
+[lesson20](https://github.com/averveiko/javaSchool/tree/master/lesson20) | CI, CD, Development process, methodology
 [lesson21](https://github.com/averveiko/javaSchool/tree/master/lesson21) | JDBC I
-lesson22 | JDBC II
+[lesson22](https://github.com/averveiko/javaSchool/tree/master/lesson22) | JDBC II
 lesson23 | Spring
-lesson24 | SpringJDBC, Transactions
-lesson25 | ORM, Spring Hibernate
+[lesson24](https://github.com/averveiko/javaSchool/tree/master/lesson24) | SpringJDBC, Transactions
+[lesson25](https://github.com/averveiko/javaSchool/tree/master/lesson25) | ORM, Spring Hibernate
 [lesson26](https://github.com/averveiko/javaSchool/tree/master/lesson26) | Spring WEB MVC
+[lesson27](https://github.com/averveiko/javaSchool/tree/master/lesson27) | HTML CSS JS
+[lesson28](https://github.com/averveiko/javaSchool/tree/master/lesson28) | ES6 + ReactJS
+[lesson30](https://github.com/averveiko/javaSchool/tree/master/lesson30) | JMS
