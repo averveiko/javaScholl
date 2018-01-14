@@ -190,3 +190,6 @@ public static boolean isPalindrome(String s) {
     return leftToRight.toString().equals(rightToLeft.toString());
 }
 ```
+
+### Разное
+string.split("[^\\p{L}\\p{Digit}]+") // Разбить по словам (только буквы и цифры)
